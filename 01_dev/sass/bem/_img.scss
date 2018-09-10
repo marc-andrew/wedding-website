@@ -1,0 +1,24 @@
+/**
+ Images
+**/
+
+.img {
+    // Variable for root id: #{$imgParent}
+    $imgParent: &;
+
+    display: block;
+    opacity: 0;
+    width: 100%;
+
+    //
+    //------------------------------- Start Modifier
+    //
+
+    //-- MODIFIER: Image loaded
+    @at-root #{&}--loaded {
+
+        #{$imgParent} {
+            opacity: 1;
+        }
+    }
+}

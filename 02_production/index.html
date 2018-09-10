@@ -11,7 +11,8 @@
     <meta name="robots" content="index, follow" />
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1" />
 
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab|Roboto:400,500" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
 
     <script src="//localhost:35729/livereload.js"></script>
 
@@ -21,40 +22,38 @@
 
     <div class="warpper">
         <header id="header" class="header" role="banner">
-            <div class="header-main">
-                <div class="brand">
+            <div class="header__inner flex">
+                <div class="brand flex--grow">
     <a href="#" class="brand__logo" title="Home">
         Logo
     </a>
 </div>
-            </div>
 
-            <div class="header-bottom">
                 <nav class="nav nav--primary trans--all trans--ease-in-out" role="navigation">
     <ul class="nav__list nav--list-primary flex">
-        <li class="nav__list-item nav--list-item-first-level">
-            <a href="#" class="nav__list-link nav--list-link-first-level">
-                <span class="nav__list-link-txt">Ceremony</span>
+        <li class="nav__list-item">
+            <a href="#" class="nav__list-link nav--list-link-active">
+                <span class="nav__list-link-txt trans--all-before-after">Ceremony</span>
             </a>
         </li>
-        <li class="nav__list-item nav--list-item-first-level">
-            <a href="#" class="nav__list-link nav--list-link-first-level">
-                <span class="nav__list-link-txt">Our Story</span>
+        <li class="nav__list-item">
+            <a href="#" class="nav__list-link">
+                <span class="nav__list-link-txt trans--all-before-after">Our Story</span>
             </a>
         </li>
-        <li class="nav__list-item nav--list-item-first-level">
-            <a href="#" class="nav__list-link nav--list-link-first-level">
-                <span class="nav__list-link-txt">People</span>
+        <li class="nav__list-item">
+            <a href="#" class="nav__list-link">
+                <span class="nav__list-link-txt trans--all-before-after">People</span>
             </a>
         </li>
-        <li class="nav__list-item nav--list-item-first-level">
-            <a href="#" class="nav__list-link nav--list-link-first-level">
-                <span class="nav__list-link-txt">RSVP</span>
+        <li class="nav__list-item">
+            <a href="#" class="nav__list-link">
+                <span class="nav__list-link-txt trans--all-before-after">RSVP</span>
             </a>
         </li>
-        <li class="nav__list-item nav--list-item-first-level">
-            <a href="#" class="nav__list-link nav--list-link-first-level">
-                <span class="nav__list-link-txt">Gift Regristration</span>
+        <li class="nav__list-item">
+            <a href="#" class="nav__list-link">
+                <span class="nav__list-link-txt trans--all-before-after">Gift Regristration</span>
             </a>
         </li>
     </ul>
@@ -64,15 +63,34 @@
 
 
         <main id="main" class="main" role="main">
-            hero
+            <section class="contianer container--full">
+    <div class="img__container">
+        <noscript class="res-data" data-srcset="assets/mobile.jpg 0w, assets/tablet.jpg 767w, assets/desktop.jpg 1024w" data-lazy="true">
+            <img src="assets/desktop-big.jpg" alt="Image">
+        </noscript>
+        <img src="assets/desktop-big-placeholder.gif" alt="Image" class="res-img">
+    </div>
 
-            <h2>Our Story</h2>
+    <div class="hero-main">
+        <h1>Hero</h1>
+    </div>
+</section>
 
-            <h2>People</h2>
+            <section class="container">
+    <h2>Our Story</h2>
+</section>
 
-            <h2>Ceremony</h2>
+            <section class="container">
+    <h2>People</h2>
+</section>
 
-            <h2>RSVP</h2>
+            <section class="container">
+    <h2>Ceremony</h2>
+</section>
+
+            <section class="container">
+    <h2>RSVP</h2>
+</section>
         </main>
 
         <footer id="footer" class="footer" role="contentinfo">

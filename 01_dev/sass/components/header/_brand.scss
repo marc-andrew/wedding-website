@@ -1,0 +1,19 @@
+.brand {
+    flex-grow: 1;
+
+
+    .brand__logo {
+        display: block;
+        line-height: 0;
+        max-width: px(270);
+        margin: 0 auto;
+
+        @include media(screen,max,480px) {
+            max-width: px(220);
+        }
+
+        &:focus {
+            outline: px(1) dotted $primaryMedium;
+        }
+    }
+}

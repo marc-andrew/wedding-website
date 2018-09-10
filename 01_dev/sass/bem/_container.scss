@@ -1,0 +1,19 @@
+/**
+ Container
+**/
+
+.container {
+    max-width: px(1292);
+    padding: 0 px(20);
+    margin: 0 auto;
+
+    //
+    //------------------------------- Start Modifier
+    //
+
+    //-- MODIFIER: Container full
+    @at-root #{&}--full {
+        max-width: none;
+        padding: 0;
+    }
+}

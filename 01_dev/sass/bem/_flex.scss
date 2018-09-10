@@ -24,4 +24,8 @@
     @at-root #{&}--align-center {
         align-items: center;
     }
+    //-- MODIFIER: Flex Grow
+    @at-root #{&}--grow {
+        flex-grow: 1;
+    }
 }

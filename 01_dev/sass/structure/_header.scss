@@ -2,6 +2,12 @@
  Header
 **/
 
-#header {
+.header {
     background-color: rgba(#000,0.3);
+
+    @at-root #{&}__inner {
+        max-width: px(1292);
+        margin: 0 auto;
+        padding: 0 px(10);
+    }
 }
