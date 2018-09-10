@@ -1,0 +1,24 @@
+/**
+ Typography
+**/
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: $font-2;
+    font-weight: 400;
+	color: $primary;
+	margin: 0;
+}
+
+a {
+	color: $primary;
+	text-decoration: none;
+
+	&:hover,
+	&:focus {
+		text-decoration: underline;
+	}
+}
+
+p {
+	margin: 0 0 px(20);
+}
