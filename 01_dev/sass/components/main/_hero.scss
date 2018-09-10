@@ -3,6 +3,7 @@
 **/
 
 .hero {
+    margin: px(52) 0 0;
 
     @at-root #{&}__main {
         position: absolute;
@@ -10,5 +11,13 @@
         height: 100%;
         top: 0;
         left: 0;
+    }
+
+    @at-root #{&}__copy {
+        border-top: px(2) solid $primary;
+        text-align: center;
+        margin: px(20) auto 0;
+        padding: px(20) 0 0;
+        max-width: px(190);
     }
 }

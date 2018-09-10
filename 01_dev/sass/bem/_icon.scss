@@ -3,6 +3,7 @@
 **/
 
 .icon {
+    position: relative;
     display: inline-block;
     text-indent: -9999px;
     margin: auto;
@@ -15,5 +16,20 @@
     @at-root #{&}--svg {
         display: block;
         width: 100%;
+    }
+    //-- MODIFIER: Arrow down
+    @at-root #{&}--arrow-down {
+        position: absolute;
+        display: block;
+        border-right: px(3) solid $primary;
+        border-bottom: px(3) solid $primary;
+        width: px(18);
+        height: px(18);
+        transform: rotate(45deg);
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
     }
 }

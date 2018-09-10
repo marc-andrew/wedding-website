@@ -1,0 +1,43 @@
+/**
+ Buttons
+**/
+
+.btn {
+    // Default styling
+    position: relative;
+    display: inline-block;
+    background: none;
+    border: none;
+    border-radius: 0;
+    outline: none;
+    font-family: $font-2;
+    font-weight: normal;
+    font-size: px(12);
+    line-height: px(16);
+    letter-spacing: px(0.25);
+    text-decoration: none;
+    padding: 0;
+    cursor: pointer;
+
+    &:focus {
+        outline: px(1) dotted $primaryMedium;
+    }
+
+    //
+    //------------------------------- Start Modifier
+    //
+    
+    //-- MODIFIER: Scroll down
+    @at-root #{&}--scroll-down {
+        position: absolute;
+        border-radius: 50%;
+        background-color: #fff;
+        display: block;
+        width: px(60);
+        height: px(60);
+        right: 0;
+        bottom: px(-30);
+        left: 0;
+        margin: 0 auto;
+    }
+}

@@ -23,7 +23,7 @@
                 var thisEl = obj.id[i],
                 dataLazy = thisEl.getAttribute('data-lazy');
     
-                if(dataLazy !== 'true' || thisEl.parentNode.classList.contains('loaded')) {
+                if(dataLazy !== 'true' || thisEl.parentNode.classList.contains('img--loaded')) {
                     obj.changeUrl(thisEl,obj.bpImg(thisEl));
                 } else {
                     obj.inView(thisEl);
@@ -76,7 +76,7 @@
                     img.addEventListener('load', function() {
                         nextImg.setAttribute('src',url);
                         el.parentNode.classList.remove('loading');
-                        if(!el.parentNode.classList.contains('loaded')) el.parentNode.classList.add('loaded');
+                        if(!el.parentNode.classList.contains('img--loaded')) el.parentNode.classList.add('img--loaded');
                     }, false);
                     img.src = url;
                 }
@@ -101,7 +101,7 @@
         };
     };
     
-    // var imgSrc = document.getElementsByClassName('res-data');
-    // var responsiveImg = new resImg(imgSrc);
-    // responsiveImg.init();
+    var imgSrc = document.getElementsByClassName('res-data');
+    var responsiveImg = new resImg(imgSrc);
+    responsiveImg.init();
 }());

@@ -10,11 +10,32 @@
 
     //-- ELEMENT: Title top
     @at-root #{&}__top {
-        font-family: $font-1;
         display: block;
+        font-family: $font-1;
+        font-size: px(32);
+        line-height: px(32);
+        letter-spacing: px(1.2);
+        margin: 0 0 px(10);
     }
     //-- ELEMENT: Title main
     @at-root #{&}__main {
         display: block;
+        font-size: px(38);
+        line-break: px(38);
+        letter-spacing: px(1.2);
+        text-transform: uppercase;
+    }
+    //-- ELEMENT: Title big
+    @at-root #{&}__big {
+        font-size: px(28);
+    }
+
+    //
+    //------------------------------- Start Modifier
+    //
+
+    //-- MODIFIER: Title hero
+    @at-root #{&}--hero {
+        text-align: center;
     }
 }

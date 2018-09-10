@@ -353,7 +353,7 @@ body {
 **/
 h1, h2, h3, h4, h5, h6 {
   font-family: "Roboto", Arial, Helvetica, sans-serif;
-  font-weight: 400;
+  font-weight: 500;
   color: #1c1c1c;
   margin: 0;
 }
@@ -367,6 +367,8 @@ a:focus {
 }
 
 p {
+  font-family: "Roboto Slab", "Times New Roman", serif;
+  font-size: 0.875rem;
   margin: 0 0 1.25rem;
 }
 
@@ -393,7 +395,13 @@ li {
  Header
 **/
 .header {
-  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.6);
+  width: 100%;
+  height: 3.25rem;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 .header__inner {
   max-width: 80.75rem;
@@ -510,6 +518,7 @@ li {
  Icons
 **/
 .icon {
+  position: relative;
   display: inline-block;
   text-indent: -9999px;
   margin: auto;
@@ -518,16 +527,79 @@ li {
   display: block;
   width: 100%;
 }
+.icon--arrow-down {
+  position: absolute;
+  display: block;
+  border-right: 0.1875rem solid #1c1c1c;
+  border-bottom: 0.1875rem solid #1c1c1c;
+  width: 1.125rem;
+  height: 1.125rem;
+  transform: rotate(45deg);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+
+/**
+ Buttons
+**/
+.btn {
+  position: relative;
+  display: inline-block;
+  background: none;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  letter-spacing: 0.015625rem;
+  text-decoration: none;
+  padding: 0;
+  cursor: pointer;
+}
+.btn:focus {
+  outline: 0.0625rem dotted #c1c1c1;
+}
+.btn--scroll-down {
+  position: absolute;
+  border-radius: 50%;
+  background-color: #fff;
+  display: block;
+  width: 3.75rem;
+  height: 3.75rem;
+  right: 0;
+  bottom: -1.875rem;
+  left: 0;
+  margin: 0 auto;
+}
 
 /**
  Titles
 **/
 .title__top {
-  font-family: "Roboto Slab", "Times New Roman", serif;
   display: block;
+  font-family: "Roboto Slab", "Times New Roman", serif;
+  font-size: 2rem;
+  line-height: 2rem;
+  letter-spacing: 0.075rem;
+  margin: 0 0 0.625rem;
 }
 .title__main {
   display: block;
+  font-size: 2.375rem;
+  line-break: 2.375rem;
+  letter-spacing: 0.075rem;
+  text-transform: uppercase;
+}
+.title__big {
+  font-size: 1.75rem;
+}
+.title--hero {
+  text-align: center;
 }
 
 /**
@@ -544,26 +616,25 @@ li {
   padding: 0;
 }
 
-.brand__logo {
-  display: block;
-  line-height: 0;
-  max-width: 2.5rem;
-  height: 100%;
-  margin: 0 auto;
-}
-.brand__logo:focus {
-  outline: 0.0625rem dotted #c1c1c1;
-}
-
 /**
  Hero
 **/
+.hero {
+  margin: 3.25rem 0 0;
+}
 .hero__main {
   position: absolute;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
+}
+.hero__copy {
+  border-top: 0.125rem solid #1c1c1c;
+  text-align: center;
+  margin: 1.25rem auto 0;
+  padding: 1.25rem 0 0;
+  max-width: 11.875rem;
 }
 
 /*# sourceMappingURL=style.css.map */
