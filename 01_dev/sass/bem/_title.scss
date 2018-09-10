@@ -1,0 +1,20 @@
+/**
+ Titles
+**/
+
+.title {
+
+    //
+    //------------------------------- Start Element
+    //
+
+    //-- ELEMENT: Title top
+    @at-root #{&}__top {
+        font-family: $font-1;
+        display: block;
+    }
+    //-- ELEMENT: Title main
+    @at-root #{&}__main {
+        display: block;
+    }
+}

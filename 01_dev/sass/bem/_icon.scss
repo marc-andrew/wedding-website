@@ -1,0 +1,19 @@
+/**
+ Icons
+**/
+
+.icon {
+    display: inline-block;
+    text-indent: -9999px;
+    margin: auto;
+
+    //
+    //------------------------------- Start Modifier
+    //
+
+    //-- MODIFIER: SVG elements
+    @at-root #{&}--svg {
+        display: block;
+        width: 100%;
+    }
+}
