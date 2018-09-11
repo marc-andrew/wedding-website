@@ -57,6 +57,7 @@
     //-- MODIFIER: Title secondary medium
     @at-root #{&}--secondary-small {
         font-size: px(15);
+        font-weight: 500;
         line-height: px(20);
         letter-spacing: px(1.2);
         text-transform: uppercase;

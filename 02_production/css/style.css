@@ -369,7 +369,7 @@ a:focus {
 p {
   font-family: "Roboto Slab", "Times New Roman", serif;
   font-size: 0.875rem;
-  margin: 0 0 1.25rem;
+  margin: 0 0 0.625rem;
 }
 
 /**
@@ -635,6 +635,7 @@ li {
 }
 .title--secondary-small {
   font-size: 0.9375rem;
+  font-weight: 500;
   line-height: 1.25rem;
   letter-spacing: 0.075rem;
   text-transform: uppercase;
@@ -728,7 +729,6 @@ li {
 }
 .ceremony__copy {
   text-align: center;
-  margin: 0 0 0.625rem;
 }
 
 /**
