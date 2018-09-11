@@ -696,8 +696,8 @@ li {
 }
 .ceremony__icon {
   position: absolute;
-  background-color: #fff;
   border: 0.0625rem dashed #c1c1c1;
+  background-color: #fff;
   border-radius: 50%;
   width: 4.375rem;
   height: 4.375rem;
@@ -705,6 +705,18 @@ li {
   right: 0;
   left: 0;
   margin: 0 auto;
+}
+.ceremony__icon-inner {
+  position: absolute;
+  border-radius: 50%;
+  background-color: #f4f4f4;
+  width: 3.75rem;
+  height: 3.75rem;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
 }
 .ceremony__copy {
   text-align: center;

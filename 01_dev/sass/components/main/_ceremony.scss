@@ -25,8 +25,8 @@
 
     @at-root #{&}__icon {
         position: absolute;
-        background-color: #fff;
         border:  px(1) dashed $primaryMedium;
+        background-color: #fff;
         border-radius: 50%;
         width: px(70);
         height: px(70);
@@ -34,6 +34,19 @@
         right: 0;
         left: 0;
         margin: 0 auto;
+    }
+
+    @at-root #{&}__icon-inner {
+        position: absolute;
+        border-radius: 50%;
+        background-color: $primaryLight;
+        width: px(60);
+        height: px(60);
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
     }
 
     @at-root #{&}__copy {
