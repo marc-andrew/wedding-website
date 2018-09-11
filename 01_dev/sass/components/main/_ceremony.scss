@@ -2,15 +2,35 @@
  Ceremony
 **/
 
-.couple {
-    padding: px(30) 0;
+.ceremony {
+    padding-top: px(40);
+
+    @at-root #{&}__couple {
+        border-bottom: px(1) dashed $primaryMedium;
+    }
 
     @at-root #{&}__col {
         width: 50%;
-        padding: px(30) px(20);
+        padding: px(50) px(20);
 
         &:first-child {
             border-right: px(1) dashed $primaryMedium;
         }
+    }
+
+    @at-root #{&}__details {
+        position: relative;
+    }
+
+    @at-root #{&}__icon {
+        position: absolute;
+        background-color: $secondary;
+        border-radius: 50%;
+        width: px(70);
+        height: px(70);
+        top: px(-35);
+        right: 0;
+        left: 0;
+        margin: 0 auto;
     }
 }
