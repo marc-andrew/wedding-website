@@ -627,13 +627,16 @@ li {
 }
 .title--secondary-small {
   font-size: 0.9375rem;
-  line-height: 0.9375rem;
+  line-height: 1.25rem;
   letter-spacing: 0.075rem;
   text-transform: uppercase;
   text-align: center;
 }
 .title--secondary-small-profile {
   margin-bottom: 0.3125rem;
+}
+.title--secondary-small-ceremony {
+  margin-bottom: 0.625rem;
 }
 
 /**
@@ -677,22 +680,24 @@ li {
 .ceremony {
   padding-top: 2.5rem;
 }
+.ceremony--col-line {
+  border-right: 0.0625rem dashed #c1c1c1;
+}
 .ceremony__couple {
   border-bottom: 0.0625rem dashed #c1c1c1;
+  margin: 1.25rem 0 0;
 }
 .ceremony__col {
   width: 50%;
   padding: 3.125rem 1.25rem;
-}
-.ceremony__col:first-child {
-  border-right: 0.0625rem dashed #c1c1c1;
 }
 .ceremony__details {
   position: relative;
 }
 .ceremony__icon {
   position: absolute;
-  background-color: #29b6f6;
+  background-color: #fff;
+  border: 0.0625rem dashed #c1c1c1;
   border-radius: 50%;
   width: 4.375rem;
   height: 4.375rem;
@@ -700,6 +705,10 @@ li {
   right: 0;
   left: 0;
   margin: 0 auto;
+}
+.ceremony__copy {
+  text-align: center;
+  margin: 0 0 0.625rem;
 }
 
 /**

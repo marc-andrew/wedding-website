@@ -100,8 +100,60 @@
             }
         };
     };
+
+    // Count Down Script
+    var countdown = function(el) {
+        var obj = this;
+        obj.id = el;
+        obj.init = function(dt) {
+            var end = new Date(dt),
+                _second = 1000,
+                _minute = _second * 60,
+                _hour = _minute * 60,
+                _day = _hour * 24,
+                timer;
+    
+            function showRemaining() {
+                var now = new Date(),
+                    distance = end - now,
+                    days = Math.floor(distance / _day),
+                    hours = Math.floor((distance % _day) / _hour),
+                    minutes = Math.floor((distance % _hour) / _minute),
+                    seconds = Math.floor((distance % _minute) / _second);
+    
+                if (distance < 0) {
+                    clearInterval(timer);
+                    for (var i = 0; i < obj.id.children.length; i++) {
+                        obj.id.children[i].innerHTML = '00';
+                        obj.id.children[i].innerHTML = '00';
+                        obj.id.children[i].innerHTML = '00';
+                        obj.id.children[i].innerHTML = '00';
+                    }
+                    return;
+                }
+                
+                for (var el = 0; el < obj.id.children.length; el++) {
+                    if(obj.id.children[el].classList.contains('days')) obj.id.children[el].innerHTML = padNumber(days);
+                    if(obj.id.children[el].classList.contains('hrs')) obj.id.children[el].innerHTML = padNumber(hours);
+                    if(obj.id.children[el].classList.contains('mins')) obj.id.children[el].innerHTML = padNumber(minutes);
+                    if(obj.id.children[el].classList.contains('secs')) obj.id.children[el].innerHTML = padNumber(seconds);
+                }
+            }
+    
+            function padNumber(number) {
+                return (number < 10 ? '0' : '') + number;
+            }
+    
+            timer = setInterval(showRemaining, 1000);
+            showRemaining();
+        };
+    };
     
     var imgSrc = document.getElementsByClassName('res-data');
     var responsiveImg = new resImg(imgSrc);
     responsiveImg.init();
+
+    // var cdWrapper = document.getElementById('countdown-timer'),
+    // countdown = new countdown(cdWrapper);
+    // countdown.init('06/19/2018 11:00 GMT');
 }());

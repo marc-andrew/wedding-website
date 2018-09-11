@@ -57,7 +57,7 @@
     //-- MODIFIER: Title secondary medium
     @at-root #{&}--secondary-small {
         font-size: px(15);
-        line-height: px(15);
+        line-height: px(20);
         letter-spacing: px(1.2);
         text-transform: uppercase;
         text-align: center;
@@ -65,5 +65,9 @@
     //-- MODIFIER: Title secondary small profile
     @at-root #{&}--secondary-small-profile {
         margin-bottom: px(5);
+    }
+    //-- MODIFIER: Title secondary small ceremony
+    @at-root #{&}--secondary-small-ceremony {
+        margin-bottom: px(10);
     }
 }
