@@ -591,7 +591,7 @@ li {
 .title__main {
   display: block;
   font-size: 2.375rem;
-  line-break: 2.375rem;
+  line-height: 2.375rem;
   letter-spacing: 0.075rem;
   text-transform: uppercase;
 }
