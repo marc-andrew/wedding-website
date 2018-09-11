@@ -148,6 +148,43 @@
             showRemaining();
         };
     };
+
+    // Nav item click
+    var navClick = function(e) {
+        e.preventDefault();
+        var targetId = this.getAttribute('data-target-id');
+        var targetEl = document.querySelector('[data-section-id="'+targetId+'"]');        
+        scrollTo(targetEl);
+
+        if(targetId != 'ceremony') setActiveNavItem(targetEl);
+    };
+
+    var navButton = document.getElementsByClassName('nav__list-link');
+    var scrollDownButton = document.getElementsByClassName('btn--scroll-down')[0];
+
+    for(var navEl = 0; navEl < navButton.length; navEl++) {
+        navButton[navEl].addEventListener('click', navClick, false);
+    }
+
+    scrollDownButton.addEventListener('click', navClick, false);
+
+    // Set active nav item
+    function setActiveNavItem(el) {
+        for(var activeEl = 0; activeEl < navButton.length; activeEl++) {
+            // On keydown, focus and blur
+            if(navButton[activeEl].classList.contains('nav--list-link-active')) {
+                navButton[activeEl].classList.remove('nav--list-link-active');
+                break;
+            }
+        }
+
+        el.classList.add('nav--list-link-active');
+    }
+
+    // Scroll to element
+    function scrollTo(el) {
+        el.scrollIntoView({behavior: "smooth", block: "start"});
+    }
     
     var imgSrc = document.getElementsByClassName('res-data');
     var responsiveImg = new resImg(imgSrc);

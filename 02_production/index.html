@@ -26,31 +26,31 @@
                 <nav class="nav nav--primary trans--all trans--ease-in-out" role="navigation">
     <ul class="nav__list nav--list-primary flex">
         <li class="nav__list-item">
-            <a href="#" class="nav__list-link nav--list-link-active">
+            <a href="#" class="nav__list-link nav--list-link-active" data-target-id="hero">
                 <span class="nav__list-link-txt trans--all-before-after">Ceremony</span>
             </a>
         </li>
         <li class="nav__list-item">
-            <a href="#" class="nav__list-link">
+            <a href="#" class="nav__list-link" data-target-id="people">
                 <span class="nav__list-link-txt trans--all-before-after">People</span>
             </a>
         </li>
         <li class="nav__list-item">
-            <a href="#" class="nav__list-link">
+            <a href="#" class="nav__list-link" data-target-id="venue">
                 <span class="nav__list-link-txt trans--all-before-after">Venue</span>
             </a>
         </li>
         <li class="nav__list-item">
-            <a href="#" class="nav__list-link">
+            <a href="#" class="nav__list-link" data-target-id="menu">
                 <span class="nav__list-link-txt trans--all-before-after">Menu</span>
             </a>
         </li>
         <li class="nav__list-item">
-            <a href="#" class="nav__list-link">
+            <a href="#" class="nav__list-link" data-target-id="rsvp">
                 <span class="nav__list-link-txt trans--all-before-after">RSVP</span>
             </a>
         </li>
-        <li class="nav__list-item">
+        <li class="nav__list-item" data-target-id="gift-registration">
             <a href="#" class="nav__list-link">
                 <span class="nav__list-link-txt trans--all-before-after">Gift Regristration</span>
             </a>
@@ -63,7 +63,7 @@
 
         <main id="main" class="main" role="main">
             <section class="container container--full hero">
-    <div class="img__container">
+    <div class="img__container" data-section-id="hero">
         <noscript class="res-data" data-srcset="img/nira-marc_hero-s.jpg 0w, img/nira-marc_hero-m.jpg 667w, img/nira-marc_hero-l.jpg 1024w" data-lazy="true">
             <img src="img/nira-marc_hero-l.jpg" alt="Nira and Marc" class="img">
         </noscript>
@@ -80,7 +80,7 @@
         </div>
     </div>
 
-    <button class="btn btn--scroll-down">
+    <button class="btn btn--scroll-down" data-target-id="ceremony">
         <span class="btn__icon">
             <span class="icon icon--arrow-down">Scroll Down</span>
         </span>
@@ -89,7 +89,7 @@
 
 we will say yes in ...
 
-            <section class="container ceremony">
+            <section class="container ceremony" data-section-id="ceremony">
     <h3 class="title title--secondary-small">We joyfully invite you to share in our happiness at our wedding celebration of
     </h3>
     <div class="ceremony__couple flex">
@@ -168,15 +168,15 @@ we will say yes in ...
     </div>
 </section>
 
-            <section class="container">
+            <section class="container" data-section-id="people">
     <h2>People</h2>
 </section>
 
-            <section class="container">
+            <section class="container" data-section-id="venue">
     <h2>Our Story</h2>
 </section>
 
-            <section class="container">
+            <section class="container" data-section-id="rsvp">
     <h2>RSVP</h2>
 </section>
         </main>
