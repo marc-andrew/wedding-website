@@ -1,0 +1,16 @@
+/**
+ Ceremony
+**/
+
+.couple {
+    padding: px(30) 0;
+
+    @at-root #{&}__col {
+        width: 50%;
+        padding: px(30) px(20);
+
+        &:first-child {
+            border-right: px(1) dashed $primaryMedium;
+        }
+    }
+}

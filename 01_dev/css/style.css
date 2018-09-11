@@ -601,6 +601,30 @@ li {
 .title--hero {
   text-align: center;
 }
+.title--primary-medium {
+  font-family: "Roboto Slab", "Times New Roman", serif;
+  font-size: 1.125rem;
+  line-height: 1.125rem;
+  letter-spacing: 0.075rem;
+  text-align: center;
+}
+.title--secondary-medium {
+  font-size: 1.125rem;
+  line-height: 1.125rem;
+  letter-spacing: 0.075rem;
+  text-transform: uppercase;
+  text-align: center;
+}
+.title--secondary-small {
+  font-size: 0.9375rem;
+  line-height: 0.9375rem;
+  letter-spacing: 0.075rem;
+  text-transform: uppercase;
+  text-align: center;
+}
+.title--secondary-small-profile {
+  margin-bottom: 0.3125rem;
+}
 
 /**
  Container
@@ -635,6 +659,38 @@ li {
   margin: 1.25rem auto 0;
   padding: 1.25rem 0 0;
   max-width: 11.875rem;
+}
+
+/**
+ Ceremony
+**/
+.couple {
+  padding: 1.875rem 0;
+}
+.couple__col {
+  width: 50%;
+  padding: 1.875rem 1.25rem;
+}
+.couple__col:first-child {
+  border-right: 0.0625rem dashed #c1c1c1;
+}
+
+/**
+ Profile
+**/
+.profile__img {
+  position: relative;
+  border-radius: 50%;
+  width: 8.75rem;
+  height: 8.75rem;
+  margin: 0 auto 1.25rem;
+  overflow: hidden;
+}
+.profile__img img {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 0;
 }
 
 /*# sourceMappingURL=style.css.map */

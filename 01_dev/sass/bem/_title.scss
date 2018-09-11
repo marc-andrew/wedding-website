@@ -38,4 +38,32 @@
     @at-root #{&}--hero {
         text-align: center;
     }
+    //-- MODIFIER: Title primary medium
+    @at-root #{&}--primary-medium {
+        font-family: $font-1;
+        font-size: px(18);
+        line-height: px(18);
+        letter-spacing: px(1.2);
+        text-align: center;
+    }
+    //-- MODIFIER: Title secondary medium
+    @at-root #{&}--secondary-medium {
+        font-size: px(18);
+        line-height: px(18);
+        letter-spacing: px(1.2);
+        text-transform: uppercase;
+        text-align: center;
+    }
+    //-- MODIFIER: Title secondary medium
+    @at-root #{&}--secondary-small {
+        font-size: px(15);
+        line-height: px(15);
+        letter-spacing: px(1.2);
+        text-transform: uppercase;
+        text-align: center;
+    }
+    //-- MODIFIER: Title secondary small profile
+    @at-root #{&}--secondary-small-profile {
+        margin-bottom: px(5);
+    }
 }
