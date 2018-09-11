@@ -5,22 +5,20 @@
 .ceremony {
     padding-top: px(40);
 
-    @at-root #{&}--col-line {
-        border-right: px(1) dashed $primaryMedium;
-    }
-
     @at-root #{&}__couple {
-        border-bottom: px(1) dashed $primaryMedium;
-        margin: px(20) 0 0;
+        border-top:  px(1) dashed $primaryMedium;
+        margin: px(30) 0 0;
     }
 
     @at-root #{&}__col {
+        position: relative;
         width: 50%;
         padding: px(50) px(20);
     }
 
     @at-root #{&}__details {
         position: relative;
+        border-bottom:  px(1) dashed $primaryMedium;
     }
 
     @at-root #{&}__icon {
@@ -34,6 +32,7 @@
         right: 0;
         left: 0;
         margin: 0 auto;
+        z-index: 1;
     }
 
     @at-root #{&}__icon-inner {
@@ -51,5 +50,25 @@
 
     @at-root #{&}__copy {
         text-align: center;
+    }
+
+    @at-root #{&}--col-line {
+        border-right: px(1) dashed $primaryMedium;
+    }
+
+    @at-root #{&}--col-couple {
+        &:after {
+            display: block;
+            position: absolute;
+            background-color: $primary;
+            content: '';
+            width: 80%;
+            max-width: px(200);
+            height: px(2);
+            right: 0;
+            bottom: px(-1);
+            left: 0;
+            margin: 0 auto;
+        }
     }
 }

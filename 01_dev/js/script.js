@@ -190,7 +190,7 @@
     var responsiveImg = new resImg(imgSrc);
     responsiveImg.init();
 
-    // var cdWrapper = document.getElementById('countdown-timer'),
-    // countdown = new countdown(cdWrapper);
-    // countdown.init('06/19/2018 11:00 GMT');
+    var cdWrapper = document.getElementsByClassName('countdown__timer')[0];
+    var countdownTimer = new countdown(cdWrapper);
+    countdownTimer.init('08/06/2019 16:00 GMT');
 }());

@@ -26,11 +26,10 @@
         width: px(18);
         height: px(18);
         transform: rotate(45deg);
-        top: 0;
+        top: px(10);
         right: 0;
-        bottom: 0;
         left: 0;
-        margin: auto;
+        margin: 0 auto;
     }
     //-- MODIFIER: SVG palais
     @at-root #{&}--palais {

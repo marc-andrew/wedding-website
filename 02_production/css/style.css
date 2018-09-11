@@ -543,11 +543,10 @@ li {
   height: 1.125rem;
   -ms-transform: rotate(45deg);
       transform: rotate(45deg);
-  top: 0;
+  top: 0.625rem;
   right: 0;
-  bottom: 0;
   left: 0;
-  margin: auto;
+  margin: 0 auto;
 }
 .icon--palais {
   position: absolute;
@@ -689,19 +688,18 @@ li {
 .ceremony {
   padding-top: 2.5rem;
 }
-.ceremony--col-line {
-  border-right: 0.0625rem dashed #c1c1c1;
-}
 .ceremony__couple {
-  border-bottom: 0.0625rem dashed #c1c1c1;
-  margin: 1.25rem 0 0;
+  border-top: 0.0625rem dashed #c1c1c1;
+  margin: 1.875rem 0 0;
 }
 .ceremony__col {
+  position: relative;
   width: 50%;
   padding: 3.125rem 1.25rem;
 }
 .ceremony__details {
   position: relative;
+  border-bottom: 0.0625rem dashed #c1c1c1;
 }
 .ceremony__icon {
   position: absolute;
@@ -714,6 +712,7 @@ li {
   right: 0;
   left: 0;
   margin: 0 auto;
+  z-index: 1;
 }
 .ceremony__icon-inner {
   position: absolute;
@@ -729,6 +728,52 @@ li {
 }
 .ceremony__copy {
   text-align: center;
+}
+.ceremony--col-line {
+  border-right: 0.0625rem dashed #c1c1c1;
+}
+.ceremony--col-couple:after {
+  display: block;
+  position: absolute;
+  background-color: #1c1c1c;
+  content: '';
+  width: 80%;
+  max-width: 12.5rem;
+  height: 0.125rem;
+  right: 0;
+  bottom: -0.0625rem;
+  left: 0;
+  margin: 0 auto;
+}
+
+/**
+ Ceremony
+**/
+.countdown {
+  height: 12.5rem;
+  padding: 2.5rem 0 0;
+}
+.countdown__timer {
+  margin: 1.25rem 0 0;
+}
+.countdown__time {
+  background-color: #f4f4f4;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  width: 5rem;
+  height: 3.125rem;
+  margin: 0 0.3125rem;
+  padding: 0.8125rem 0 0;
+}
+.countdown__label {
+  background-color: #f4f4f4;
+  font-size: 0.875rem;
+  line-height: 1rem;
+  text-align: center;
+  width: 5rem;
+  margin: 0 0.3125rem;
+  padding: 0 0 0.8125rem;
 }
 
 /**
