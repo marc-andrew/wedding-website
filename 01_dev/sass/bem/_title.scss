@@ -70,5 +70,23 @@
     //-- MODIFIER: Title secondary small ceremony
     @at-root #{&}--secondary-small-ceremony {
         margin-bottom: px(10);
+    }//-- MODIFIER: Title underline
+    @at-root #{&}--underline {
+        position: relative;
+        padding-bottom: px(8);
+
+        &:after {
+            position: absolute;
+            display: block;
+            background-color: $primary;
+            content: '';
+            width: 80%;
+            max-width: px(200);
+            height: px(2);
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: 0 auto;
+        }
     }
 }

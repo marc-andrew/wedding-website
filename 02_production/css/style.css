@@ -646,6 +646,23 @@ li {
 .title--secondary-small-ceremony {
   margin-bottom: 0.625rem;
 }
+.title--underline {
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+.title--underline:after {
+  position: absolute;
+  display: block;
+  background-color: #1c1c1c;
+  content: '';
+  width: 80%;
+  max-width: 12.5rem;
+  height: 0.125rem;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0 auto;
+}
 
 /**
  Container
@@ -708,10 +725,11 @@ li {
   border-radius: 50%;
   width: 4.375rem;
   height: 4.375rem;
-  top: -2.1875rem;
+  top: 0;
+  bottom: 0;
   right: 0;
   left: 0;
-  margin: 0 auto;
+  margin: auto;
   z-index: 1;
 }
 .ceremony__icon-inner {
@@ -750,8 +768,7 @@ li {
  Ceremony
 **/
 .countdown {
-  height: 12.5rem;
-  padding: 2.5rem 0 0;
+  padding: 2.5rem 0;
 }
 .countdown__timer {
   margin: 1.25rem 0 0;

@@ -3,8 +3,7 @@
 **/
 
 .countdown {
-    height: px(200);
-    padding: px(40) 0 0;
+    padding: px(40) 0;
 
     @at-root #{&}__timer {
         margin: px(20) 0 0;
@@ -12,9 +11,7 @@
 
     @at-root #{&}__time {
         background-color: $primaryLight;
-        // font-family: $font-2;
         font-size: px(24);
-        // font-weight: 500;
         line-height: px(24);
         text-align: center;
         width: px(80);
@@ -25,12 +22,9 @@
 
     @at-root #{&}__label {
         background-color: $primaryLight;
-        // font-family: $font-2;
         font-size: px(14);
         line-height: px(16);
-        // font-weight: 500;
         text-align: center;
-        // text-transform: uppercase;
         width: px(80);
         margin: 0 px(5);
         padding: 0 0 px(13);
