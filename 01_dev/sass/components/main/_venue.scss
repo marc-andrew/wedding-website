@@ -1,0 +1,13 @@
+/**
+ Venue
+**/
+
+.venue {
+
+    @at-root #{&}__address {
+        font-family: $font-1;
+        font-size: px(14);
+        line-height: px(18);
+        text-align: center;
+    }
+}

@@ -369,6 +369,7 @@ a:focus {
 p {
   font-family: "Roboto Slab", "Times New Roman", serif;
   font-size: 0.875rem;
+  line-height: 1.125rem;
   margin: 0 0 0.625rem;
 }
 
@@ -791,6 +792,16 @@ li {
   width: 5rem;
   margin: 0 0.3125rem;
   padding: 0 0 0.8125rem;
+}
+
+/**
+ Venue
+**/
+.venue__address {
+  font-family: "Roboto Slab", "Times New Roman", serif;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  text-align: center;
 }
 
 /**

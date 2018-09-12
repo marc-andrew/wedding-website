@@ -1,4 +1,4 @@
-Grunt Template for Front End Devs
+Single Wedding Page
 ==============
 
 Before you start you will need NodeJS + Node Packages, GruntJS and SASS.
