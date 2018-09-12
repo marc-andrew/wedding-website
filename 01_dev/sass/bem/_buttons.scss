@@ -24,6 +24,17 @@
     }
 
     //
+    //------------------------------- Start Element
+    //
+
+    //-- ELEMENT: Scroll down
+    @at-root #{&}__icon {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    //
     //------------------------------- Start Modifier
     //
     
@@ -39,5 +50,12 @@
         bottom: px(-30);
         left: 0;
         margin: 0 auto;
+
+        &:hover {
+
+            .btn__icon {
+                animation: arrowBounce 500ms ease-in-out 200ms infinite alternate;
+            }
+        }
     }
 }
