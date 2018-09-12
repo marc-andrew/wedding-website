@@ -101,8 +101,8 @@
         };
     };
 
-    // Visible elements
-    var visibleEl = function (el) {
+    // Element in viewport
+    var elInViewPort = function (el) {
         var obj = this,
             windowSizeObj = {};
 
@@ -120,6 +120,9 @@
         };
         obj.addClass = function (el) {
             el.classList.add('visible');
+            if(el.classList.contains('hero')) {
+                titleVisible();
+            }
         };
         obj.windowSize = function () {
             var winW = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
@@ -215,7 +218,9 @@
         scrollTo(targetEl);
     };
 
+    // Nav links
     var navButton = document.getElementsByClassName('nav__list-link');
+    // Scroll down button
     var scrollDownButton = document.getElementsByClassName('btn--scroll-down')[0];
 
     // Title
@@ -281,12 +286,10 @@
     responsiveImg.init();
 
     // Element is visible
-    var containerVisible = new visibleEl(document.getElementsByClassName('container'));
+    var containerVisible = new elInViewPort(document.getElementsByClassName('container'));
     containerVisible.init();
 
     // Countdown
     var countdownTimer = new countdown(document.getElementsByClassName('countdown__timer')[0]);
     countdownTimer.init('08/06/2019 16:00 GMT');
-
-    titleVisible();
 }());
