@@ -878,6 +878,13 @@ li {
 /**
  Venue
 **/
+.venue__main {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
 .venue__address {
   font-family: "Roboto Slab", "Times New Roman", serif;
   font-size: 0.875rem;
