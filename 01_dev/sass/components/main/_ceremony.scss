@@ -8,12 +8,20 @@
     @at-root #{&}__couple {
         border-top:  px(1) dashed $primaryMedium;
         margin: px(30) 0 0;
+
+        @include media(screen,max,600px) {
+            border-top: none;
+        }
     }
 
     @at-root #{&}__col {
         position: relative;
         width: 50%;
         padding: px(50) px(20);
+
+        @include media(screen,max,600px) {
+            width: 100%;
+        }
     }
 
     @at-root #{&}__details {
@@ -55,6 +63,11 @@
 
     @at-root #{&}--col-line {
         border-right: px(1) dashed $primaryMedium;
+
+        @include media(screen,max,600px) {
+            border-top: px(1) dashed $primaryMedium;
+            border-right: none;
+        }
     }
 
     @at-root #{&}--col-couple {
@@ -70,6 +83,15 @@
             bottom: px(-1);
             left: 0;
             margin: 0 auto;
+        }
+
+        @include media(screen,max,600px) {
+            &:last-child {
+                
+                &:after {
+                    content: normal;
+                }
+            }
         }
     }
 }

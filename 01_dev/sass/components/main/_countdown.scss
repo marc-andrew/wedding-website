@@ -3,7 +3,7 @@
 **/
 
 .countdown {
-    padding: px(40) 0;
+    padding: px(37) 0 px(40);
 
     @at-root #{&}__timer {
         margin: px(20) 0 0;
@@ -18,6 +18,13 @@
         height: px(50);
         margin: 0 px(5);
         padding: px(13) 0 0;
+
+        @include media(screen,max,414px) {
+            font-size: px(18);
+            line-height: px(18);
+            width: px(60);
+            height: px(40);
+        }
     }
 
     @at-root #{&}__label {
@@ -28,5 +35,10 @@
         width: px(80);
         margin: 0 px(5);
         padding: 0 0 px(13);
+
+        @include media(screen,max,414px) {
+            font-size: px(12);
+            width: px(60);
+        }
     }
 }

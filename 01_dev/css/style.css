@@ -499,9 +499,6 @@ li {
 .nav__list-item:last-child .nav__list-link:after {
   content: normal;
 }
-.nav--list-link-active .nav__list-link-txt:after {
-  width: 100%;
-}
 
 /**
  Images
@@ -571,7 +568,7 @@ li {
   outline: none;
   font-family: "Roboto", Arial, Helvetica, sans-serif;
   font-weight: normal;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   line-height: 1rem;
   letter-spacing: 0.015625rem;
   text-decoration: none;
@@ -601,6 +598,16 @@ li {
 .btn--scroll-down:hover .btn__icon {
   animation: arrowBounce 500ms ease-in-out 200ms infinite alternate;
 }
+.btn--ghost {
+  border: 0.0625rem solid #1c1c1c;
+  outline: 0.0625rem solid transparent;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 0.625rem 1.25rem 0.5625rem;
+}
+.btn--ghost:hover, .btn--ghost:focus {
+  outline: 0.0625rem solid #1c1c1c;
+}
 
 /**
  Titles
@@ -613,12 +620,24 @@ li {
   letter-spacing: 0.075rem;
   margin: 0 0 0.625rem;
 }
+@media screen and (max-width: 600px) {
+  .title__top {
+    font-size: 1.3125rem;
+    line-break: 1.3125rem;
+  }
+}
 .title__main {
   display: block;
   font-size: 2.375rem;
   line-height: 2.375rem;
   letter-spacing: 0.075rem;
   text-transform: uppercase;
+}
+@media screen and (max-width: 600px) {
+  .title__main {
+    font-size: 1.75rem;
+    line-break: 1.75rem;
+  }
 }
 .title__big {
   font-size: 1.75rem;
@@ -633,9 +652,16 @@ li {
   letter-spacing: 0.075rem;
   text-align: center;
 }
+.title--secondary-large {
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  letter-spacing: 0.075rem;
+  text-transform: uppercase;
+  text-align: center;
+}
 .title--secondary-medium {
   font-size: 1.125rem;
-  line-height: 1.125rem;
+  line-height: 1.5rem;
   letter-spacing: 0.075rem;
   text-transform: uppercase;
   text-align: center;
@@ -663,8 +689,7 @@ li {
   display: block;
   background-color: #1c1c1c;
   content: '';
-  width: 80%;
-  max-width: 12.5rem;
+  width: 12.5rem;
   height: 0.125rem;
   right: 0;
   bottom: 0;
@@ -791,10 +816,20 @@ li {
   border-top: 0.0625rem dashed #c1c1c1;
   margin: 1.875rem 0 0;
 }
+@media screen and (max-width: 600px) {
+  .ceremony__couple {
+    border-top: none;
+  }
+}
 .ceremony__col {
   position: relative;
   width: 50%;
   padding: 3.125rem 1.25rem;
+}
+@media screen and (max-width: 600px) {
+  .ceremony__col {
+    width: 100%;
+  }
 }
 .ceremony__details {
   position: relative;
@@ -832,6 +867,12 @@ li {
 .ceremony--col-line {
   border-right: 0.0625rem dashed #c1c1c1;
 }
+@media screen and (max-width: 600px) {
+  .ceremony--col-line {
+    border-top: 0.0625rem dashed #c1c1c1;
+    border-right: none;
+  }
+}
 .ceremony--col-couple:after {
   display: block;
   position: absolute;
@@ -845,12 +886,17 @@ li {
   left: 0;
   margin: 0 auto;
 }
+@media screen and (max-width: 600px) {
+  .ceremony--col-couple:last-child:after {
+    content: normal;
+  }
+}
 
 /**
  Ceremony
 **/
 .countdown {
-  padding: 2.5rem 0;
+  padding: 2.3125rem 0 2.5rem;
 }
 .countdown__timer {
   margin: 1.25rem 0 0;
@@ -865,6 +911,14 @@ li {
   margin: 0 0.3125rem;
   padding: 0.8125rem 0 0;
 }
+@media screen and (max-width: 414px) {
+  .countdown__time {
+    font-size: 1.125rem;
+    line-height: 1.125rem;
+    width: 3.75rem;
+    height: 2.5rem;
+  }
+}
 .countdown__label {
   background-color: #f4f4f4;
   font-size: 0.875rem;
@@ -874,10 +928,19 @@ li {
   margin: 0 0.3125rem;
   padding: 0 0 0.8125rem;
 }
+@media screen and (max-width: 414px) {
+  .countdown__label {
+    font-size: 0.75rem;
+    width: 3.75rem;
+  }
+}
 
 /**
  Venue
 **/
+.venue .title {
+  width: 100%;
+}
 .venue__main {
   position: absolute;
   width: 100%;
@@ -885,11 +948,18 @@ li {
   top: 0;
   left: 0;
 }
+.venue__main-inner {
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 2.5rem;
+  width: 18.75rem;
+}
 .venue__address {
   font-family: "Roboto Slab", "Times New Roman", serif;
+  font-style: normal;
   font-size: 0.875rem;
-  line-height: 1.125rem;
+  line-height: 1.5rem;
   text-align: center;
+  margin: 1.25rem 0;
 }
 
 /**

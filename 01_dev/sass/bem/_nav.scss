@@ -72,20 +72,4 @@
             }
         }
     }
-    
-
-    //
-    //------------------------------- Start Modifier
-    //
-
-    //-- MODIFIER: for nav
-    @at-root #{&}--list-link-active {
-        
-        .nav__list-link-txt {
-            
-            &:after {
-                width: 100%;
-            }
-        }
-    }
 }

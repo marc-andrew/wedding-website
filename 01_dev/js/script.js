@@ -39,7 +39,6 @@
         obj.windowSize = function () {
             var winW = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
                 winH = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-
             windowSizeObj.winW = winW;
             windowSizeObj.winH = winH;
         };
@@ -89,10 +88,10 @@
         };
         obj.windowResize = function () {
             var timeOut;
-            window.onresize = function () {
+            window.addEventListener('resize', function () {
                 clearTimeout(timeOut);
                 timeOut = setTimeout(run, 100);
-            };
+            });
 
             function run() {
                 obj.windowSize();
@@ -150,10 +149,10 @@
         };
         obj.windowResize = function () {
             var timeOut;
-            window.onresize = function () {
+            window.addEventListener('resize', function () {
                 clearTimeout(timeOut);
                 timeOut = setTimeout(run, 100);
-            };
+            });
 
             function run() {
                 obj.windowSize();
