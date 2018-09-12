@@ -101,6 +101,64 @@
         };
     };
 
+    // Visible elements
+    var visibleEl = function (el) {
+        var obj = this,
+            windowSizeObj = {};
+
+        obj.id = el;
+        obj.init = function () {
+            obj.windowSize();
+            obj.loopEl();
+            obj.windowScroll();
+            obj.windowResize();
+        };
+        obj.loopEl = function () {
+            for (var i = 0; i < obj.id.length; i++) {
+                obj.inView(obj.id[i]);
+            }
+        };
+        obj.addClass = function (el) {
+            el.classList.add('visible');
+        };
+        obj.windowSize = function () {
+            var winW = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
+                winH = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+            windowSizeObj.winW = winW;
+            windowSizeObj.winH = winH;
+        };
+        obj.inView = function (el) {
+            var elObj = el.getBoundingClientRect(),
+                topPos = elObj.top,
+                elHeight = elObj.height;
+
+            if (topPos >= 0) {
+                if (topPos <= windowSizeObj.winH) obj.addClass(el);
+            } else {
+                var elInView = topPos + elHeight;
+                if (elInView >= 0) obj.addClass(el);
+            }
+        };
+        obj.windowScroll = function () {
+            window.addEventListener('scroll', function (e) {
+                obj.loopEl();
+            });
+        };
+        obj.windowResize = function () {
+            var timeOut;
+            window.onresize = function () {
+                clearTimeout(timeOut);
+                timeOut = setTimeout(run, 100);
+            };
+
+            function run() {
+                obj.windowSize();
+                obj.loopEl();
+            }
+        };
+    };
+
     // Count Down Script
     var countdown = function (el) {
         var obj = this;
@@ -203,6 +261,7 @@
         return a;
     }
 
+    // Add visible class to title
     function addTitleClass() {
         var counter = 0;
         var timer;
@@ -217,12 +276,16 @@
         timer = setInterval(runScript, 20);
     }
 
-    var imgSrc = document.getElementsByClassName('res-data');
-    var responsiveImg = new resImg(imgSrc);
+    // Responsive Image
+    var responsiveImg = new resImg(document.getElementsByClassName('res-data'));
     responsiveImg.init();
 
-    var cdWrapper = document.getElementsByClassName('countdown__timer')[0];
-    var countdownTimer = new countdown(cdWrapper);
+    // Element is visible
+    var containerVisible = new visibleEl(document.getElementsByClassName('container'));
+    containerVisible.init();
+
+    // Countdown
+    var countdownTimer = new countdown(document.getElementsByClassName('countdown__timer')[0]);
     countdownTimer.init('08/06/2019 16:00 GMT');
 
     titleVisible();
