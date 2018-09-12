@@ -161,6 +161,8 @@
     var navButton = document.getElementsByClassName('nav__list-link');
     var scrollDownButton = document.getElementsByClassName('btn--scroll-down')[0];
 
+    var titleSpans = document.getElementsByClassName('t'); // Title
+
     for (var navEl = 0; navEl < navButton.length; navEl++) {
         navButton[navEl].addEventListener('click', navClick, false);
     }
@@ -188,8 +190,19 @@
 
     // Loop through class to make it visible
     function titleVisible() {
-        var targetClasses = document.getElementsByClassName('ta');
         var targetIndex = [];
+        var newOrder;
+
+        for (var tEl = 0; tEl < titleSpans.length; tEl++) {
+            targetIndex.push(tEl);
+        }
+
+        newOrder = shuffle(targetIndex);
+
+        for (var iArr = 0; iArr < newOrder.length; iArr++) {
+            var indexId = iArr;
+            titleSpans[newOrder[indexId]].classList.add('visible');
+        }
     }
 
     // Shuffle array
