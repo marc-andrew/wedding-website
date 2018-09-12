@@ -20,4 +20,23 @@
         padding: px(20) 0 0;
         max-width: px(190);
     }
+
+    .t {
+        opacity: 0;
+
+        &.visible {
+            opacity: 1;
+            transition: opacity 1200ms cubic-bezier(.445,.05,.55,.95);
+        }
+    }
+}
+
+.no-js {
+
+    .hero {
+
+        .t {
+            opacity: 1;
+        }
+    }
 }

@@ -155,13 +155,15 @@
         var targetId = this.getAttribute('data-target-id');
         var targetEl = document.querySelector('[data-section-id="' + targetId + '"]');
         scrollTo(targetEl);
-        setActiveNavItem(targetEl);
     };
 
     var navButton = document.getElementsByClassName('nav__list-link');
     var scrollDownButton = document.getElementsByClassName('btn--scroll-down')[0];
 
-    var titleSpans = document.getElementsByClassName('t'); // Title
+    // Title
+    var titleSpans = document.getElementsByClassName('t');
+    var titleArrIndex = [];
+    var titleArrLength = 0;
 
     for (var navEl = 0; navEl < navButton.length; navEl++) {
         navButton[navEl].addEventListener('click', navClick, false);
@@ -170,43 +172,27 @@
     // Scroll down button with click listener
     scrollDownButton.addEventListener('click', navClick, false);
 
-    // Set active nav item
-    function setActiveNavItem(el) {
-        for (var activeEl = 0; activeEl < navButton.length; activeEl++) {
-            // On keydown, focus and blur
-            if (navButton[activeEl].classList.contains('nav--list-link-active')) {
-                navButton[activeEl].classList.remove('nav--list-link-active');
-                break;
-            }
-        }
-
-        el.classList.add('nav--list-link-active');
-    }
-
     // Scroll to element
     function scrollTo(el) {
         el.scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
-    // Loop through class to make it visible
+    // Loop through title class
     function titleVisible() {
-        var targetIndex = [];
-        var newOrder;
-
         for (var tEl = 0; tEl < titleSpans.length; tEl++) {
-            targetIndex.push(tEl);
+            titleArrIndex.push(tEl);
         }
 
-        newOrder = shuffle(targetIndex);
+        // Shuffle the array
+        titleArrIndex = shuffleArr(titleArrIndex);
+        // Set the length
+        titleArrLength = titleArrIndex.length;
 
-        for (var iArr = 0; iArr < newOrder.length; iArr++) {
-            var indexId = iArr;
-            titleSpans[newOrder[indexId]].classList.add('visible');
-        }
+        addTitleClass();
     }
 
-    // Shuffle array
-    function shuffle(a) {
+    // Shuffle array function
+    function shuffleArr(a) {
         var j, x, i;
         for (i = a.length - 1; i > 0; i--) {
             j = Math.floor(Math.random() * (i + 1));
@@ -217,7 +203,19 @@
         return a;
     }
 
-    // shuffle(myArray);
+    function addTitleClass() {
+        var counter = 0;
+        var timer;
+        var runScript = function () {
+            // Add class name
+            titleSpans[titleArrIndex[counter]].classList.add('visible');
+            counter++;
+            if (counter === titleArrLength) clearInterval(timer);
+        };
+
+        // Run script every 20 milliseconds
+        timer = setInterval(runScript, 20);
+    }
 
     var imgSrc = document.getElementsByClassName('res-data');
     var responsiveImg = new resImg(imgSrc);
@@ -226,4 +224,6 @@
     var cdWrapper = document.getElementsByClassName('countdown__timer')[0];
     var countdownTimer = new countdown(cdWrapper);
     countdownTimer.init('08/06/2019 16:00 GMT');
+
+    titleVisible();
 }());
