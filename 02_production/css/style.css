@@ -515,8 +515,27 @@ li {
   opacity: 0;
   width: 100%;
 }
+.img__container {
+  overflow: hidden;
+}
 .img--loaded .img {
   opacity: 1;
+}
+.img--container-hero {
+  height: calc(100vw / 1.8666666667);
+}
+@media screen and (max-width: 666px) {
+  .img--container-hero {
+    height: calc(100vw / 1);
+  }
+}
+.img--container-venue {
+  height: calc(100vw / 1.8666666667);
+}
+@media screen and (max-width: 666px) {
+  .img--container-venue {
+    height: calc(100vw / 1);
+  }
 }
 
 .no-js .img {
@@ -737,6 +756,14 @@ li {
 **/
 .hero {
   margin: 3.25rem 0 0;
+}
+.hero__img {
+  height: calc(100vw / 1.8666666667);
+}
+@media screen and (max-width: 666px) {
+  .hero__img {
+    height: calc(100vw / 1);
+  }
 }
 .hero__main {
   position: absolute;

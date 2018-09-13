@@ -11,6 +11,18 @@
     width: 100%;
 
     //
+    //------------------------------- Start Element
+    //
+
+    //-- ELEMENT: Image container
+    @at-root #{&}__container {
+        
+        overflow: hidden;
+
+        
+    }
+
+    //
     //------------------------------- Start Modifier
     //
 
@@ -19,6 +31,22 @@
 
         #{$imgParent} {
             opacity: 1;
+        }
+    }
+    //-- MODIFIER: Container Hero
+    @at-root #{&}--container-hero {
+        height: calc(100vw / 1.8666666667);
+
+        @include media(screen,max,666px) {
+            height: calc(100vw / 1);
+        }
+    }
+    //-- MODIFIER: Container Venue
+    @at-root #{&}--container-venue {
+        height: calc(100vw / 1.8666666667);
+
+        @include media(screen,max,666px) {
+            height: calc(100vw / 1);
         }
     }
 }

@@ -5,6 +5,14 @@
 .hero {
     margin: px(52) 0 0;
 
+    @at-root #{&}__img {
+        height: calc(100vw / 1.8666666667);
+
+        @include media(screen,max,666px) {
+            height: calc(100vw / 1);
+        }
+    }
+
     @at-root #{&}__main {
         position: absolute;
         width: 100%;
