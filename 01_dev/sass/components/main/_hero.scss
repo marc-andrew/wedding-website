@@ -5,14 +5,6 @@
 .hero {
     margin: px(52) 0 0;
 
-    @at-root #{&}__img {
-        height: calc(100vw / 1.8666666667);
-
-        @include media(screen,max,666px) {
-            height: calc(100vw / 1);
-        }
-    }
-
     @at-root #{&}__main {
         position: absolute;
         width: 100%;
@@ -22,11 +14,28 @@
     }
 
     @at-root #{&}__copy {
-        border-top: px(2) solid $primary;
+        position: relative;
         text-align: center;
         margin: px(20) auto 0;
         padding: px(20) 0 0;
         max-width: px(190);
+        color: transparent;
+        transition-delay: 1000ms;
+
+        &:before {
+            position: absolute;
+            display: block;
+            background-color: $primary;
+            content: '';
+            width: 0%;
+            height: px(2);
+            top: 0;
+            right: 0;
+            left: 0;
+            margin: 0 auto;
+            transition-delay: 1000ms;
+            opacity: 0;
+        }
     }
 
     .t {
@@ -37,6 +46,27 @@
             transition: opacity 1200ms cubic-bezier(.445,.05,.55,.95);
         }
     }
+    
+    .img {
+        transform: scale(1.1);
+        opacity: 0;
+    }
+
+    &.visible {
+
+        .img {
+            animation: heroImg 2500ms ease-out 1000ms forwards;
+        }
+
+        .hero__copy {
+            color: $primary;
+
+            &:before {
+                width: 100%;
+                opacity: 1;
+            }
+        }
+    }
 }
 
 .no-js {
@@ -44,6 +74,11 @@
     .hero {
 
         .t {
+            opacity: 1;
+        }
+
+        .img {
+            transform: scale(1);
             opacity: 1;
         }
     }

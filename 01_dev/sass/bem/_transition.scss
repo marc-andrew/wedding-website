@@ -10,13 +10,13 @@
 
     //-- MODIFIER: Transition All
     @at-root #{&}--all {
-        transition: all 400ms;
+        transition: all 500ms;
     }
     //-- MODIFIER: Transition All for Before and After pseudo class
     @at-root #{&}--all-before-after {
         &:before,
         &:after {
-            transition: all 400ms;
+            transition: all 500ms;
         }
     }
     //-- MODIFIER: Change Transition Timing
@@ -26,15 +26,6 @@
         &:before,
         &:after {
             transition-timing-function: ease-in-out;
-        }
-    }
-    //-- MODIFIER: Add Transition Delay
-    @at-root #{&}--delay {
-        transition-delay: 100ms;
-
-        &:before,
-        &:after {
-            transition-delay: 100ms;
         }
     }
 }

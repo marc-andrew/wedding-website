@@ -442,22 +442,16 @@ li {
  Transition
 **/
 .trans--all {
-  transition: all 400ms;
+  transition: all 500ms;
 }
 .trans--all-before-after:before, .trans--all-before-after:after {
-  transition: all 400ms;
+  transition: all 500ms;
 }
 .trans--ease-in-out {
   transition-timing-function: ease-in-out;
 }
 .trans--ease-in-out:before, .trans--ease-in-out:after {
   transition-timing-function: ease-in-out;
-}
-.trans--delay {
-  transition-delay: 100ms;
-}
-.trans--delay:before, .trans--delay:after {
-  transition-delay: 100ms;
 }
 
 /**
@@ -743,12 +737,26 @@ li {
 **/
 @keyframes arrowBounce {
   0% {
-    -ms-transform: translateY(0);
     transform: translateY(0);
   }
   100% {
-    -ms-transform: translateY(8px);
     transform: translateY(8px);
+  }
+}
+@keyframes heroImg {
+  0% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  15% {
+    opacity: 0;
+  }
+  65% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 /**
@@ -756,14 +764,6 @@ li {
 **/
 .hero {
   margin: 3.25rem 0 0;
-}
-.hero__img {
-  height: calc(100vw / 1.8666666667);
-}
-@media screen and (max-width: 666px) {
-  .hero__img {
-    height: calc(100vw / 1);
-  }
 }
 .hero__main {
   position: absolute;
@@ -773,11 +773,27 @@ li {
   left: 0;
 }
 .hero__copy {
-  border-top: 0.125rem solid #1c1c1c;
+  position: relative;
   text-align: center;
   margin: 1.25rem auto 0;
   padding: 1.25rem 0 0;
   max-width: 11.875rem;
+  color: transparent;
+  transition-delay: 1000ms;
+}
+.hero__copy:before {
+  position: absolute;
+  display: block;
+  background-color: #1c1c1c;
+  content: '';
+  width: 0%;
+  height: 0.125rem;
+  top: 0;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  transition-delay: 1000ms;
+  opacity: 0;
 }
 .hero .t {
   opacity: 0;
@@ -786,8 +802,28 @@ li {
   opacity: 1;
   transition: opacity 1200ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
 }
+.hero .img {
+  -ms-transform: scale(1.1);
+      transform: scale(1.1);
+  opacity: 0;
+}
+.hero.visible .img {
+  animation: heroImg 2500ms ease-out 1000ms forwards;
+}
+.hero.visible .hero__copy {
+  color: #1c1c1c;
+}
+.hero.visible .hero__copy:before {
+  width: 100%;
+  opacity: 1;
+}
 
 .no-js .hero .t {
+  opacity: 1;
+}
+.no-js .hero .img {
+  -ms-transform: scale(1);
+      transform: scale(1);
   opacity: 1;
 }
 
