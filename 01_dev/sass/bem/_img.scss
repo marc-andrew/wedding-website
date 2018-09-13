@@ -16,10 +16,7 @@
 
     //-- ELEMENT: Image container
     @at-root #{&}__container {
-        
         overflow: hidden;
-
-        
     }
 
     //
@@ -35,7 +32,7 @@
     }
     //-- MODIFIER: Container Hero
     @at-root #{&}--container-hero {
-        height: calc(100vw / 1.8666666667);
+        height: calc(100vw / 1.8666666667); // 1400/750=1.8666666667
 
         @include media(screen,max,666px) {
             height: calc(100vw / 1);
@@ -43,7 +40,7 @@
     }
     //-- MODIFIER: Container Venue
     @at-root #{&}--container-venue {
-        height: calc(100vw / 1.8666666667);
+        height: calc(100vw / 2.8); // 1400/500=2.8
 
         @include media(screen,max,666px) {
             height: calc(100vw / 1);

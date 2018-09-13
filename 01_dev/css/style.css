@@ -523,7 +523,7 @@ li {
   }
 }
 .img--container-venue {
-  height: calc(100vw / 1.8666666667);
+  height: calc(100vw / 2.8);
 }
 @media screen and (max-width: 666px) {
   .img--container-venue {
