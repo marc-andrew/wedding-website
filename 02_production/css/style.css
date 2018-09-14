@@ -421,6 +421,10 @@ li {
   -ms-flex-line-pack: start;
       align-content: flex-start;
 }
+.flex--nowrap {
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
 .flex--justify-center {
   -ms-flex-pack: center;
       justify-content: center;

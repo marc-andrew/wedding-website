@@ -12,6 +12,10 @@
     //------------------------------- Start Modifier
     //
 
+    //-- MODIFIER: No flexwrap
+    @at-root #{&}--nowrap {
+        flex-wrap: nowrap;
+    }
     //-- MODIFIER: Justify Content to Center
     @at-root #{&}--justify-center {
         justify-content: center;

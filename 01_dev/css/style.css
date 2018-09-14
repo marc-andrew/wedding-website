@@ -418,6 +418,9 @@ li {
   flex-wrap: wrap;
   align-content: flex-start;
 }
+.flex--nowrap {
+  flex-wrap: nowrap;
+}
 .flex--justify-center {
   justify-content: center;
 }
