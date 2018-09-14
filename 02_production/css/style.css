@@ -1000,7 +1000,6 @@ li {
 **/
 .profile__img {
   position: relative;
-  border-radius: 50%;
   width: 8.75rem;
   height: 8.75rem;
   margin: 0 auto 1.25rem;
@@ -1009,6 +1008,7 @@ li {
 .profile__img img {
   position: absolute;
   height: 100%;
+  border-radius: 50%;
   top: 0;
   left: 0;
 }
