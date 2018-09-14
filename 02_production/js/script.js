@@ -219,8 +219,6 @@
 
     // Nav links
     var navButton = document.getElementsByClassName('nav__list-link');
-    // Scroll down button
-    var scrollDownButton = document.getElementsByClassName('btn--scroll-down')[0];
 
     // Title
     var titleSpans = document.getElementsByClassName('t');
@@ -230,9 +228,6 @@
     for (var navEl = 0; navEl < navButton.length; navEl++) {
         navButton[navEl].addEventListener('click', navClick, false);
     }
-
-    // Scroll down button with click listener
-    scrollDownButton.addEventListener('click', navClick, false);
 
     // Scroll to element
     function scrollTo(el) {

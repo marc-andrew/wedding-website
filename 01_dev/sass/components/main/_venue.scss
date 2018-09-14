@@ -30,4 +30,8 @@
         text-align: center;
         margin: px(20) 0;
     }
+
+    &.visible {
+        animation: moveIn 1000ms ease-out  forwards;
+    }
 }

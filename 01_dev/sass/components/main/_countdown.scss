@@ -41,4 +41,8 @@
             width: px(60);
         }
     }
+
+    &.visible {
+        animation: moveIn 1000ms ease-out  forwards;
+    }
 }

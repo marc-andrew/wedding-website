@@ -10,13 +10,17 @@
 
     //-- MODIFIER: Transition All
     @at-root #{&}--all {
-        transition: all 500ms;
+        transition: all 800ms;
+    }
+    //-- MODIFIER: Transition All
+    @at-root #{&}--all-slow {
+        transition: all 1500ms;
     }
     //-- MODIFIER: Transition All for Before and After pseudo class
     @at-root #{&}--all-before-after {
         &:before,
         &:after {
-            transition: all 500ms;
+            transition: all 800ms;
         }
     }
     //-- MODIFIER: Change Transition Timing

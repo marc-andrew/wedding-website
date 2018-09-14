@@ -94,4 +94,18 @@
             }
         }
     }
+
+    &.visible {
+        animation: moveIn 1000ms ease-out  forwards;
+    }
+}
+
+.no-js {
+
+    .ceremony {
+        .title--ceremony {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 }

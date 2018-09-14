@@ -446,10 +446,13 @@ li {
  Transition
 **/
 .trans--all {
-  transition: all 500ms;
+  transition: all 800ms;
+}
+.trans--all-slow {
+  transition: all 1500ms;
 }
 .trans--all-before-after:before, .trans--all-before-after:after {
-  transition: all 500ms;
+  transition: all 800ms;
 }
 .trans--ease-in-out {
   transition-timing-function: ease-in-out;
@@ -763,6 +766,14 @@ li {
     transform: scale(1);
   }
 }
+@keyframes moveIn {
+  0% {
+    transform: translateY(50px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
 /**
  Hero
 **/
@@ -924,6 +935,15 @@ li {
     content: normal;
   }
 }
+.ceremony.visible {
+  animation: moveIn 1000ms ease-out  forwards;
+}
+
+.no-js .ceremony .title--ceremony {
+  opacity: 1;
+  -ms-transform: translateY(0);
+      transform: translateY(0);
+}
 
 /**
  Ceremony
@@ -967,6 +987,9 @@ li {
     width: 3.75rem;
   }
 }
+.countdown.visible {
+  animation: moveIn 1000ms ease-out  forwards;
+}
 
 /**
  Venue
@@ -993,6 +1016,9 @@ li {
   line-height: 1.5rem;
   text-align: center;
   margin: 1.25rem 0;
+}
+.venue.visible {
+  animation: moveIn 1000ms ease-out  forwards;
 }
 
 /**
