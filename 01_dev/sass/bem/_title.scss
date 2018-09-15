@@ -11,33 +11,44 @@
     //-- ELEMENT: Title top
     @at-root #{&}__top {
         display: block;
-        font-family: $font-1;
-        font-size: px(32);
-        line-height: px(32);
+        font-size: px(24);
+        // font-weight: 600;
+        line-height: px(24);
         letter-spacing: px(1.2);
+        text-transform: uppercase;
         margin: 0 0 px(10);
 
         @include media(screen,max,768px) {
             font-size: px(21);
             line-height: px(21);
         }
+
+        @include media(screen,max,375px) {
+            font-size: px(18);
+            line-height: px(18);
+        }
     }
     //-- ELEMENT: Title main
     @at-root #{&}__main {
         display: block;
+        font-family: $font-1;
         font-size: px(38);
         line-height: px(38);
         letter-spacing: px(1.2);
-        text-transform: uppercase;
 
         @include media(screen,max,768px) {
             font-size: px(28);
             line-height: px(28);
         }
     }
-    //-- ELEMENT: Title big
-    @at-root #{&}__big {
+    //-- ELEMENT: Title small
+    @at-root #{&}__small {
         font-size: px(28);
+
+        @include media(screen,max,768px) {
+            font-size: px(18);
+            line-height: px(18);
+        }
     }
 
     //
@@ -75,7 +86,7 @@
     //-- MODIFIER: Title secondary medium
     @at-root #{&}--secondary-small {
         font-size: px(15);
-        font-weight: 500;
+        font-weight: 600;
         line-height: px(20);
         letter-spacing: px(1.2);
         text-transform: uppercase;

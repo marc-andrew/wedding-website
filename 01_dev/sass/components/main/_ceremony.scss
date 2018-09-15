@@ -94,6 +94,12 @@
             }
         }
     }
+
+    &.visible {
+        .profile__img {
+            animation: imgScale 1800ms ease-out;
+        }
+    }
 }
 
 .no-js {
