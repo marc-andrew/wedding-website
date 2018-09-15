@@ -17,9 +17,9 @@
         letter-spacing: px(1.2);
         margin: 0 0 px(10);
 
-        @include media(screen,max,600px) {
+        @include media(screen,max,768px) {
             font-size: px(21);
-            line-break: px(21);
+            line-height: px(21);
         }
     }
     //-- ELEMENT: Title main
@@ -30,9 +30,9 @@
         letter-spacing: px(1.2);
         text-transform: uppercase;
 
-        @include media(screen,max,600px) {
+        @include media(screen,max,768px) {
             font-size: px(28);
-            line-break: px(28);
+            line-height: px(28);
         }
     }
     //-- ELEMENT: Title big
