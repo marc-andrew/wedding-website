@@ -398,7 +398,8 @@ li {
 **/
 .header {
   position: fixed;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: #fff;
+  border-bottom: 0.0625rem solid #f4f4f4;
   width: 100%;
   height: 3.25rem;
   top: 0;
@@ -792,7 +793,7 @@ li {
 }
 @keyframes imgScale {
   0% {
-    transform: scale(1.3);
+    transform: scale(1.2);
   }
   100% {
     transform: scale(1);
@@ -1040,6 +1041,9 @@ li {
   text-align: center;
   margin: 1.25rem 0;
 }
+.venue.visible .img {
+  animation: imgScale 1800ms ease-out;
+}
 
 /**
  Profile
@@ -1077,7 +1081,24 @@ li {
   width: 25%;
   padding: 1.875rem 0 0;
 }
+@media screen and (max-width: 666px) {
+  .people__col {
+    width: 33.3333333333%;
+  }
+}
+@media screen and (max-width: 480px) {
+  .people__col {
+    width: 50%;
+  }
+}
 .people--list-brides {
   border-bottom: 0.0625rem dashed #c1c1c1;
-  margin-bottom: 1.875rem;
+  margin-bottom: 4.8125rem;
+}
+
+/**
+ RSVP
+**/
+.rsvp {
+  background-color: #f4f4f4;
 }

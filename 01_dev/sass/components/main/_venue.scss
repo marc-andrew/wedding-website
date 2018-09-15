@@ -31,4 +31,10 @@
         text-align: center;
         margin: px(20) 0;
     }
+
+    &.visible {
+        .img {
+            animation: imgScale 1800ms ease-out;
+        }
+    }
 }

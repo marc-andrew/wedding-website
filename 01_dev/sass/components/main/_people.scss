@@ -13,10 +13,18 @@
     @at-root #{&}__col {
         width: 25%;
         padding: px(30) 0 0;
+
+        @include media(screen,max,666px) {
+            width: 33.3333333333%;
+        }
+
+        @include media(screen,max,480px) {
+            width: 50%;
+        }
     }
 
     @at-root #{&}--list-brides {
         border-bottom:  px(1) dashed $primaryMedium;
-        margin-bottom: px(30);
+        margin-bottom: px(77);
     }
 }
