@@ -3,10 +3,20 @@
 **/
 
 .people {
-    padding: px(77) 0 px(80);
+    padding-top: px(77);
+    padding-bottom: px(80);
+
+    @at-root #{&}__list {
+        padding: px(20) 0 px(40);
+    }
 
     @at-root #{&}__col {
-        width: 20%;
+        width: 25%;
         padding: px(30) 0 0;
+    }
+
+    @at-root #{&}--list-brides {
+        border-bottom:  px(1) dashed $primaryMedium;
+        margin-bottom: px(30);
     }
 }

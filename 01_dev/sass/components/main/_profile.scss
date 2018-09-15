@@ -19,4 +19,9 @@
             left: 0;
         }
     }
+
+    @at-root #{&}--img-small {
+        width: px(100);
+        height: px(100);
+    }
 }
