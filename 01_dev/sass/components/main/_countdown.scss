@@ -3,7 +3,7 @@
 **/
 
 .countdown {
-    padding: px(37) 0 px(40);
+    padding: px(77) 0 px(90);
 
     @at-root #{&}__timer {
         margin: px(20) 0 0;
@@ -40,9 +40,5 @@
             font-size: px(12);
             width: px(60);
         }
-    }
-
-    &.visible {
-        animation: moveIn 1000ms ease-out  forwards;
     }
 }

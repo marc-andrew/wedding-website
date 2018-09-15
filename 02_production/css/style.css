@@ -738,6 +738,9 @@ li {
   max-width: none;
   padding: 0;
 }
+.container--slidein.visible {
+  animation: moveIn 1000ms ease-out  forwards;
+}
 
 /**
  Animation
@@ -935,9 +938,6 @@ li {
     content: normal;
   }
 }
-.ceremony.visible {
-  animation: moveIn 1000ms ease-out  forwards;
-}
 
 .no-js .ceremony .title--ceremony {
   opacity: 1;
@@ -949,7 +949,7 @@ li {
  Ceremony
 **/
 .countdown {
-  padding: 2.3125rem 0 2.5rem;
+  padding: 4.8125rem 0 5.625rem;
 }
 .countdown__timer {
   margin: 1.25rem 0 0;
@@ -987,9 +987,6 @@ li {
     width: 3.75rem;
   }
 }
-.countdown.visible {
-  animation: moveIn 1000ms ease-out  forwards;
-}
 
 /**
  Venue
@@ -1017,9 +1014,6 @@ li {
   text-align: center;
   margin: 1.25rem 0;
 }
-.venue.visible {
-  animation: moveIn 1000ms ease-out  forwards;
-}
 
 /**
  Profile
@@ -1043,7 +1037,7 @@ li {
  People
 **/
 .people {
-  padding: 2.3125rem 0 2.5rem;
+  padding: 4.8125rem 0 5rem;
 }
 .people__col {
   width: 20%;
