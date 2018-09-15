@@ -708,7 +708,7 @@ li {
   display: block;
   background-color: #1c1c1c;
   content: '';
-  width: 12.5rem;
+  width: 3.75rem;
   height: 0.125rem;
   right: 0;
   bottom: 0;
@@ -1152,6 +1152,17 @@ li {
   border-radius: 50%;
   top: 0;
   left: 0;
+}
+
+/**
+ People
+**/
+.people {
+  padding: 2.3125rem 0 2.5rem;
+}
+.people__col {
+  width: 20%;
+  padding: 1.875rem 0 0;
 }
 
 /*# sourceMappingURL=style.css.map */

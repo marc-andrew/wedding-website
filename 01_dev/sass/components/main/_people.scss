@@ -1,0 +1,12 @@
+/**
+ People
+**/
+
+.people {
+    padding: px(37) 0 px(40);
+
+    @at-root #{&}__col {
+        width: 20%;
+        padding: px(30) 0 0;
+    }
+}
