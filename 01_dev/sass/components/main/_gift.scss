@@ -5,6 +5,7 @@
 .gifts {
 
     @at-root #{&}__btns {
+        padding-top: px(10);
         text-align: center;
     }
 }

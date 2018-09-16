@@ -21,6 +21,8 @@
     @at-root #{&}__copy {
         position: relative;
         font-family: $font-2;
+        font-size: px(14);
+        line-height: px(18);
         text-align: center;
         margin: px(20) auto 0;
         padding: px(15) 0 0;

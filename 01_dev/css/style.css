@@ -629,7 +629,7 @@ li {
   font-style: normal;
   font-family: "Noto Serif JP", "Times New Roman", sans-serif;
   font-size: 0.875rem;
-  line-height: 1.125rem;
+  line-height: 1.25rem;
   margin: 0 0 0.625rem;
   letter-spacing: 0.03125rem;
 }
@@ -826,6 +826,8 @@ li {
 .hero__copy {
   position: relative;
   font-family: "Open Sans", Helvetica, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
   text-align: center;
   margin: 1.25rem auto 0;
   padding: 0.9375rem 0 0;
@@ -884,7 +886,7 @@ li {
  Ceremony
 **/
 .ceremony {
-  padding-top: 2.5rem;
+  padding-top: 1.875rem;
   padding-bottom: 0;
 }
 .ceremony__couple {
@@ -1161,7 +1163,7 @@ li {
   border-width: 0.125rem;
 }
 .rsvp--col-submit {
-  padding: 0.625rem 0 0;
+  padding: 1.25rem 0 0;
   text-align: center;
 }
 
@@ -1169,6 +1171,7 @@ li {
  Gift
 **/
 .gifts__btns {
+  padding-top: 0.625rem;
   text-align: center;
 }
 
