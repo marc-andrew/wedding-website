@@ -12,7 +12,7 @@
     }
 
     @at-root #{&}__list {
-        padding: px(20) 0 px(40);
+        padding: px(20) 0;
     }
 
     @at-root #{&}__col {
@@ -31,6 +31,7 @@
     @at-root #{&}--list-brides {
         border-bottom:  px(1) dashed $primaryMedium;
         margin-bottom: px(77);
+        padding-bottom: px(80);
 
         @include media(screen,max,666px) {
             margin-bottom: px(40);

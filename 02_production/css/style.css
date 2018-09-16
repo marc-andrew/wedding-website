@@ -1085,7 +1085,7 @@ li {
   }
 }
 .people__list {
-  padding: 1.25rem 0 2.5rem;
+  padding: 1.25rem 0;
 }
 .people__col {
   width: 25%;
@@ -1104,6 +1104,7 @@ li {
 .people--list-brides {
   border-bottom: 0.0625rem dashed #c1c1c1;
   margin-bottom: 4.8125rem;
+  padding-bottom: 5rem;
 }
 @media screen and (max-width: 666px) {
   .people--list-brides {
