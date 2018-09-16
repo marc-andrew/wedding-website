@@ -1160,6 +1160,10 @@ li {
   border-color: #EF4640;
   border-width: 0.125rem;
 }
+.rsvp--col-submit {
+  padding: 0.625rem 0 0;
+  text-align: center;
+}
 
 /**
  Gift

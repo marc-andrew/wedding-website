@@ -81,4 +81,9 @@
         border-color: $red;
         border-width: px(2);
     }
+
+    @at-root #{&}--col-submit {
+        padding: px(10) 0 0;
+        text-align: center;
+    }
 }
