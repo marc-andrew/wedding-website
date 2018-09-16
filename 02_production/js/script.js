@@ -422,15 +422,19 @@
 
     // Hide show mobile nav
     function mobileNav(isVisible) {
-        console.log(isVisible);
         if(isVisible) {
             burgerBtn.classList.remove('btn--burger-active');
             navPrimary.classList.remove('nav--primary-open');
+            document.removeEventListener('click',checkIfOutside);
         } else {
             burgerBtn.classList.add('btn--burger-active');
             navPrimary.classList.add('nav--primary-open');
+            document.addEventListener('click', checkIfOutside);
         }
-        
+    }
+
+    function checkIfOutside(e) {
+        if(!e.target.classList.contains('btn__burger-icon') && !e.target.classList.contains('btn--burger') && !e.target.classList.contains('nav--primary')) mobileNav(true);
     }
 
     // Responsive Image
