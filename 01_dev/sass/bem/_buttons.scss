@@ -3,6 +3,9 @@
 **/
 
 .btn {
+    // Variable for root id: #{$btnParent}
+    $btnParent: &;
+
     // Default styling
     position: relative;
     display: inline-block;
@@ -32,6 +35,34 @@
         display: block;
         width: 100%;
         height: 100%;
+    }
+
+    //-- ELEMENT: Burger btn icon element
+    @at-root #{&}__burger-icon {
+        position: absolute;
+        display: block;
+        text-indent: -99999px;
+        width: px(22);
+        height: px(22);
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+
+        &:before,
+        &:after {
+            position: absolute;
+            display: block;
+            background-color: $primary;
+            content: '';
+            width: 100%;
+            height: px(2);
+            top: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto 0;
+        }
     }
 
     //
@@ -70,6 +101,62 @@
         &:hover,
         &:focus {
             outline: px(1) solid $primary;
+        }
+    }
+
+    //-- MODIFIER: Burger icon modifier
+    @at-root #{&}--burger {
+        position: absolute;
+        display: none;
+        width: px(30);
+        height: px(30);
+        top: px(12);
+        left: px(18);
+
+        @include media(screen,max,666px) {
+            display: block;
+        }
+
+        &:before,
+        &:after {
+            position: absolute;
+            display: block;
+            background-color: $primary;
+            content: '';
+            width: px(22);
+            height: px(2);
+            right: 0;
+            left: 0;
+            margin: 0 auto;
+        }
+
+        &:before {
+            top: px(7);
+        }
+
+        &:after {
+            bottom: px(7);
+        }
+    }
+
+    //-- MODIFIER: Burger icon modifier when active
+    @at-root #{&}--burger-active {
+        transform: translateX(280px);
+
+        &:before,
+        &:after {
+            opacity: 0;
+        }
+
+        #{$btnParent}__burger-icon {
+
+            &:before {
+                transform: rotate(45deg);
+            }
+
+            &:after {
+                transform: rotate(-45deg);
+            }
         }
     }
 }

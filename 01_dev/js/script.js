@@ -215,10 +215,13 @@
         var targetId = this.getAttribute('data-target-id');
         var targetEl = document.querySelector('[data-section-id="' + targetId + '"]');
         scrollToY(targetEl.offsetTop - 52, 500, 'easeInOutQuint');
+        mobileNav(true);
     };
 
-    // Nav links
+    // Nav links, Burger button & nav wrapper
     var navButton = document.getElementsByClassName('nav__list-link');
+    var burgerBtn = document.getElementsByClassName('btn--burger')[0];
+    var navPrimary = document.getElementsByClassName('nav--primary')[0];
 
     // Title
     var titleSpans = document.getElementsByClassName('t');
@@ -231,6 +234,7 @@
     var nameId = document.getElementById('rsvp-name');
     var lastNameId = document.getElementById('rsvp-lastname');
     var successCopy = document.getElementsByClassName('rsvp--copy')[0];
+
 
     for (var navEl = 0; navEl < navButton.length; navEl++) {
         navButton[navEl].addEventListener('click', navClick, false);
@@ -295,6 +299,15 @@
             } else {
                 lastNameId.classList.remove('rsvp--input-invalid');
             }
+        }
+    });
+
+    // Burger button click
+    burgerBtn.addEventListener('click', function(e) {
+        if(this.classList.contains('btn--burger-active')) {
+            mobileNav(true);
+        } else {
+            mobileNav(false);
         }
     });
 
@@ -405,6 +418,19 @@
     function validateEmail(email) {
         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(String(email).toLowerCase());
+    }
+
+    // Hide show mobile nav
+    function mobileNav(isVisible) {
+        console.log(isVisible);
+        if(isVisible) {
+            burgerBtn.classList.remove('btn--burger-active');
+            navPrimary.classList.remove('nav--primary-open');
+        } else {
+            burgerBtn.classList.add('btn--burger-active');
+            navPrimary.classList.add('nav--primary-open');
+        }
+        
     }
 
     // Responsive Image
