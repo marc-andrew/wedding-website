@@ -48,6 +48,10 @@
             content: '/';
             right: px(-3);
             top: px(21);
+
+            @include media(screen,max,666px) {
+                content: normal;
+            }
         }
 
         &:hover,
@@ -63,6 +67,10 @@
     }
     //-- ELEMENT: Primary Navigation list item
     @at-root #{&}__list-item {
+        @include media(screen,max,666px) {
+            width: 100%;
+        }
+
         &:last-child {
 
             #{$navParent}__list-link {
@@ -70,6 +78,17 @@
                     content: normal;
                 }
             }
+        }
+    }
+
+    @at-root #{&}--primary {
+        @include media(screen,max,666px) {
+            position: fixed;
+            background-color: #fff;
+            top: 0;
+            left: 0;
+            width: px(280);
+            height: 100%;
         }
     }
 }

@@ -495,11 +495,31 @@ li {
   right: -0.1875rem;
   top: 1.3125rem;
 }
+@media screen and (max-width: 666px) {
+  .nav__list-link:after {
+    content: normal;
+  }
+}
 .nav__list-link:hover .nav__list-link-txt:after, .nav__list-link:focus .nav__list-link-txt:after {
   width: 100%;
 }
+@media screen and (max-width: 666px) {
+  .nav__list-item {
+    width: 100%;
+  }
+}
 .nav__list-item:last-child .nav__list-link:after {
   content: normal;
+}
+@media screen and (max-width: 666px) {
+  .nav--primary {
+    position: fixed;
+    background-color: #fff;
+    top: 0;
+    left: 0;
+    width: 17.5rem;
+    height: 100%;
+  }
 }
 
 /**
