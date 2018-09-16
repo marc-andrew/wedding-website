@@ -1150,5 +1150,9 @@ li {
 .rsvp__input:focus {
   border-color: #1c1c1c;
 }
+.rsvp--input-invalid {
+  border-color: #EF4640;
+  border-width: 0.125rem;
+}
 
 /*# sourceMappingURL=style.css.map */
