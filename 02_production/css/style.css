@@ -352,7 +352,6 @@ body {
  Typography
 **/
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Open Sans", Helvetica, sans-serif;
   font-weight: normal;
   color: #1c1c1c;
   margin: 0;
@@ -402,6 +401,21 @@ li {
   max-width: 80.75rem;
   margin: 0 auto;
   padding: 0 0.625rem;
+}
+
+/**
+ Footer
+**/
+.footer {
+  background-color: #29b6f6;
+  height: 12.5rem;
+}
+.footer .title {
+  color: #fff;
+}
+.footer .copy {
+  margin: 0.3125rem 0 0;
+  color: #fff;
 }
 
 /**
@@ -757,10 +771,19 @@ li {
 .copy--sub {
   margin: 1.25rem 0;
 }
+.copy--secondary {
+  font-family: "Open Sans", Helvetica, sans-serif;
+  color: #1c1c1c;
+  font-size: 0.8125rem;
+}
 
 /**
  Titles
 **/
+.title {
+  display: block;
+  font-family: "Open Sans", Helvetica, sans-serif;
+}
 .title__top {
   display: block;
   font-size: 1.5rem;
