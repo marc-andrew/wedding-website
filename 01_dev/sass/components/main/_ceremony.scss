@@ -4,6 +4,7 @@
 
 .ceremony {
     padding-top: px(40);
+    padding-bottom: 0;
 
     @at-root #{&}__couple {
         border-top:  px(1) dashed $primaryMedium;

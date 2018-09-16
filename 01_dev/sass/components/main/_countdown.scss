@@ -3,12 +3,6 @@
 **/
 
 .countdown {
-    padding: px(77) 0 px(90);
-
-    @include media(screen,max,666px) {
-        padding-top: px(37);
-        padding-bottom: px(50);
-    }
 
     @at-root #{&}__timer {
         margin: px(20) 0 0;

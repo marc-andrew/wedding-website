@@ -3,13 +3,6 @@
 **/
 
 .people {
-    padding-top: px(77);
-    padding-bottom: px(80);
-
-    @include media(screen,max,666px) {
-        padding-top: px(37);
-        padding-bottom: px(40);
-    }
 
     @at-root #{&}__list {
         padding: px(20) 0;
@@ -35,6 +28,7 @@
 
         @include media(screen,max,666px) {
             margin-bottom: px(40);
+            padding-bottom: px(40);
         }
     }
 

@@ -636,7 +636,7 @@ li {
 .copy--center {
   text-align: center;
 }
-.copy--venue {
+.copy--sub {
   margin: 1.25rem 0;
 }
 
@@ -746,8 +746,14 @@ li {
 .container {
   position: relative;
   max-width: 80.75rem;
-  padding: 0 1.25rem;
+  padding: 4.8125rem 1.25rem 5rem;
   margin: 0 auto;
+}
+@media screen and (max-width: 666px) {
+  .container {
+    padding-top: 2.3125rem;
+    padding-bottom: 2.5rem;
+  }
 }
 .container--full {
   max-width: none;
@@ -879,6 +885,7 @@ li {
 **/
 .ceremony {
   padding-top: 2.5rem;
+  padding-bottom: 0;
 }
 .ceremony__couple {
   border-top: 0.0625rem dashed #c1c1c1;
@@ -968,15 +975,6 @@ li {
 /**
  Ceremony
 **/
-.countdown {
-  padding: 4.8125rem 0 5.625rem;
-}
-@media screen and (max-width: 666px) {
-  .countdown {
-    padding-top: 2.3125rem;
-    padding-bottom: 3.125rem;
-  }
-}
 .countdown__timer {
   margin: 1.25rem 0 0;
 }
@@ -1061,16 +1059,6 @@ li {
 /**
  People
 **/
-.people {
-  padding-top: 4.8125rem;
-  padding-bottom: 5rem;
-}
-@media screen and (max-width: 666px) {
-  .people {
-    padding-top: 2.3125rem;
-    padding-bottom: 2.5rem;
-  }
-}
 .people__list {
   padding: 1.25rem 0;
 }
@@ -1096,6 +1084,7 @@ li {
 @media screen and (max-width: 666px) {
   .people--list-brides {
     margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
   }
 }
 .people--list-groomsmen {
@@ -1170,6 +1159,13 @@ li {
 .rsvp--input-invalid {
   border-color: #EF4640;
   border-width: 0.125rem;
+}
+
+/**
+ Gift
+**/
+.gifts__btns {
+  text-align: center;
 }
 
 /*# sourceMappingURL=style.css.map */

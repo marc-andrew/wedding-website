@@ -19,8 +19,8 @@
         text-align: center;
     }
 
-    //-- MODIFIER: Copy venue
-    @at-root #{&}--venue {
+    //-- MODIFIER: Copy sub
+    @at-root #{&}--sub {
         margin: px(20) 0;
     }
 }

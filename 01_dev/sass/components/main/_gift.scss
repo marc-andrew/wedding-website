@@ -1,0 +1,10 @@
+/**
+ Gift
+**/
+
+.gifts {
+
+    @at-root #{&}__btns {
+        text-align: center;
+    }
+}

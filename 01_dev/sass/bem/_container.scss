@@ -5,8 +5,13 @@
 .container {
     position: relative;
     max-width: px(1292);
-    padding: 0 px(20);
+    padding: px(77) px(20) px(80);
     margin: 0 auto;
+
+    @include media(screen,max,666px) {
+        padding-top: px(37);
+        padding-bottom: px(40);
+    }
 
     //
     //------------------------------- Start Modifier
