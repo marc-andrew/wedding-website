@@ -213,8 +213,8 @@
     var navClick = function (e) {
         e.preventDefault();
         var targetId = this.getAttribute('data-target-id');
-        var targetEl = document.querySelector('[data-section-id="' + targetId + '"]');
-        scrollToY(targetEl.offsetTop - 52, 500, 'easeInOutQuint');
+        window.location.hash = targetId;
+        moveToHash();
         mobileNav(true);
     };
 
@@ -437,6 +437,14 @@
         if(!e.target.classList.contains('btn__burger-icon') && !e.target.classList.contains('btn--burger') && !e.target.classList.contains('nav--primary')) mobileNav(true);
     }
 
+    function moveToHash() {
+        var urlHash = window.location.hash.substring(1);
+        var targetEl = document.querySelector('[data-section-id="' + urlHash + '"]');
+        if(targetEl) {
+            scrollToY(targetEl.offsetTop - 52, 500, 'easeInOutQuint');
+        }
+    }
+
     // Responsive Image
     var responsiveImg = new resImg(document.getElementsByClassName('res-data'));
     responsiveImg.init();
@@ -447,5 +455,8 @@
 
     // Countdown
     var countdownTimer = new countdown(document.getElementsByClassName('countdown__timer')[0]);
-    countdownTimer.init('08/06/2019 16:00 GMT');
+    countdownTimer.init('08/06/2019 14:00 GMT');
+
+    moveToHash();
+    window.onhashchange = function() {moveToHash();};
 }());
