@@ -225,9 +225,74 @@
     var titleArrIndex = [];
     var titleArrLength = 0;
 
+    // Form
+    var formId = document.getElementById('rsvp-form');
+    var emailId = document.getElementById('rsvp-email');
+    var nameId = document.getElementById('rsvp-name');
+    var lastNameId = document.getElementById('rsvp-lastname');
+
     for (var navEl = 0; navEl < navButton.length; navEl++) {
         navButton[navEl].addEventListener('click', navClick, false);
     }
+
+    formId.setAttribute('novalidate','novalidate');
+    emailId.addEventListener('blur', function(e) {
+        if(validateEmail(this.value)) {
+            this.classList.remove('rsvp--input-invalid');
+        } else {
+            this.classList.add('rsvp--input-invalid');
+        }
+    },true);
+
+    nameId.addEventListener('blur', function(e) {
+        if(checkIfempty(this.value)) {
+            this.classList.remove('rsvp--input-invalid');
+        } else {
+            this.classList.add('rsvp--input-invalid');
+        }
+    },true);
+
+    lastNameId.addEventListener('blur', function(e) {
+        if(checkIfempty(this.value)) {
+            this.classList.remove('rsvp--input-invalid');
+        } else {
+            this.classList.add('rsvp--input-invalid');
+        }
+    },true);
+
+    formId.addEventListener('submit', function(e) {
+        var emailValid = validateEmail(emailId.value);
+        var nameValid = checkIfempty(nameId.value);
+        var lastNameValid = checkIfempty(lastNameId.value);
+        if(emailValid && nameValid && lastNameValid) {
+            e.preventDefault();
+            console.log('send');
+
+            emailId.classList.remove('rsvp--input-invalid');
+            nameId.classList.remove('rsvp--input-invalid');
+            lastNameId.classList.remove('rsvp--input-invalid');
+        } else {
+            e.preventDefault();
+
+            if(!emailValid) {
+                emailId.classList.add('rsvp--input-invalid');
+            } else {
+                emailId.classList.remove('rsvp--input-invalid');
+            }
+
+            if(!nameValid) {
+                nameId.classList.add('rsvp--input-invalid');
+            } else {
+                nameId.classList.remove('rsvp--input-invalid');
+            }
+
+            if(!lastNameValid) {
+                lastNameId.classList.add('rsvp--input-invalid');
+            } else {
+                lastNameId.classList.remove('rsvp--input-invalid');
+            }
+        }
+    });
 
     window.requestAnimFrame = (function () {
         return window.requestAnimationFrame ||
@@ -326,6 +391,17 @@
 
         // Run script every 20 milliseconds
         timer = setInterval(runScript, 20);
+    }
+
+    // Regex for empty fields
+    function checkIfempty(str) {
+        return /([^\s])/.test(str);
+    }
+
+    // Email validation
+    function validateEmail(email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
     }
 
     // Responsive Image
