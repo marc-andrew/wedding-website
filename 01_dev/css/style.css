@@ -366,14 +366,6 @@ a:focus {
   outline: 0.0625rem dotted #c1c1c1;
 }
 
-p {
-  font-family: "Noto Serif JP", "Times New Roman", sans-serif;
-  font-size: 0.875rem;
-  line-height: 1.125rem;
-  margin: 0 0 0.625rem;
-  letter-spacing: 0.03125rem;
-}
-
 /**
  List
 **/
@@ -628,6 +620,24 @@ li {
 }
 .btn--ghost:hover, .btn--ghost:focus {
   outline: 0.0625rem solid #1c1c1c;
+}
+
+/**
+ Copy
+**/
+.copy {
+  font-style: normal;
+  font-family: "Noto Serif JP", "Times New Roman", sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  margin: 0 0 0.625rem;
+  letter-spacing: 0.03125rem;
+}
+.copy--center {
+  text-align: center;
+}
+.copy--venue {
+  margin: 1.25rem 0;
 }
 
 /**
@@ -919,9 +929,6 @@ li {
   left: 0;
   margin: auto;
 }
-.ceremony__copy {
-  text-align: center;
-}
 .ceremony--col-line {
   border-right: 0.0625rem dashed #c1c1c1;
 }
@@ -963,6 +970,12 @@ li {
 **/
 .countdown {
   padding: 4.8125rem 0 5.625rem;
+}
+@media screen and (max-width: 666px) {
+  .countdown {
+    padding-top: 2.3125rem;
+    padding-bottom: 3.125rem;
+  }
 }
 .countdown__timer {
   margin: 1.25rem 0 0;
@@ -1019,15 +1032,6 @@ li {
   padding: 2.5rem;
   width: 18.75rem;
 }
-.venue__address {
-  font-family: "Noto Serif JP", "Times New Roman", sans-serif;
-  font-style: normal;
-  font-size: 0.875rem;
-  line-height: 1.5rem;
-  letter-spacing: 0.03125rem;
-  text-align: center;
-  margin: 1.25rem 0;
-}
 .venue.visible .img {
   animation: imgScale 1800ms ease-out;
 }
@@ -1061,6 +1065,12 @@ li {
   padding-top: 4.8125rem;
   padding-bottom: 5rem;
 }
+@media screen and (max-width: 666px) {
+  .people {
+    padding-top: 2.3125rem;
+    padding-bottom: 2.5rem;
+  }
+}
 .people__list {
   padding: 1.25rem 0 2.5rem;
 }
@@ -1082,12 +1092,50 @@ li {
   border-bottom: 0.0625rem dashed #c1c1c1;
   margin-bottom: 4.8125rem;
 }
+@media screen and (max-width: 666px) {
+  .people--list-brides {
+    margin-bottom: 2.5rem;
+  }
+}
 
 /**
  RSVP
 **/
 .rsvp {
   background-color: #f4f4f4;
+  padding-top: 4.8125rem;
+  padding-bottom: 4.375rem;
+}
+@media screen and (max-width: 666px) {
+  .rsvp {
+    padding-top: 2.3125rem;
+    padding-bottom: 2.5rem;
+  }
+}
+.rsvp__inner {
+  max-width: 25rem;
+  width: 100%;
+}
+.rsvp__form {
+  width: 100%;
+}
+.rsvp__col {
+  margin-bottom: 0.625rem;
+}
+.rsvp__label {
+  display: block;
+  font-family: "Open Sans", Helvetica, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  text-transform: uppercase;
+  margin: 0 0 0.625rem;
+  letter-spacing: 0.03125rem;
+}
+.rsvp__input {
+  border: 0.0625rem solid #c1c1c1;
+  border-radius: 0;
+  height: 2.5rem;
+  width: 100%;
 }
 
 /*# sourceMappingURL=style.css.map */

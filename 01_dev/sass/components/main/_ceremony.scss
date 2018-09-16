@@ -57,10 +57,6 @@
         margin: auto;
     }
 
-    @at-root #{&}__copy {
-        text-align: center;
-    }
-
     @at-root #{&}--col-line {
         border-right: px(1) dashed $primaryMedium;
 

@@ -1,0 +1,26 @@
+/**
+ Copy
+**/
+
+.copy {
+    font-style: normal;
+    font-family: $font-1;
+    font-size: px(14);
+    line-height: px(18);
+	margin: 0 0 px(10);
+	letter-spacing: px(0.5);
+
+    //
+    //------------------------------- Start Modifier
+    //
+
+    //-- MODIFIER: Copy center
+    @at-root #{&}--center {
+        text-align: center;
+    }
+
+    //-- MODIFIER: Copy venue
+    @at-root #{&}--venue {
+        margin: px(20) 0;
+    }
+}
