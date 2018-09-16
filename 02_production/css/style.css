@@ -1110,6 +1110,9 @@ li {
     margin-bottom: 2.5rem;
   }
 }
+.people--list-groomsmen {
+  padding-bottom: 0;
+}
 
 /**
  RSVP
@@ -1147,6 +1150,15 @@ li {
 .rsvp__input {
   border: 0.0625rem solid #c1c1c1;
   border-radius: 0;
+  outline: none;
+  font-family: "Noto Serif JP", "Times New Roman", sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  letter-spacing: 0.03125rem;
   height: 2.5rem;
   width: 100%;
+  padding: 0 0.625rem;
+}
+.rsvp__input:focus {
+  border-color: #1c1c1c;
 }

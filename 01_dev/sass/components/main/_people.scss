@@ -36,4 +36,8 @@
             margin-bottom: px(40);
         }
     }
+
+    @at-root #{&}--list-groomsmen {
+        padding-bottom: 0;
+    }
 }

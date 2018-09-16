@@ -43,7 +43,17 @@
     @at-root #{&}__input {
         border: px(1) solid $primaryMedium;
         border-radius: 0;
+        outline: none;
+        font-family: $font-1;
+        font-size: px(14);
+        line-height: px(18);
+        letter-spacing: px(0.5);
         height: px(40);
         width: 100%;
+        padding: 0 px(10);
+
+        &:focus {
+            border-color: $primary;
+        }
     }
 }
