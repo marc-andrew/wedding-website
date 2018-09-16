@@ -1150,6 +1150,23 @@ li {
 .rsvp__input:focus {
   border-color: #1c1c1c;
 }
+.rsvp--copy {
+  position: absolute;
+  left: 0;
+  right: 0;
+  visibility: hidden;
+  opacity: 0;
+}
+.rsvp--success {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s 0s, opacity 500ms linear;
+}
+.rsvp--form-hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 500ms, opacity 500ms linear;
+}
 .rsvp--input-invalid {
   border-color: #EF4640;
   border-width: 0.125rem;

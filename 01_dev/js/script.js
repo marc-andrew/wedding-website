@@ -230,6 +230,7 @@
     var emailId = document.getElementById('rsvp-email');
     var nameId = document.getElementById('rsvp-name');
     var lastNameId = document.getElementById('rsvp-lastname');
+    var successCopy = document.getElementsByClassName('rsvp--copy')[0];
 
     for (var navEl = 0; navEl < navButton.length; navEl++) {
         navButton[navEl].addEventListener('click', navClick, false);
@@ -267,6 +268,9 @@
         if(emailValid && nameValid && lastNameValid) {
             e.preventDefault();
             console.log('send');
+
+            successCopy.classList.add('rsvp--success');
+            formId.classList.add('rsvp--form-hidden');
 
             emailId.classList.remove('rsvp--input-invalid');
             nameId.classList.remove('rsvp--input-invalid');

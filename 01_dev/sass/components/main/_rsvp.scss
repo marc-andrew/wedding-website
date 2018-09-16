@@ -57,6 +57,26 @@
         }
     }
 
+    @at-root #{&}--copy {
+        position: absolute;
+        left: 0;
+        right: 0;
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    @at-root #{&}--success {
+        visibility: visible;
+        opacity: 1;
+        transition: visibility 0s 0s, opacity 500ms linear;
+    }
+
+    @at-root #{&}--form-hidden {
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s 500ms, opacity 500ms linear;
+    }
+
     @at-root #{&}--input-invalid {
         border-color: $red;
         border-width: px(2);
