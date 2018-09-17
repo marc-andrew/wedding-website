@@ -3,8 +3,10 @@
 **/
 
 .footer {
-    background-color: $primaryMedium;
+    position: relative;
+    // background-color: $primaryLight;
     height: px(50);
+    z-index: 2;
 
     .copy {
         padding: px(2) 0 0;

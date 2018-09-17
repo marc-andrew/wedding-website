@@ -308,7 +308,6 @@
 
     // Open Map
     viewMapBtn.addEventListener('click', function(e) {
-        console.log('clciked');
         venueWrapper.classList.add('venue--map-open');
     });
 
