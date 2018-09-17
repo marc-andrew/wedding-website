@@ -118,15 +118,15 @@
             }
         };
         obj.addClass = function (el) {
-            el.classList.add('visible');
-            if (el.classList.contains('hero')) {
+            if (el.classList.contains('hero') && !el.classList.contains('visible')) {
                 titleVisible();
             }
-            if (el.classList.contains('venue')) {
+            if (el.classList.contains('venue') && !el.classList.contains('visible')) {
                 // Image Rotator
                 var imgRotator = new contentRotator(document.getElementsByClassName('venue__slider'));
                 imgRotator.init(5000);
             }
+            el.classList.add('visible');
         };
         obj.windowSize = function () {
             var winW = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
@@ -217,10 +217,10 @@
     // Content Rotator
     var contentRotator = function (el) {
         var obj = this;
+        var timeOutSpeed;
 
         obj.id = el;
         obj.init = function (speed) {
-            
             for (var i = 0; i < obj.id.length; i++) {
                 obj.slider(obj.id[i], obj.id[i].childElementCount, speed);
             }
@@ -228,7 +228,7 @@
         obj.slider = function (el, itemLength, speed) {
             var currentItem = 0;
 
-            speed = speed || 3000;
+            timeOutSpeed = speed || 3000;
 
             el.children[0].classList.add('img--container-visible');
 
@@ -248,6 +248,9 @@
 
                 el.children[currentItem].classList.add('img--container-visible');
             }, speed);
+        };
+        obj.timeOut = function () {
+            setTimeout(alertFunc, timeOutSpeed);
         };
     };
 
@@ -277,10 +280,7 @@
     var lastNameId = document.getElementById('rsvp-lastname');
     var successCopy = document.getElementsByClassName('rsvp--copy')[0];
 
-    var venueWrapper = document.getElementsByClassName('venue')[0];
     var viewMapBtn = document.getElementsByClassName('btn--view-map')[0];
-    var closeMapBtn = document.getElementsByClassName('btn--close-map')[0];
-
 
     for (var navEl = 0; navEl < navButton.length; navEl++) {
         navButton[navEl].addEventListener('click', navClick, false);
@@ -350,12 +350,7 @@
 
     // Open Map
     viewMapBtn.addEventListener('click', function(e) {
-        venueWrapper.classList.add('venue--map-open');
-    });
-
-    // Close map click
-    closeMapBtn.addEventListener('click', function(e) {
-        venueWrapper.classList.remove('venue--map-open');
+        moveToHash(this.getAttribute('data-target-id'));
     });
 
     // Burger button click
@@ -493,9 +488,9 @@
         if(!e.target.classList.contains('btn__burger-icon') && !e.target.classList.contains('btn--burger') && !e.target.classList.contains('nav--primary')) mobileNav(true);
     }
 
-    function moveToHash() {
-        var urlHash = window.location.hash.substring(1);
-        var targetEl = document.querySelector('[data-section-id="' + urlHash + '"]');
+    function moveToHash(targetHash) {
+        targetHash = targetHash || window.location.hash.substring(1);
+        var targetEl = document.querySelector('[data-section-id="' + targetHash + '"]');
         if(targetEl) {
             scrollToY(targetEl.offsetTop - 52, 500, 'easeInOutQuint');
         }
