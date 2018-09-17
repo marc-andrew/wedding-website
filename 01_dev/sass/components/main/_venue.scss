@@ -52,10 +52,4 @@
             transition: visibility 0s 0s, opacity 500ms linear;
         }
     }
-
-    &.visible {
-        .img {
-            // animation: imgScale 1800ms ease-out;
-        }
-    }
 }
