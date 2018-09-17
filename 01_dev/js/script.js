@@ -122,6 +122,11 @@
             if (el.classList.contains('hero')) {
                 titleVisible();
             }
+            if (el.classList.contains('venue')) {
+                // Image Rotator
+                var imgRotator = new contentRotator(document.getElementsByClassName('venue__slider'));
+                imgRotator.init(5000);
+            }
         };
         obj.windowSize = function () {
             var winW = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
@@ -206,6 +211,43 @@
 
             timer = setInterval(showRemaining, 1000);
             showRemaining();
+        };
+    };
+
+    // Content Rotator
+    var contentRotator = function (el) {
+        var obj = this;
+
+        obj.id = el;
+        obj.init = function (speed) {
+            
+            for (var i = 0; i < obj.id.length; i++) {
+                obj.slider(obj.id[i], obj.id[i].childElementCount, speed);
+            }
+        };
+        obj.slider = function (el, itemLength, speed) {
+            var currentItem = 0;
+
+            speed = speed || 3000;
+
+            el.children[0].classList.add('img--container-visible');
+
+            setInterval(function () {
+                if (currentItem < itemLength - 1) {
+                    currentItem++;
+                } else {
+                    currentItem = 0;
+                }
+
+                for (var i = 0; i < el.children.length; i++) {
+                    if (el.children[i].classList.contains('img--container-visible')) {
+                        el.children[i].classList.remove('img--container-visible');
+                        break;
+                    }
+                }
+
+                el.children[currentItem].classList.add('img--container-visible');
+            }, speed);
         };
     };
 

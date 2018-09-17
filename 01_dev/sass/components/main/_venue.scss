@@ -8,6 +8,11 @@
         width: 100%;
     }
 
+    @at-root #{&}__slider {
+        position: relative;
+        z-index: 0;
+    }
+
     @at-root #{&}__main {
         position: absolute;
         width: 100%;
@@ -50,7 +55,7 @@
 
     &.visible {
         .img {
-            animation: imgScale 1800ms ease-out;
+            // animation: imgScale 1800ms ease-out;
         }
     }
 }
