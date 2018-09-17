@@ -3,15 +3,11 @@
 **/
 
 .footer {
-    background-color: $secondary;
-    height: px(200);
-
-    .title {
-        color: #fff;
-    }
+    background-color: $primaryMedium;
+    height: px(50);
 
     .copy {
-        margin: px(5) 0 0;
-        color: #fff;
+        padding: px(2) 0 0;
+        margin: 0;
     }
 }

@@ -159,4 +159,13 @@
             }
         }
     }
+
+    @at-root #{&}--close {
+        position: absolute;
+        background-color: #fff;
+        width: px(50);
+        height: px(50);
+        top: 0;
+        right: 0;
+    }
 }

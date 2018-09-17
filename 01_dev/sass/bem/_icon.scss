@@ -42,4 +42,39 @@
         left: 0;
         margin: auto;
     }
+
+    @at-root #{&}--close {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        width: px(30);
+        height: px(30);
+
+        &:before,
+        &:after {
+            position: absolute;
+            display: block;
+            background-color: $primary;
+            content: '';
+            height: px(30);
+            width: px(2);
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+        }
+
+        &:before {
+            transform: rotate(45deg);
+        }
+
+        &:after {
+            transform: rotate(-45deg);
+        }
+    }
 }

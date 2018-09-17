@@ -235,6 +235,10 @@
     var lastNameId = document.getElementById('rsvp-lastname');
     var successCopy = document.getElementsByClassName('rsvp--copy')[0];
 
+    var venueWrapper = document.getElementsByClassName('venue')[0];
+    var viewMapBtn = document.getElementsByClassName('btn--view-map')[0];
+    var closeMapBtn = document.getElementsByClassName('btn--close-map')[0];
+
 
     for (var navEl = 0; navEl < navButton.length; navEl++) {
         navButton[navEl].addEventListener('click', navClick, false);
@@ -300,6 +304,17 @@
                 lastNameId.classList.remove('rsvp--input-invalid');
             }
         }
+    });
+
+    // Open Map
+    viewMapBtn.addEventListener('click', function(e) {
+        console.log('clciked');
+        venueWrapper.classList.add('venue--map-open');
+    });
+
+    // Close map click
+    closeMapBtn.addEventListener('click', function(e) {
+        venueWrapper.classList.remove('venue--map-open');
     });
 
     // Burger button click
