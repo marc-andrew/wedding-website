@@ -126,6 +126,9 @@
                 var imgRotator = new contentRotator(document.getElementsByClassName('venue__slider'));
                 imgRotator.init(5000);
             }
+            if (el.classList.contains('map') && !el.classList.contains('visible')) {
+                loadMap();
+            }
             el.classList.add('visible');
         };
         obj.windowSize = function () {
@@ -280,6 +283,7 @@
     var lastNameId = document.getElementById('rsvp-lastname');
     var successCopy = document.getElementsByClassName('rsvp--copy')[0];
 
+    var mapWarpper = document.getElementsByClassName('map')[0];
     var viewMapBtn = document.getElementsByClassName('btn--view-map')[0];
 
     for (var navEl = 0; navEl < navButton.length; navEl++) {
@@ -494,6 +498,10 @@
         if(targetEl) {
             scrollToY(targetEl.offsetTop - 52, 500, 'easeInOutQuint');
         }
+    }
+
+    function loadMap() {
+        mapWarpper.innerHTML = '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2659.039350114157!2d16.374486315703955!3d48.20585797922898!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476d079e21d92331%3A0x417b4c58d40531b5!2sPalais+Coburg+Residenz!5e0!3m2!1sen!2suk!4v1537184868153" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>';
     }
 
     // Responsive Image
