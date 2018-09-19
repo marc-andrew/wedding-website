@@ -8,6 +8,10 @@
 # dependencies
 /node_modules
 
+# firebase
+.firebase
+.firebaserc
+
 # IDEs and editors
 /.idea
 .project
