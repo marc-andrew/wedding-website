@@ -14,7 +14,7 @@ module.exports = function (grunt) {
                 src: [".sass-cache"]
             },
             release: {
-                src: [".sass-cache", "02_production/css/style.css.map"]
+                src: [".sass-cache", "public/css/style.css.map"]
             }
         },
 
@@ -45,16 +45,16 @@ module.exports = function (grunt) {
                 expand: true,
                 flatten: true,
                 src: '01_dev/css/*.css',
-                dest: '02_production/css/'
+                dest: 'public/css/'
             },
         },
 
         cssmin: {
             minify: {
                 expand: true,
-                cwd: '02_production/css/',
+                cwd: 'public/css/',
                 src: ['*.css', '!*.min.css'],
-                dest: '02_production/css/',
+                dest: 'public/css/',
                 ext: '.css'
             }
         },
@@ -70,9 +70,9 @@ module.exports = function (grunt) {
             my_target: {
                 files: [{
                     expand: true,
-                    cwd: '02_production/js/',
+                    cwd: 'public/js/',
                     src: ['**/*.js', '!**/*.min.js', '!*.min.js', '!lib/*.js'],
-                    dest: '02_production/js',
+                    dest: 'public/js',
                     ext: '.js'
                 }]
             }
@@ -86,9 +86,9 @@ module.exports = function (grunt) {
                 },
                 files: [{
                     expand: true,
-                    cwd: '02_production/',
+                    cwd: 'public/',
                     src: ['*.html'],
-                    dest: '02_production/'
+                    dest: 'public/'
                 }]
             }
         },
@@ -100,7 +100,7 @@ module.exports = function (grunt) {
                         expand: true,
                         cwd: '01_dev/js',
                         src: '**',
-                        dest: '02_production/js'
+                        dest: 'public/js'
                     }
                 ],
             },
@@ -110,7 +110,7 @@ module.exports = function (grunt) {
                         expand: true,
                         cwd: '01_dev/css',
                         src: '*.css.map',
-                        dest: '02_production/css'
+                        dest: 'public/css'
                     }
                 ],
             }
@@ -118,7 +118,7 @@ module.exports = function (grunt) {
 
         replace: {
             html: {
-                src: ['02_production/*.html'],
+                src: ['public/*.html'],
                 overwrite: true,
                 replacements: [{
                     from: '<script src="//localhost:35729/livereload.js"></script>',
@@ -130,7 +130,7 @@ module.exports = function (grunt) {
         processhtml: {
             dist: {
                 files: {
-                    '02_production/index.html': ['01_dev/template/index.html'],
+                    'public/index.html': ['01_dev/template/index.html'],
                 }
             },
         },
@@ -139,7 +139,7 @@ module.exports = function (grunt) {
             server: {
                 options: {
                     port: 8000,
-                    base: '02_production/',
+                    base: 'public/',
                     hostname: '*'
                 }
             }
@@ -183,7 +183,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
-    // grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-uglify-es');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-clean');
