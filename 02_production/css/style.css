@@ -381,6 +381,7 @@ li {
  Wrapper
 **/
 .wrapper {
+  display: none;
   height: 100%;
 }
 
@@ -762,6 +763,12 @@ li {
 }
 .btn--ghost:hover, .btn--ghost:focus {
   outline: 0.0625rem solid #1c1c1c;
+}
+.btn--ghost-transparent {
+  border-color: transparent;
+}
+.btn--ghost-transparent:hover, .btn--ghost-transparent:focus {
+  border-color: #1c1c1c;
 }
 .btn--burger {
   position: absolute;
@@ -1355,16 +1362,6 @@ li {
   visibility: hidden;
   opacity: 0;
 }
-.rsvp--success {
-  visibility: visible;
-  opacity: 1;
-  transition: visibility 0s 0s, opacity 500ms linear;
-}
-.rsvp--form-hidden {
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility 0s 500ms, opacity 500ms linear;
-}
 .rsvp--input-invalid {
   border-color: #EF4640;
   border-width: 0.125rem;
@@ -1372,6 +1369,31 @@ li {
 .rsvp--col-submit {
   padding: 1.25rem 0 0;
   text-align: center;
+}
+.rsvp--col-submit .btn {
+  margin: 0 0.625rem;
+}
+.rsvp--col-to-show {
+  display: none;
+}
+.rsvp--col-guests {
+  display: none;
+}
+.rsvp--form-valid-user .rsvp--col-check {
+  display: none;
+}
+.rsvp--form-valid-user .rsvp--col-to-show {
+  display: block;
+}
+.rsvp--success .rsvp__form {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 500ms, opacity 500ms linear;
+}
+.rsvp--success .rsvp--copy {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s 0s, opacity 500ms linear;
 }
 
 /**

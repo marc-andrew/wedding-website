@@ -65,18 +65,6 @@
         opacity: 0;
     }
 
-    @at-root #{&}--success {
-        visibility: visible;
-        opacity: 1;
-        transition: visibility 0s 0s, opacity 500ms linear;
-    }
-
-    @at-root #{&}--form-hidden {
-        visibility: hidden;
-        opacity: 0;
-        transition: visibility 0s 500ms, opacity 500ms linear;
-    }
-
     @at-root #{&}--input-invalid {
         border-color: $red;
         border-width: px(2);
@@ -85,5 +73,43 @@
     @at-root #{&}--col-submit {
         padding: px(20) 0 0;
         text-align: center;
+
+        .btn {
+            margin: 0 px(10);
+        }
+    }
+
+    @at-root #{&}--col-to-show {
+        display: none;
+    }
+
+    @at-root #{&}--col-guests {
+        display: none;
+    }
+
+    @at-root #{&}--form-valid-user {
+
+        .rsvp--col-check {
+            display: none;
+        }
+
+        .rsvp--col-to-show {
+            display: block;
+        }
+    }
+
+    @at-root #{&}--success {
+
+        .rsvp__form {
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s 500ms, opacity 500ms linear;
+        }
+
+        .rsvp--copy {
+            visibility: visible;
+            opacity: 1;
+            transition: visibility 0s 0s, opacity 500ms linear;
+        }
     }
 }

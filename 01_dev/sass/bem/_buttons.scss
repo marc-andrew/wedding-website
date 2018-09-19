@@ -104,6 +104,16 @@
         }
     }
 
+    //-- MODIFIER: Ghost button
+    @at-root #{&}--ghost-transparent {
+        border-color: transparent;
+
+        &:hover,
+        &:focus {
+            border-color: $primary;
+        }
+    }
+
     //-- MODIFIER: Burger icon modifier
     @at-root #{&}--burger {
         position: absolute;

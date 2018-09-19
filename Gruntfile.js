@@ -60,7 +60,10 @@ module.exports = function (grunt) {
         },
 
         jshint: {
-            all: ['01_dev/js/**/*.js']
+            all: ['01_dev/js/**/*.js'],
+            options: {
+                'esversion': 6,
+            }
         },
 
         uglify: {
