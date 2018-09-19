@@ -4,21 +4,39 @@
         <p class="copy copy--center copy--sub">We look forward to celebrate with you. <br>Please reply by March 1,
             2019.</p>
         <p class="copy copy--center rsvp--copy">Thank you for RSVP!</p>
-        <form id="rsvp-form" class="rsvp__form" action="/" method="post">
-            <label class="rsvp__label" for="rsvp-name">Name:</label>
+        <form id="rsvp-form" class="rsvp__form flex" action="/" method="post">
             <div class="rsvp__col">
-                <input type="text" class="rsvp__input trans--all" id="rsvp-name">
-            </div>
-            <label class="rsvp__label" for="rsvp-lastname">Last Name:</label>
-            <div class="rsvp__col">
+                <label class="rsvp__label" for="rsvp-lastname">Last Name:</label>
                 <input type="text" class="rsvp__input trans--all" id="rsvp-lastname">
             </div>
-            <label class="rsvp__label" for="rsvp-email">E-Mail:</label>
-            <div class="rsvp__col">
+            <div class="rsvp__col rsvp--col-submit rsvp--col-check">
+                <button type="button" id="checkNameBtn" class="btn btn--ghost trans--all">Next</button>
+                <span class="copy copy--error copy--error-unknown">We are sorry, we can't find you in our Guestlist! <br>Please check if your last name is correct and try again.</span>
+            </div>
+    
+            <div class="rsvp__col rsvp--col-to-show">
+                <label class="rsvp__label" for="rsvp-name">Name:</label>
+                <input type="text" class="rsvp__input trans--all" id="rsvp-name">
+            </div>
+            <div class="rsvp__col rsvp--col-to-show">
+                <label class="rsvp__label" for="rsvp-email">E-Mail:</label>
                 <input type="email" class="rsvp__input trans--all" id="rsvp-email">
             </div>
-            <div class="rsvp__col rsvp--col-submit">
-                <input type="submit" class="btn btn--ghost trans--all" id="rsvp-submit" value="I'm attending">
+            <div class="rsvp__col rsvp--col-6 rsvp--col-to-show">
+                <label class="rsvp__label" for="rsvp-attending">Attending:</label>
+                <select class="rsvp__select trans--all" id="rsvp-attending">
+                    <option value="true" selected>Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+            <div class="rsvp__col rsvp--col-6 rsvp--col-guests">
+                <label class="rsvp__label" for="rsvp-guests">Number of guests:</label>
+                <select class="rsvp__select trans--all" id="rsvp-guests">
+                </select>
+            </div>
+            <div class="rsvp__col rsvp--col-to-show rsvp--col-submit flex flex--justify-center">
+                <button type="button" id="rsvpBackBtn" class="btn btn--ghost btn--ghost-transparent trans--all">Cancel</button>
+                <input type="submit" class="btn btn--ghost trans--all" id="rsvp-submit" value="Submit">
             </div>
         </form>
     </div>

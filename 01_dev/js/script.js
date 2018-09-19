@@ -6,7 +6,18 @@
         noJs[0].classList.remove('no-js');
     }
 
-    
+    // Initialize Firebase
+    const config = {
+        
+    };
+    firebase.initializeApp(config);
+    const timestamp = firebase.firestore.FieldValue.serverTimestamp();
+    // Initialize Firestore
+    const firestore = firebase.firestore();
+    const firestoreSettings = { timestampsInSnapshots: true };
+    firestore.settings(firestoreSettings);
+    // RSVP Collection
+    let rsvp = firestore.collection('rsvp');
 
     // Responsive Image Script
     const resImg = function (el) {
@@ -285,6 +296,8 @@
     const nameId = document.getElementById('rsvp-name');
     const lastNameId = document.getElementById('rsvp-lastname');
     const checkNameBtn = document.getElementById('checkNameBtn');
+    const guestlistId = document.getElementById('rsvp-guests');
+    const attendingId = document.getElementById('rsvp-attending');
     const rsvpBackBtn = document.getElementById('rsvpBackBtn');
     const colGuests = document.getElementsByClassName('rsvp--col-guests')[0];
     let searchAttempt = 0;
@@ -324,45 +337,122 @@
             this.classList.add('rsvp--input-invalid');
         }
     }, true);
+    // Check last name button
+    checkNameBtn.addEventListener('click', function (e) {
+        let lastnameVal = lastNameId.value;
+        if (checkIfempty(lastnameVal)) {
+            let docRef = firestore.collection("rsvp").doc(lastnameVal.toLowerCase());
+            docRef.get().then(function (doc) {
+                if (doc.exists) {
+                    let docData = doc.data();
+                    console.log("Document data:", docData);
+                    if(docData.confirmed === false) {
+                        let maxGuests = docData.maxGuests;
+                        let guestsItem = [];
+
+                        formId.classList.add('rsvp--form-valid-user');
+                        formId.classList.remove('rsvp--form-invalid-user');
+                        lastNameId.readOnly = true;
+
+                        if (maxGuests > 0) {
+                            for (let i = 0; i <= maxGuests; i++) {
+                                guestsItem.push('<option value="'+i+'">'+i+'</option>');
+                            }
+                            guestlistId.innerHTML = guestsItem.join('');
+                            formId.classList.add('rsvp--form-with-guests');
+                        }
+                    } else {
+                        console.log('Already confirmed');
+                    }
+                } else {
+                    if(searchAttempt < 10) {
+                        formId.classList.add('rsvp--form-invalid-user');
+                        searchAttempt++;
+                    } else {
+                        console.log('Block user');
+                    }
+
+                    console.log("No such document!");
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        } else {
+            lastNameId.classList.add('rsvp--input-invalid');
+        }
+    });
+    // Rsvp cancel/back button
     rsvpBackBtn.addEventListener('click', function (e) {
-        formId.classList.remove('rsvp--form-valid-user');
+        formId.classList.remove('rsvp--form-valid-user','rsvp--form-with-guests');
+        // Change read only to false
         lastNameId.readOnly = false;
+        // Remove class name
         colGuests.classList.remove('rsvp--col-to-show');
+        // Delete all options from the select list
+        guestlistId.options.length = 0;
     });
     // On form submit
     formId.addEventListener('submit', function (e) {
         let emailValid = validateEmail(emailId.value);
         let nameValid = checkIfempty(nameId.value);
         let lastNameValid = checkIfempty(lastNameId.value);
-        if (emailValid && nameValid && lastNameValid) {
-            e.preventDefault();
-            console.log('send');
+        if(this.classList.contains('rsvp--form-valid-user')) {
+            if (emailValid && nameValid && lastNameValid) {
+                let plusInt;
+                let isAttending = (attendingId.options[attendingId.selectedIndex].value === 'true');
 
-            rsvpWrapper.classList.add('rsvp--success');
+                e.preventDefault();
+                console.log('Send the data below');
+                console.log('Email: ', emailId.value);
+                console.log('Name: ', nameId.value);
+                console.log('Last Name: ', lastNameId.value);
+                console.log('Attending: ', isAttending);
+                if(formId.classList.contains('rsvp--form-with-guests')) {
+                    console.log('Guests: ', guestlistId.options[guestlistId.selectedIndex].value);
+                    plusInt = guestlistId.options[guestlistId.selectedIndex].value;
+                }
 
-            emailId.classList.remove('rsvp--input-invalid');
-            nameId.classList.remove('rsvp--input-invalid');
-            lastNameId.classList.remove('rsvp--input-invalid');
+                // Save data
+                rsvp.doc(lastNameId.value).update({
+                    attending: isAttending,
+                    confirmed: true,
+                    name: nameId.value,
+                    guestConfirmed: plusInt,
+                    dateConfirmed: timestamp
+                }).then(function() {
+                    console.log('Status saved!');
+                }).catch(function(error) {
+                    console.log('Got an error: ', error);
+                });
+    
+                rsvpWrapper.classList.add('rsvp--success');
+    
+                emailId.classList.remove('rsvp--input-invalid');
+                nameId.classList.remove('rsvp--input-invalid');
+                lastNameId.classList.remove('rsvp--input-invalid');
+            } else {
+                e.preventDefault();
+    
+                if (!emailValid) {
+                    emailId.classList.add('rsvp--input-invalid');
+                } else {
+                    emailId.classList.remove('rsvp--input-invalid');
+                }
+    
+                if (!nameValid) {
+                    nameId.classList.add('rsvp--input-invalid');
+                } else {
+                    nameId.classList.remove('rsvp--input-invalid');
+                }
+    
+                if (!lastNameValid) {
+                    lastNameId.classList.add('rsvp--input-invalid');
+                } else {
+                    lastNameId.classList.remove('rsvp--input-invalid');
+                }
+            }
         } else {
             e.preventDefault();
-
-            if (!emailValid) {
-                emailId.classList.add('rsvp--input-invalid');
-            } else {
-                emailId.classList.remove('rsvp--input-invalid');
-            }
-
-            if (!nameValid) {
-                nameId.classList.add('rsvp--input-invalid');
-            } else {
-                nameId.classList.remove('rsvp--input-invalid');
-            }
-
-            if (!lastNameValid) {
-                lastNameId.classList.add('rsvp--input-invalid');
-            } else {
-                lastNameId.classList.remove('rsvp--input-invalid');
-            }
         }
     });
 
@@ -545,40 +635,52 @@
 
     const testBtn = document.getElementById('testBtn');
 
-
-    // RSVP Collection
-    let rsvp = firestore.collection("rsvp");
     testBtn.addEventListener('click', function (e) {
-        const timestamp = firebase.firestore.FieldValue.serverTimestamp();
+        
         rsvp.doc("waight").set({
             attending: false,
             confirmed: false,
             dateConfirmed: null,
-            plus: 1
+            name: null,
+            maxGuests: 1,
+            guestConfirmed: 0,
+            guestNames: null
         });
         rsvp.doc("valookaran").set({
             attending: false,
             confirmed: false,
             dateConfirmed: null,
-            plus: 0
+            name: null,
+            maxGuests: 0,
+            guestConfirmed: 0,
+            guestNames: null
         });
         rsvp.doc("tee").set({
             attending: false,
             confirmed: false,
             dateConfirmed: null,
-            plus: 1
+            name: null,
+            maxGuests: 1,
+            guestConfirmed: 0,
+            guestNames: null
         });
         rsvp.doc("sosa").set({
             attending: false,
             confirmed: false,
             dateConfirmed: null,
-            plus: 0
+            name: null,
+            maxGuests: 0,
+            guestConfirmed: 0,
+            guestNames: null
         });
         rsvp.doc("kaiser").set({
             attending: false,
             confirmed: false,
             dateConfirmed: null,
-            plus: 0
+            name: null,
+            maxGuests: 0,
+            guestConfirmed: 0,
+            guestNames: null
         });
 
 
@@ -591,41 +693,4 @@
         // });
     });
 
-
-    checkNameBtn.addEventListener('click', function (e) {
-        let lastnameVal = lastNameId.value;
-        if (checkIfempty(lastnameVal)) {
-            let docRef = firestore.collection("rsvp").doc(lastnameVal.toLowerCase());
-            docRef.get().then(function (doc) {
-                if (doc.exists) {
-                    let docData = doc.data();
-                    console.log("Document data:", docData);
-                    if(docData.confirmed === false) {
-                        let guestsInt = docData.plus;
-
-                        formId.classList.add('rsvp--form-valid-user');
-                        lastNameId.readOnly = true;
-
-                        if (guestsInt > 0) {
-                            colGuests.classList.add('rsvp--col-to-show');
-                        }
-                    } else {
-                        console.log('Already confirmed');
-                    }
-                } else {
-                    if(searchAttempt < 10) {
-                        searchAttempt++;
-                    } else {
-                        console.log('Block user');
-                    }
-                    console.log("No such document!");
-                }
-            }).catch(function (error) {
-                console.log(error);
-            });
-        } else {
-            lastNameId.classList.add('rsvp--input-invalid');
-        }
-
-    });
 }());

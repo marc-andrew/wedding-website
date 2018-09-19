@@ -25,6 +25,7 @@
 
     //-- ELEMENT: Label
     @at-root #{&}__col {
+        width: 100%;
         margin-bottom: px(10);
     }
 
@@ -54,6 +55,35 @@
 
         &:focus {
             border-color: $primary;
+        }
+    }
+
+    //-- ELEMENT: Select
+    @at-root #{&}__select {
+        -webkit-appearance: none;
+        border: px(1) solid $primaryMedium;
+        border-radius: 0;
+        background: #fff;
+        outline: none;
+        font-family: $font-1;
+        font-size: px(14);
+        line-height: px(18);
+        letter-spacing: px(0.5);
+        height: px(40);
+        width: 100%;
+        padding: 0 px(10);
+
+        &:focus {
+            border-color: $primary;
+        }
+    }
+
+    @at-root #{&}--col-6 {
+        width: 50%;
+        padding: 0 px(5) 0 0;
+
+        & + .rsvp--col-6 {
+            padding: 0 0 0 px(5);
         }
     }
 
@@ -87,6 +117,15 @@
         display: none;
     }
 
+    @at-root #{&}--form-invalid-user {
+
+        .copy--error-unknown {
+            opacity: 1;
+            visibility: visible;
+            transition: visibility 0s 500ms, opacity 500ms linear;
+        }
+    }
+
     @at-root #{&}--form-valid-user {
 
         .rsvp--col-check {
@@ -96,14 +135,27 @@
         .rsvp--col-to-show {
             display: block;
         }
+
+        &.rsvp--form-with-guests {
+            .rsvp--col-guests {
+                display: block;
+            }   
+        }
     }
 
     @at-root #{&}--success {
+        padding-bottom: px(100);
+
+        @include media(screen,max,666px) {
+            padding-bottom: px(70);
+        }
 
         .rsvp__form {
+            height: 0px;
             visibility: hidden;
             opacity: 0;
-            transition: visibility 0s 500ms, opacity 500ms linear;
+            transition: visibility 0s 500ms, height 0s 500ms, opacity 500ms linear;
+            overflow: hidden;
         }
 
         .rsvp--copy {

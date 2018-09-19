@@ -831,6 +831,16 @@ li {
 .copy--secondary strong {
   font-weight: 600;
 }
+.copy--error {
+  visibility: hidden;
+  display: block;
+  font-family: "Open Sans", Helvetica, sans-serif;
+  font-size: 0.75rem;
+  line-height: 1.125rem;
+  color: #EF4640;
+  margin: 0.625rem 0 0;
+  opacity: 0;
+}
 
 /**
  Titles
@@ -1307,6 +1317,7 @@ li {
   width: 100%;
 }
 .rsvp__col {
+  width: 100%;
   margin-bottom: 0.625rem;
 }
 .rsvp__label {
@@ -1333,6 +1344,30 @@ li {
 .rsvp__input:focus {
   border-color: #1c1c1c;
 }
+.rsvp__select {
+  -webkit-appearance: none;
+  border: 0.0625rem solid #c1c1c1;
+  border-radius: 0;
+  background: #fff;
+  outline: none;
+  font-family: "Noto Serif JP", "Times New Roman", sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  letter-spacing: 0.03125rem;
+  height: 2.5rem;
+  width: 100%;
+  padding: 0 0.625rem;
+}
+.rsvp__select:focus {
+  border-color: #1c1c1c;
+}
+.rsvp--col-6 {
+  width: 50%;
+  padding: 0 0.3125rem 0 0;
+}
+.rsvp--col-6 + .rsvp--col-6 {
+  padding: 0 0 0 0.3125rem;
+}
 .rsvp--copy {
   position: absolute;
   left: 0;
@@ -1357,16 +1392,34 @@ li {
 .rsvp--col-guests {
   display: none;
 }
+.rsvp--form-invalid-user .copy--error-unknown {
+  opacity: 1;
+  visibility: visible;
+  transition: visibility 0s 500ms, opacity 500ms linear;
+}
 .rsvp--form-valid-user .rsvp--col-check {
   display: none;
 }
 .rsvp--form-valid-user .rsvp--col-to-show {
   display: block;
 }
+.rsvp--form-valid-user.rsvp--form-with-guests .rsvp--col-guests {
+  display: block;
+}
+.rsvp--success {
+  padding-bottom: 6.25rem;
+}
+@media screen and (max-width: 666px) {
+  .rsvp--success {
+    padding-bottom: 4.375rem;
+  }
+}
 .rsvp--success .rsvp__form {
+  height: 0px;
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0s 500ms, opacity 500ms linear;
+  transition: visibility 0s 500ms, height 0s 500ms, opacity 500ms linear;
+  overflow: hidden;
 }
 .rsvp--success .rsvp--copy {
   visibility: visible;
