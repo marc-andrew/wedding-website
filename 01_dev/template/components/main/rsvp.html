@@ -3,15 +3,16 @@
         <h2 class="title title--secondary-large title--underline">RSVP</h2>
         <p class="copy copy--center copy--sub">We look forward to celebrate with you. <br>Please reply by March 1,
             2019.</p>
-        <p class="copy copy--center rsvp--copy">Thank you for RSVP!</p>
+        <p class="copy copy--center rsvp--copy">Thank you for response!</p>
         <form id="rsvp-form" class="rsvp__form flex" action="/" method="post">
             <div class="rsvp__col">
                 <label class="rsvp__label" for="rsvp-lastname">Last Name:</label>
                 <input type="text" class="rsvp__input trans--all" id="rsvp-lastname">
             </div>
             <div class="rsvp__col rsvp--col-submit rsvp--col-check">
-                <button type="button" id="checkNameBtn" class="btn btn--ghost trans--all">Next</button>
-                <span class="copy copy--error copy--error-unknown">We are sorry, we can't find you in our Guestlist! <br>Please check if your last name is correct and try again.</span>
+                    <button type="button" id="testBtn" class="btn btn--ghost btn--width">Submit</button>
+                <button type="button" id="checkNameBtn" class="btn btn--ghost btn--width trans--all">Next</button>
+                <span class="copy copy--error copy--error-unknown">We are sorry, we can't find you on our Guestlist! <br>Please check if your last name is correct and try again.</span>
             </div>
     
             <div class="rsvp__col rsvp--col-to-show">
@@ -30,13 +31,13 @@
                 </select>
             </div>
             <div class="rsvp__col rsvp--col-6 rsvp--col-guests">
-                <label class="rsvp__label" for="rsvp-guests">Number of guests:</label>
+                <label class="rsvp__label" for="rsvp-guests">Additional guests:</label>
                 <select class="rsvp__select trans--all" id="rsvp-guests">
                 </select>
             </div>
             <div class="rsvp__col rsvp--col-to-show rsvp--col-submit flex flex--justify-center">
-                <button type="button" id="rsvpBackBtn" class="btn btn--ghost btn--ghost-transparent trans--all">Cancel</button>
-                <input type="submit" class="btn btn--ghost trans--all" id="rsvp-submit" value="Submit">
+                <button type="button" id="rsvpBackBtn" class="btn btn--ghost btn--width btn--ghost-transparent trans--all">Cancel</button>
+                <input type="submit" class="btn btn--ghost btn--width trans--all" id="rsvp-submit" value="Submit">
             </div>
         </form>
     </div>

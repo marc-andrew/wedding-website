@@ -20,4 +20,10 @@
         top: 0;
         left: 0;
     }
+
+    @at-root #{&}__main-inner {
+        background-color: rgba(#fff,0.7);
+        padding: px(40);
+        width: px(300);
+    }
 }

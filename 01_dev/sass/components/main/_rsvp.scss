@@ -120,9 +120,10 @@
     @at-root #{&}--form-invalid-user {
 
         .copy--error-unknown {
+            display: block;
             opacity: 1;
             visibility: visible;
-            transition: visibility 0s 500ms, opacity 500ms linear;
+            transition: display 0s 500ms, opacity 500ms linear;
         }
     }
 

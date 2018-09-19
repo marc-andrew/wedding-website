@@ -36,8 +36,7 @@
     }
     //-- MODIFIER: Copy error
     @at-root #{&}--error {
-        visibility: hidden;
-        display: block;
+        display: none;
         font-family: $font-2;
         font-size: px(12);
         line-height: px(18);

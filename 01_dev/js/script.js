@@ -337,6 +337,9 @@
             this.classList.add('rsvp--input-invalid');
         }
     }, true);
+    lastNameId.addEventListener('focus', function(e) {
+        formId.classList.remove('rsvp--form-invalid-user');
+    },false);
     // Check last name button
     checkNameBtn.addEventListener('click', function (e) {
         let lastnameVal = lastNameId.value;
@@ -346,7 +349,7 @@
                 if (doc.exists) {
                     let docData = doc.data();
                     console.log("Document data:", docData);
-                    if(docData.confirmed === false) {
+                    if (docData.confirmed === false) {
                         let maxGuests = docData.maxGuests;
                         let guestsItem = [];
 
@@ -356,7 +359,7 @@
 
                         if (maxGuests > 0) {
                             for (let i = 0; i <= maxGuests; i++) {
-                                guestsItem.push('<option value="'+i+'">'+i+'</option>');
+                                guestsItem.push('<option value="' + i + '">' + i + '</option>');
                             }
                             guestlistId.innerHTML = guestsItem.join('');
                             formId.classList.add('rsvp--form-with-guests');
@@ -365,7 +368,7 @@
                         console.log('Already confirmed');
                     }
                 } else {
-                    if(searchAttempt < 10) {
+                    if (searchAttempt < 9) {
                         formId.classList.add('rsvp--form-invalid-user');
                         searchAttempt++;
                     } else {
@@ -383,7 +386,7 @@
     });
     // Rsvp cancel/back button
     rsvpBackBtn.addEventListener('click', function (e) {
-        formId.classList.remove('rsvp--form-valid-user','rsvp--form-with-guests');
+        formId.classList.remove('rsvp--form-valid-user', 'rsvp--form-with-guests');
         // Change read only to false
         lastNameId.readOnly = false;
         // Remove class name
@@ -396,7 +399,7 @@
         let emailValid = validateEmail(emailId.value);
         let nameValid = checkIfempty(nameId.value);
         let lastNameValid = checkIfempty(lastNameId.value);
-        if(this.classList.contains('rsvp--form-valid-user')) {
+        if (this.classList.contains('rsvp--form-valid-user')) {
             if (emailValid && nameValid && lastNameValid) {
                 let plusInt;
                 let isAttending = (attendingId.options[attendingId.selectedIndex].value === 'true');
@@ -407,44 +410,44 @@
                 console.log('Name: ', nameId.value);
                 console.log('Last Name: ', lastNameId.value);
                 console.log('Attending: ', isAttending);
-                if(formId.classList.contains('rsvp--form-with-guests')) {
+                if (formId.classList.contains('rsvp--form-with-guests')) {
                     console.log('Guests: ', guestlistId.options[guestlistId.selectedIndex].value);
                     plusInt = guestlistId.options[guestlistId.selectedIndex].value;
                 }
 
                 // Save data
-                rsvp.doc(lastNameId.value).update({
+                rsvp.doc(lastNameId.value.toLowerCase()).update({
                     attending: isAttending,
                     confirmed: true,
                     name: nameId.value,
-                    guestConfirmed: plusInt,
+                    additionalGuests: parseInt(plusInt),
                     dateConfirmed: timestamp
-                }).then(function() {
+                }).then(function () {
                     console.log('Status saved!');
-                }).catch(function(error) {
+                }).catch(function (error) {
                     console.log('Got an error: ', error);
                 });
-    
+
                 rsvpWrapper.classList.add('rsvp--success');
-    
+
                 emailId.classList.remove('rsvp--input-invalid');
                 nameId.classList.remove('rsvp--input-invalid');
                 lastNameId.classList.remove('rsvp--input-invalid');
             } else {
                 e.preventDefault();
-    
+
                 if (!emailValid) {
                     emailId.classList.add('rsvp--input-invalid');
                 } else {
                     emailId.classList.remove('rsvp--input-invalid');
                 }
-    
+
                 if (!nameValid) {
                     nameId.classList.add('rsvp--input-invalid');
                 } else {
                     nameId.classList.remove('rsvp--input-invalid');
                 }
-    
+
                 if (!lastNameValid) {
                     lastNameId.classList.add('rsvp--input-invalid');
                 } else {
@@ -636,14 +639,14 @@
     const testBtn = document.getElementById('testBtn');
 
     testBtn.addEventListener('click', function (e) {
-        
+
         rsvp.doc("waight").set({
             attending: false,
             confirmed: false,
             dateConfirmed: null,
             name: null,
             maxGuests: 1,
-            guestConfirmed: 0,
+            additionalGuests: 0,
             guestNames: null
         });
         rsvp.doc("valookaran").set({
@@ -652,7 +655,7 @@
             dateConfirmed: null,
             name: null,
             maxGuests: 0,
-            guestConfirmed: 0,
+            additionalGuests: 0,
             guestNames: null
         });
         rsvp.doc("tee").set({
@@ -661,7 +664,7 @@
             dateConfirmed: null,
             name: null,
             maxGuests: 1,
-            guestConfirmed: 0,
+            additionalGuests: 0,
             guestNames: null
         });
         rsvp.doc("sosa").set({
@@ -670,7 +673,7 @@
             dateConfirmed: null,
             name: null,
             maxGuests: 0,
-            guestConfirmed: 0,
+            additionalGuests: 0,
             guestNames: null
         });
         rsvp.doc("kaiser").set({
@@ -679,7 +682,7 @@
             dateConfirmed: null,
             name: null,
             maxGuests: 0,
-            guestConfirmed: 0,
+            additionalGuests: 0,
             guestNames: null
         });
 

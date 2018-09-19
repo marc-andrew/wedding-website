@@ -178,4 +178,9 @@
         top: 0;
         right: 0;
     }
+
+    @at-root #{&}--width {
+        width: px(100);
+        text-align: center;
+    }
 }
