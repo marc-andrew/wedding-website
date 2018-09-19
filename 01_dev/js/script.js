@@ -8,12 +8,7 @@
 
     // Initialize Firebase
     const config = {
-        apiKey: "AIzaSyCp2KnROYMdFBG_xLXA3a1FXNPgf3OmEzc",
-        authDomain: "wedding-website-firestore.firebaseapp.com",
-        databaseURL: "https://wedding-website-firestore.firebaseio.com",
-        projectId: "wedding-website-firestore",
-        storageBucket: "wedding-website-firestore.appspot.com",
-        messagingSenderId: "230751398963"
+        
     };
     firebase.initializeApp(config);
     const timestamp = firebase.firestore.FieldValue.serverTimestamp();
