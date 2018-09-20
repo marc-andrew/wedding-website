@@ -116,23 +116,17 @@ module.exports = function (grunt) {
             }
         },
 
-        replace: {
-            html: {
-                src: ['public/*.html'],
-                overwrite: true,
-                replacements: [{
-                    from: '<script src="//localhost:35729/livereload.js"></script>',
-                    to: ''
-                }]
-            }
-        },
-
         processhtml: {
-            dist: {
+            prod: {
                 files: {
                     'public/index.html': ['01_dev/template/index.html'],
                 }
             },
+            dev: {
+                files: {
+                    'public/index.html': ['01_dev/template/index.html'],
+                }
+            }
         },
 
         connect: {
@@ -172,7 +166,7 @@ module.exports = function (grunt) {
             },
             html: {
                 files: '01_dev/template/**/*',
-                tasks: ['processhtml'],
+                tasks: ['processhtml:dev'],
                 options: {
                     livereload: true,
                 }
@@ -194,7 +188,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
 
     grunt.registerTask('default', ['watch']);
-    grunt.registerTask('dev', ['connect', 'sass', 'autoprefixer', 'copy:cssmap', 'jshint', 'copy:js', 'processhtml', 'clean:build', 'watch']);
-    grunt.registerTask('prod', ['sass', 'autoprefixer', 'copy:js', 'uglify', 'cssmin', 'processhtml', 'replace', 'htmlmin', 'clean:release', 'watch']);
+    grunt.registerTask('dev', ['connect', 'sass', 'autoprefixer', 'copy:cssmap', 'jshint', 'copy:js', 'processhtml:dev', 'clean:build', 'watch']);
+    grunt.registerTask('prod', ['sass', 'autoprefixer', 'copy:js', 'uglify', 'cssmin', 'processhtml:prod', 'htmlmin']);
     grunt.registerTask('checkjs', ['jshint']);
 };
