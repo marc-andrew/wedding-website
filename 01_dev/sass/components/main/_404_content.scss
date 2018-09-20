@@ -1,0 +1,17 @@
+/**
+ 404
+**/
+
+.page--404 {
+    background-color: $secondary;
+
+    .main {
+        background-color: #fff;
+        padding: px(50) px(50) px(40);
+    }
+
+    .title--primary-medium {
+        margin: px(20) 0 px(50);
+        line-height: px(30);
+    }
+}

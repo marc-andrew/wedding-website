@@ -60,7 +60,7 @@ module.exports = function (grunt) {
         },
 
         jshint: {
-            all: ['01_dev/js/**/*.js'],
+            all: ['01_dev/js/script.js'],
             options: {
                 'esversion': 6,
             }
@@ -99,7 +99,7 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: '01_dev/js',
-                        src: '**',
+                        src: ['*.js'],
                         dest: 'public/js'
                     }
                 ],

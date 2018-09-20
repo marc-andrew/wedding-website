@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
+    <meta name="theme-color" content="#29b6f6" />
 
     <title>The Wedding of Nira and Marc</title>
 
@@ -13,19 +14,8 @@
 
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+JP|Open+Sans:400,600" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet" type="text/css" />
-    
-    <!-- build:remove:dev -->
-    <!-- Google Tag Manager -->
-    <script>(function (w, d, s, l, i) {
-            w[l] = w[l] || []; w[l].push({
-                'gtm.start':
-                    new Date().getTime(), event: 'gtm.js'
-            }); var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-NFWBQQH');</script>
-    <!-- End Google Tag Manager -->
-    <!-- /build -->
+
+    <link rel="manifest" href="/assets/manifest.json">
 </head>
 
 <body>
@@ -44,12 +34,20 @@
 
                 <!-- build:include /components/header/primary-nav.html -->
                 <!-- /build -->
+
+                <!-- build:css inline -->
+                <link rel="stylesheet" type="text/css" href="../../public/css/nav.css" />
+                <!-- /build -->
             </div>
         </header>
 
 
         <main id="main" class="main" role="main">
             <!-- build:include /components/main/hero.html -->
+            <!-- /build -->
+
+            <!-- build:css inline -->
+            <link rel="stylesheet" type="text/css" href="../../public/css/hero.css" />
             <!-- /build -->
 
             <!-- build:include /components/main/ceremony.html -->
@@ -82,9 +80,41 @@
         </footer>
     </div>
 
+    <script src="js/script.js" type="text/javascript" async></script>
     <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-firestore.js"></script>
-    <script src="js/script.js" type="text/javascript" async></script>
+    <script>
+        // Initialize Firebase
+        const config = {
+            
+        };
+        firebase.initializeApp(config);
+        const timestamp = firebase.firestore.FieldValue.serverTimestamp();
+        // Initialize Firestore
+        const firestore = firebase.firestore();
+        const firestoreSettings = { timestampsInSnapshots: true };
+        firestore.settings(firestoreSettings);
+    </script>
+
+    <!-- build:remove:dev -->
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-NFWBQQH');</script>
+    <!-- End Google Tag Manager -->
+    <!-- /build -->
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js', { scope: '/' });
+            navigator.serviceWorker.ready;
+        }
+    </script>
 
     <!-- build:remove:prod -->
     <script src="//localhost:35729/livereload.js"></script>

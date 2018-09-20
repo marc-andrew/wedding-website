@@ -6,19 +6,6 @@
         noJs[0].classList.remove('no-js');
     }
 
-    // Initialize Firebase
-    const config = {
-        
-    };
-    firebase.initializeApp(config);
-    const timestamp = firebase.firestore.FieldValue.serverTimestamp();
-    // Initialize Firestore
-    const firestore = firebase.firestore();
-    const firestoreSettings = { timestampsInSnapshots: true };
-    firestore.settings(firestoreSettings);
-    // RSVP Collection
-    let rsvp = firestore.collection('rsvp');
-
     // Responsive Image Script
     const resImg = function (el) {
         let obj = this,
@@ -349,7 +336,7 @@
                 if (doc.exists) {
                     let docData = doc.data();
                     console.log("Document data:", docData);
-                    if (docData.confirmed === false) {
+                    if (docData.c === false) {
                         let maxGuests = docData.mG;
                         let guestsItem = [];
 
@@ -403,6 +390,8 @@
             if (emailValid && nameValid && lastNameValid) {
                 let plusInt;
                 let isAttending = (attendingId.options[attendingId.selectedIndex].value === 'true');
+                // RSVP Collection
+                let rsvp = firestore.collection('rsvp');
 
                 e.preventDefault();
                 console.log('Send the data below');
@@ -639,6 +628,8 @@
     const testBtn = document.getElementById('testBtn');
 
     testBtn.addEventListener('click', function (e) {
+        // RSVP Collection
+        let rsvp = firestore.collection('rsvp');
 
         rsvp.doc("waight").set({
             a: false,
