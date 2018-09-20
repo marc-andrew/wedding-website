@@ -1,0 +1,92 @@
+/**
+ Nav Secondary
+**/
+
+.nav {
+    // Variable for root id: #{$navParent}
+    $navParent: &;
+
+    position: relative;
+
+    //
+    //------------------------------- Start Element
+    //
+
+    //-- ELEMENT: Primary Navigation list link text
+    @at-root #{&}__list-link-txt {
+        position: relative;
+        display: block;
+        
+        &:after {
+            position: absolute;
+            display: block;
+            background-color: $primary;
+            content: '';
+            width: 0;
+            height: px(2);
+            right: 0;
+            bottom: px(-3);
+            left: 0;
+            margin: 0 auto;
+
+            @include media(screen,max,666px) {
+                content: normal;
+            }
+        }
+    }
+    //-- ELEMENT: Primary Navigation list link
+    @at-root #{&}__list-link {
+        position: relative;
+        display: block;
+        outline: none;
+        font-family: $font-2;
+        font-weight: 500;
+        font-size: px(13);
+        letter-spacing: px(0.5);
+        text-decoration: none;
+        padding: px(20) px(10) px(18);
+
+        @include media(screen,max,666px) {
+            padding-bottom: px(17);
+        }
+
+        &:after {
+            position: absolute;
+            display: block;
+            content: '/';
+            right: px(-3);
+            top: px(21);
+
+            @include media(screen,max,666px) {
+                content: normal;
+            }
+        }
+
+        &:hover,
+        &:focus {
+
+            #{$navParent}__list-link-txt {
+
+                &:after {
+                    width: 100%;
+                }
+            }
+        }
+    }
+    //-- ELEMENT: Primary Navigation list item
+    @at-root #{&}__list-item {
+        @include media(screen,max,666px) {
+            border-bottom: px(1) solid $primaryLight;
+            width: 100%;
+        }
+
+        &:last-child {
+
+            #{$navParent}__list-link {
+                &:after {
+                    content: normal;
+                }
+            }
+        }
+    }
+}

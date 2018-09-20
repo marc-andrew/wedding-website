@@ -120,11 +120,13 @@ module.exports = function (grunt) {
             prod: {
                 files: {
                     'public/index.html': ['01_dev/template/index.html'],
+                    'public/404.html': ['01_dev/template/404.html'],
                 }
             },
             dev: {
                 files: {
                     'public/index.html': ['01_dev/template/index.html'],
+                    'public/404.html': ['01_dev/template/404.html'],
                 }
             }
         },
