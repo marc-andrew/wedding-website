@@ -350,7 +350,7 @@
                     let docData = doc.data();
                     console.log("Document data:", docData);
                     if (docData.confirmed === false) {
-                        let maxGuests = docData.maxGuests;
+                        let maxGuests = docData.mG;
                         let guestsItem = [];
 
                         formId.classList.add('rsvp--form-valid-user');
@@ -417,11 +417,11 @@
 
                 // Save data
                 rsvp.doc(lastNameId.value.toLowerCase()).update({
-                    attending: isAttending,
-                    confirmed: true,
-                    name: nameId.value,
-                    additionalGuests: parseInt(plusInt),
-                    dateConfirmed: timestamp
+                    a: isAttending,
+                    c: true,
+                    n: nameId.value,
+                    aG: parseInt(plusInt),
+                    dC: timestamp
                 }).then(function () {
                     console.log('Status saved!');
                 }).catch(function (error) {
@@ -641,54 +641,54 @@
     testBtn.addEventListener('click', function (e) {
 
         rsvp.doc("waight").set({
-            attending: false,
-            confirmed: false,
-            dateConfirmed: null,
-            name: null,
-            maxGuests: 1,
-            additionalGuests: 0,
-            guestNames: null
+            a: false,
+            c: false,
+            dC: null,
+            n: null,
+            mG: 1,
+            aG: 0,
+            gN: null
         });
         rsvp.doc("valookaran").set({
-            attending: false,
-            confirmed: false,
-            dateConfirmed: null,
-            name: null,
-            maxGuests: 0,
-            additionalGuests: 0,
-            guestNames: null
+            a: false,
+            c: false,
+            dC: null,
+            n: null,
+            mG: 0,
+            aG: 0,
+            gN: null
         });
         rsvp.doc("tee").set({
-            attending: false,
-            confirmed: false,
-            dateConfirmed: null,
-            name: null,
-            maxGuests: 1,
-            additionalGuests: 0,
-            guestNames: null
+            a: false,
+            c: false,
+            dC: null,
+            n: null,
+            mG: 1,
+            aG: 0,
+            gN: null
         });
         rsvp.doc("sosa").set({
-            attending: false,
-            confirmed: false,
-            dateConfirmed: null,
-            name: null,
-            maxGuests: 0,
-            additionalGuests: 0,
-            guestNames: null
+            a: false,
+            c: false,
+            dC: null,
+            n: null,
+            mG: 0,
+            aG: 0,
+            gN: null
         });
         rsvp.doc("kaiser").set({
-            attending: false,
-            confirmed: false,
-            dateConfirmed: null,
-            name: null,
-            maxGuests: 0,
-            additionalGuests: 0,
-            guestNames: null
+            a: false,
+            c: false,
+            dC: null,
+            n: null,
+            mG: 0,
+            aG: 0,
+            gN: null
         });
 
 
         // rsvp.doc("kaiser").update({
-        //     dateConfirmed: timestamp
+        //     dC: timestamp
         // }).then(function() {
         //     console.log('Status saved!');
         // }).catch(function(error) {
