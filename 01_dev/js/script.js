@@ -287,6 +287,7 @@
     const attendingId = document.getElementById('rsvp-attending');
     const rsvpBackBtn = document.getElementById('rsvpBackBtn');
     const colGuests = document.getElementsByClassName('rsvp--col-guests')[0];
+    const additionalId = document.getElementById('additional');
     let searchAttempt = 0;
 
     // Map
@@ -338,7 +339,7 @@
                     console.log("Document data:", docData);
                     if (docData.c === false) {
                         let maxGuests = docData.mG;
-                        let guestsItem = [];
+                        let optionsArr = [];
 
                         formId.classList.add('rsvp--form-valid-user');
                         formId.classList.remove('rsvp--form-invalid-user');
@@ -346,9 +347,9 @@
 
                         if (maxGuests > 0) {
                             for (let i = 0; i <= maxGuests; i++) {
-                                guestsItem.push('<option value="' + i + '">' + i + '</option>');
+                                optionsArr.push('<option value="' + i + '">' + i + '</option>');
                             }
-                            guestlistId.innerHTML = guestsItem.join('');
+                            guestlistId.innerHTML = optionsArr.join('');
                             formId.classList.add('rsvp--form-with-guests');
                         }
                     } else {
@@ -371,6 +372,17 @@
             lastNameId.classList.add('rsvp--input-invalid');
         }
     });
+    // Listener for a change
+    guestlistId.addEventListener('change', function(e) {
+        let optionsLength = this.children.length;
+        // Loop through each option and find the one it is selected
+        for(let i = 0; i < optionsLength; i++) {
+            if(this.children[i].selected === true) {
+                console.log(this.children[i].value);
+                buildAdditionalGuest(this.children[i].value);
+            }
+        }
+    });
     // Rsvp cancel/back button
     rsvpBackBtn.addEventListener('click', function (e) {
         formId.classList.remove('rsvp--form-valid-user', 'rsvp--form-with-guests');
@@ -383,13 +395,28 @@
     });
     // On form submit
     formId.addEventListener('submit', function (e) {
-        let emailValid = validateEmail(emailId.value);
-        let nameValid = checkIfempty(nameId.value);
-        let lastNameValid = checkIfempty(lastNameId.value);
         if (this.classList.contains('rsvp--form-valid-user')) {
-            if (emailValid && nameValid && lastNameValid) {
+            let emailValid = validateEmail(emailId.value);
+            let nameValid = checkIfempty(nameId.value);
+            let lastNameValid = checkIfempty(lastNameId.value);
+            let guestInputId = getElementsByClassName('rsvp--input-guest');
+            let guestInputValid = true;
+
+            if(guestInputId.length > 0) {
+                for (let i = 0; i < guestInputId.length; i++) {
+                    if(checkIfempty(guestInputId[i].value) === false) {
+                        guestInputValid = false;
+                        guestInputId[i].classList.add('rsvp--input-invalid');
+                    } else {
+                        guestInputId[i].classList.remove('rsvp--input-invalid');
+                    }
+                }
+            }
+
+            if (emailValid && nameValid && lastNameValid && guestInputValid) {
                 let plusInt;
                 let isAttending = (attendingId.options[attendingId.selectedIndex].value === 'true');
+                let guestNames = [];
                 // RSVP Collection
                 let rsvp = firestore.collection('rsvp');
 
@@ -402,6 +429,10 @@
                 if (formId.classList.contains('rsvp--form-with-guests')) {
                     console.log('Guests: ', guestlistId.options[guestlistId.selectedIndex].value);
                     plusInt = guestlistId.options[guestlistId.selectedIndex].value;
+                    
+                    for (let i = 0; i < guestInputId.length; i++) {
+                        guestNames.push(guestInputId[i].value);
+                    }
                 }
 
                 // Save data
@@ -410,7 +441,8 @@
                     c: true,
                     n: nameId.value,
                     aG: parseInt(plusInt),
-                    dC: timestamp
+                    dC: timestamp,
+                    gN: guestNames
                 }).then(function () {
                     console.log('Status saved!');
                 }).catch(function (error) {
@@ -471,6 +503,38 @@
                 window.setTimeout(callback, 1000 / 60);
             };
     })();
+
+    // Additional Guest Inputs
+    function buildAdditionalGuest(nr) {
+        let elArr = [];
+
+        if(nr > 0) {
+            for (let i = 0; i < nr; i++) {
+                elArr.push('<div class="rsvp__col rsvp--col-to-show"><label class="rsvp__label" for="rsvp-guest-'+(i+1)+'">Guest '+(i+1)+' First &amp; Last Name:</label><input type="text" class="rsvp__input rsvp--input-guest trans--all" id="rsvp--guest-'+i+'"></div>');
+            }
+            additionalId.innerHTML = elArr.join('');
+ 
+        } else {
+            // Delete everything inside
+            while (additionalId.firstChild) {
+                additionalId.removeChild(additionalId.firstChild);
+            }
+        }
+    }
+
+    function guestInputListener() {
+        let guestInputId = getElementsByClassName('rsvp--input-guest');
+
+        for (let i = 0; i < guestInputId.length; i++) {
+            guestInputId[i].addEventListener('blur', function (e) {
+                if (checkIfempty(this.value)) {
+                    this.classList.remove('rsvp--input-invalid');
+                } else {
+                    this.classList.add('rsvp--input-invalid');
+                }
+            }, true);
+        }
+    }
 
     // Scroll to element
     function scrollToY(scrollTargetY, speed, easing) {
