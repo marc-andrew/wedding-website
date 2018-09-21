@@ -21,18 +21,7 @@
         }
     }
 
-    @at-root #{&}--list-brides {
+    @at-root #{&}--brides {
         border-bottom:  px(1) dashed $primaryMedium;
-        margin-bottom: px(77);
-        padding-bottom: px(80);
-
-        @include media(screen,max,666px) {
-            margin-bottom: px(40);
-            padding-bottom: px(40);
-        }
-    }
-
-    @at-root #{&}--list-groomsmen {
-        padding-bottom: 0;
     }
 }

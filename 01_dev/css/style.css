@@ -1124,19 +1124,8 @@ li {
     width: 50%;
   }
 }
-.people--list-brides {
+.people--brides {
   border-bottom: 0.0625rem dashed #c1c1c1;
-  margin-bottom: 4.8125rem;
-  padding-bottom: 5rem;
-}
-@media screen and (max-width: 666px) {
-  .people--list-brides {
-    margin-bottom: 2.5rem;
-    padding-bottom: 2.5rem;
-  }
-}
-.people--list-groomsmen {
-  padding-bottom: 0;
 }
 
 /**
