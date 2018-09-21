@@ -266,6 +266,14 @@
         mobileNav(true);
     };
 
+    let inputGuestHover = function(e) {
+        if (checkIfempty(this.value)) {
+            this.classList.remove('rsvp--input-invalid');
+        } else {
+            this.classList.add('rsvp--input-invalid');
+        }
+    };
+
     // Nav links, Burger button & nav wrapper
     const navButton = document.getElementsByClassName('nav__list-link');
     const burgerBtn = document.getElementsByClassName('btn--burger')[0];
@@ -287,6 +295,7 @@
     const attendingId = document.getElementById('rsvp-attending');
     const rsvpBackBtn = document.getElementById('rsvpBackBtn');
     const colGuests = document.getElementsByClassName('rsvp--col-guests')[0];
+    const additionalId = document.getElementById('additional');
     let searchAttempt = 0;
 
     // Map
@@ -335,10 +344,9 @@
             docRef.get().then(function (doc) {
                 if (doc.exists) {
                     let docData = doc.data();
-                    console.log("Document data:", docData);
                     if (docData.c === false) {
                         let maxGuests = docData.mG;
-                        let guestsItem = [];
+                        let optionsArr = [];
 
                         formId.classList.add('rsvp--form-valid-user');
                         formId.classList.remove('rsvp--form-invalid-user');
@@ -346,9 +354,9 @@
 
                         if (maxGuests > 0) {
                             for (let i = 0; i <= maxGuests; i++) {
-                                guestsItem.push('<option value="' + i + '">' + i + '</option>');
+                                optionsArr.push('<option value="' + i + '">' + i + '</option>');
                             }
-                            guestlistId.innerHTML = guestsItem.join('');
+                            guestlistId.innerHTML = optionsArr.join('');
                             formId.classList.add('rsvp--form-with-guests');
                         }
                     } else {
@@ -361,14 +369,22 @@
                     } else {
                         console.log('Block user');
                     }
-
-                    console.log("No such document!");
                 }
             }).catch(function (error) {
                 console.log(error);
             });
         } else {
             lastNameId.classList.add('rsvp--input-invalid');
+        }
+    });
+    // Listener for a change
+    guestlistId.addEventListener('change', function(e) {
+        let optionsLength = this.children.length;
+        // Loop through each option and find the one it is selected
+        for(let i = 0; i < optionsLength; i++) {
+            if(this.children[i].selected === true) {
+                buildAdditionalGuest(this.children[i].value);
+            }
         }
     });
     // Rsvp cancel/back button
@@ -380,28 +396,49 @@
         colGuests.classList.remove('rsvp--col-to-show');
         // Delete all options from the select list
         guestlistId.options.length = 0;
+        // Delete everything inside
+        while (additionalId.firstChild) {
+            additionalId.removeChild(additionalId.firstChild);
+        }
     });
     // On form submit
     formId.addEventListener('submit', function (e) {
-        let emailValid = validateEmail(emailId.value);
-        let nameValid = checkIfempty(nameId.value);
-        let lastNameValid = checkIfempty(lastNameId.value);
         if (this.classList.contains('rsvp--form-valid-user')) {
-            if (emailValid && nameValid && lastNameValid) {
+            let emailValid = validateEmail(emailId.value);
+            let nameValid = checkIfempty(nameId.value);
+            let lastNameValid = checkIfempty(lastNameId.value);
+            let guestInputId = document.getElementsByClassName('rsvp--input-guest');
+            let guestInputValid = true;
+            
+            if(guestInputId.length > 0) {
+                for (let i = 0; i < guestInputId.length; i++) {
+                    if(checkIfempty(guestInputId[i].value) === false) {
+                        guestInputValid = false;
+                        guestInputId[i].classList.add('rsvp--input-invalid');
+                    } else {
+                        guestInputId[i].classList.remove('rsvp--input-invalid');
+                    }
+                }
+            }
+
+            if (emailValid && nameValid && lastNameValid && guestInputValid) {
                 let plusInt;
                 let isAttending = (attendingId.options[attendingId.selectedIndex].value === 'true');
+                let guestNames = [];
                 // RSVP Collection
                 let rsvp = firestore.collection('rsvp');
+                let attending = firestore.collection('attending');
+                let notAttending = firestore.collection('notAttending');
 
                 e.preventDefault();
-                console.log('Send the data below');
-                console.log('Email: ', emailId.value);
-                console.log('Name: ', nameId.value);
-                console.log('Last Name: ', lastNameId.value);
-                console.log('Attending: ', isAttending);
                 if (formId.classList.contains('rsvp--form-with-guests')) {
-                    console.log('Guests: ', guestlistId.options[guestlistId.selectedIndex].value);
                     plusInt = guestlistId.options[guestlistId.selectedIndex].value;
+                    
+                    for (let i = 0; i < guestInputId.length; i++) {
+                        guestNames.push(guestInputId[i].value);
+                    }
+                } else {
+                    plusInt = 0;
                 }
 
                 // Save data
@@ -410,18 +447,39 @@
                     c: true,
                     n: nameId.value,
                     aG: parseInt(plusInt),
-                    dC: timestamp
+                    dC: timestamp,
+                    gN: guestNames
                 }).then(function () {
-                    console.log('Status saved!');
+                    rsvpWrapper.classList.add('rsvp--success');
+
+                    emailId.classList.remove('rsvp--input-invalid');
+                    nameId.classList.remove('rsvp--input-invalid');
+                    lastNameId.classList.remove('rsvp--input-invalid');
                 }).catch(function (error) {
-                    console.log('Got an error: ', error);
+                    console.log(error);
                 });
-
-                rsvpWrapper.classList.add('rsvp--success');
-
-                emailId.classList.remove('rsvp--input-invalid');
-                nameId.classList.remove('rsvp--input-invalid');
-                lastNameId.classList.remove('rsvp--input-invalid');
+                // If attending
+                if(isAttending) {
+                    attending.doc(lastNameId.value.toLowerCase()).set({
+                        n: nameId.value,
+                        aG: parseInt(plusInt),
+                        dC: timestamp,
+                        gN: guestNames
+                    }).then(function () {
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+                } else {
+                    notAttending.doc(lastNameId.value.toLowerCase()).set({
+                        n: nameId.value,
+                        aG: parseInt(plusInt),
+                        dC: timestamp,
+                        gN: guestNames
+                    }).then(function () {
+                    }).catch(function (error) {
+                        console.log('Got an error: ', error);
+                    });
+                }
             } else {
                 e.preventDefault();
 
@@ -447,12 +505,10 @@
             e.preventDefault();
         }
     });
-
     // Scroll down to map on button click
     viewMapBtn.addEventListener('click', function (e) {
         moveToHash(this.getAttribute('data-target-id'));
     });
-
     // Burger button click
     burgerBtn.addEventListener('click', function (e) {
         if (this.classList.contains('btn--burger-active')) {
@@ -471,6 +527,33 @@
                 window.setTimeout(callback, 1000 / 60);
             };
     })();
+
+    // Additional Guest Inputs
+    function buildAdditionalGuest(nr) {
+        let elArr = [];
+
+        if(nr > 0) {
+            for (let i = 0; i < nr; i++) {
+                elArr.push('<div class="rsvp__col rsvp--col-to-show"><label class="rsvp__label" for="rsvp-guest-'+(i+1)+'">Guest '+(i+1)+' First &amp; Last Name:</label><input type="text" class="rsvp__input rsvp--input-guest trans--all" id="rsvp--guest-'+i+'"></div>');
+            }
+            additionalId.innerHTML = elArr.join('');
+            guestInputListener();
+        } else {
+            // Delete everything inside
+            while (additionalId.firstChild) {
+                additionalId.removeChild(additionalId.firstChild);
+            }
+        }
+    }
+
+    // Loop trough input guest elements and add event listener for blur
+    function guestInputListener() {
+        let guestInputId = document.getElementsByClassName('rsvp--input-guest');
+
+        for (let i = 0; i < guestInputId.length; i++) {
+            guestInputId[i].addEventListener('blur', inputGuestHover, true);
+        }
+    }
 
     // Scroll to element
     function scrollToY(scrollTargetY, speed, easing) {
