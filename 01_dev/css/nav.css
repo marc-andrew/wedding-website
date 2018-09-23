@@ -67,7 +67,8 @@
 }
 @media screen and (max-width: 666px) {
   .nav--primary {
-    transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+        transform: translateX(-100%);
     position: fixed;
     border-right: 0.0625rem solid #f4f4f4;
     background-color: #fff;
@@ -81,8 +82,7 @@
 }
 @media screen and (max-width: 666px) {
   .nav--primary-open {
-    transform: translateX(0%);
+    -ms-transform: translateX(0%);
+        transform: translateX(0%);
   }
 }
-
-/*# sourceMappingURL=nav.css.map */

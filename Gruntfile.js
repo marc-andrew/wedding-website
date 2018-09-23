@@ -11,10 +11,10 @@ module.exports = function (grunt) {
 
         clean: {
             build: {
-                src: [".sass-cache"]
+                src: [".sass-cache", "public/css", "public/js", "public/img"]
             },
             release: {
-                src: [".sass-cache", "public/css/style.css.map"]
+                src: ["public/css/*.map"]
             }
         },
 
@@ -45,7 +45,7 @@ module.exports = function (grunt) {
                 expand: true,
                 flatten: true,
                 src: '01_dev/css/*.css',
-                dest: 'public/css/'
+                dest: '01_dev/css/'
             },
         },
 
@@ -104,30 +104,70 @@ module.exports = function (grunt) {
                     }
                 ],
             },
-            cssmap: {
+            css: {
                 files: [
                     {
                         expand: true,
                         cwd: '01_dev/css',
-                        src: '*.css.map',
+                        src: '*',
                         dest: 'public/css'
+                    }
+                ],
+            },
+            img: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: '01_dev/img',
+                        src: ['*'],
+                        dest: 'public/img'
                     }
                 ],
             }
         },
 
         processhtml: {
-            prod: {
-                files: {
-                    'public/index.html': ['01_dev/template/index.html'],
-                    'public/404.html': ['01_dev/template/404.html'],
-                }
-            },
             dev: {
                 files: {
                     'public/index.html': ['01_dev/template/index.html'],
                     'public/404.html': ['01_dev/template/404.html'],
                 }
+            },
+            prod: {
+                files: {
+                    'public/index.html': ['01_dev/template/index.html'],
+                    'public/404.html': ['01_dev/template/404.html'],
+                }
+            }
+        },
+
+        cacheBust: {
+            taskName: {
+                options: {
+                    assets: ['public/css/*', 'public/js/*', 'public/img/*'],
+                    baseDir: './',
+                    deleteOriginals: true,
+                    createCopies: true,
+                },
+                src: ['public/index.html', 'public/404.html']
+            }
+        },
+
+
+        'sw-precache': {
+            options: {
+                cacheId: 'nmSW',
+                workerFileName: 'sw.js',
+                verbose: true,
+                baseDir: './public',
+            },
+            'default': {
+                staticFileGlobs: [
+                    'css/*.css',
+                    'img/*.{gif,png,jpg}',
+                    'js/*.js',
+                    '*.html',
+                ],
             }
         },
 
@@ -150,11 +190,11 @@ module.exports = function (grunt) {
             },
             sass: {
                 files: '01_dev/sass/**/*',
-                tasks: ['sass', 'copy:cssmap'],
+                tasks: ['sass'],
             },
             css: {
                 files: '01_dev/css/**/*',
-                tasks: ['autoprefixer'],
+                tasks: ['autoprefixer', 'copy:css'],
                 options: {
                     livereload: true,
                 }
@@ -188,9 +228,11 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-processhtml');
     grunt.loadNpmTasks('grunt-autoprefixer');
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-cache-bust');
+    grunt.loadNpmTasks('grunt-sw-precache');
 
     grunt.registerTask('default', ['watch']);
-    grunt.registerTask('dev', ['connect', 'sass', 'autoprefixer', 'copy:cssmap', 'jshint', 'copy:js', 'processhtml:dev', 'clean:build', 'watch']);
-    grunt.registerTask('prod', ['sass', 'autoprefixer', 'copy:js', 'uglify', 'cssmin', 'processhtml:prod', 'htmlmin']);
+    grunt.registerTask('dev', ['connect', 'clean:build', 'sass', 'autoprefixer', 'copy:css', 'jshint', 'copy:js', 'copy:img', 'processhtml:dev', 'watch']);
+    grunt.registerTask('prod', ['clean:build', 'sass', 'autoprefixer', 'copy:css', 'cssmin', 'copy:js', 'uglify', 'copy:img', 'processhtml:prod', 'cacheBust', 'htmlmin', 'clean:release', 'sw-precache']);
     grunt.registerTask('checkjs', ['jshint']);
 };

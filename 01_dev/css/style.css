@@ -420,24 +420,32 @@ li {
  Flex
 **/
 .flex {
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
 }
 .flex--nowrap {
-  flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
 }
 .flex--justify-center {
-  justify-content: center;
+  -ms-flex-pack: center;
+      justify-content: center;
 }
 .flex--justify-end {
-  justify-content: flex-end;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
 }
 .flex--align-center {
-  align-items: center;
+  -ms-flex-align: center;
+      align-items: center;
 }
 .flex--grow {
-  flex-grow: 1;
+  -ms-flex-positive: 1;
+      flex-grow: 1;
 }
 
 /**
@@ -497,7 +505,8 @@ li {
   }
 }
 .img--container-venue .img {
-  transform: scale(1.1);
+  -ms-transform: scale(1.1);
+      transform: scale(1.1);
   opacity: 0;
   transition-delay: 600ms;
 }
@@ -508,7 +517,8 @@ li {
   opacity: 1;
   transition: opacity 800ms ease, transform 1800ms ease-out;
   transition-delay: 0ms;
-  transform: scale(1);
+  -ms-transform: scale(1);
+      transform: scale(1);
 }
 
 .no-js .img {
@@ -538,7 +548,8 @@ li {
   border-bottom: 0.1875rem solid #1c1c1c;
   width: 1.125rem;
   height: 1.125rem;
-  transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
   top: 0.625rem;
   right: 0;
   left: 0;
@@ -579,10 +590,12 @@ li {
   margin: auto;
 }
 .icon--close:before {
-  transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
 }
 .icon--close:after {
-  transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+      transform: rotate(-45deg);
 }
 
 /**
@@ -698,16 +711,19 @@ li {
   bottom: 0.4375rem;
 }
 .btn--burger-active {
-  transform: translateX(280px);
+  -ms-transform: translateX(280px);
+      transform: translateX(280px);
 }
 .btn--burger-active:before, .btn--burger-active:after {
   opacity: 0;
 }
 .btn--burger-active .btn__burger-icon:before {
-  transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
 }
 .btn--burger-active .btn__burger-icon:after {
-  transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+      transform: rotate(-45deg);
 }
 .btn--close {
   position: absolute;
@@ -1016,7 +1032,8 @@ li {
 
 .no-js .ceremony .title--ceremony {
   opacity: 1;
-  transform: translateY(0);
+  -ms-transform: translateY(0);
+      transform: translateY(0);
 }
 
 /**
@@ -1285,5 +1302,3 @@ li {
 .map.visible {
   opacity: 1;
 }
-
-/*# sourceMappingURL=style.css.map */

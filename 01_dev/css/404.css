@@ -388,24 +388,32 @@ li {
  Flex
 **/
 .flex {
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
 }
 .flex--nowrap {
-  flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
 }
 .flex--justify-center {
-  justify-content: center;
+  -ms-flex-pack: center;
+      justify-content: center;
 }
 .flex--justify-end {
-  justify-content: flex-end;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
 }
 .flex--align-center {
-  align-items: center;
+  -ms-flex-align: center;
+      align-items: center;
 }
 .flex--grow {
-  flex-grow: 1;
+  -ms-flex-positive: 1;
+      flex-grow: 1;
 }
 
 /**
@@ -608,16 +616,19 @@ li {
   bottom: 0.4375rem;
 }
 .btn--burger-active {
-  transform: translateX(280px);
+  -ms-transform: translateX(280px);
+      transform: translateX(280px);
 }
 .btn--burger-active:before, .btn--burger-active:after {
   opacity: 0;
 }
 .btn--burger-active .btn__burger-icon:before {
-  transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
 }
 .btn--burger-active .btn__burger-icon:after {
-  transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+      transform: rotate(-45deg);
 }
 .btn--close {
   position: absolute;
@@ -750,5 +761,3 @@ li {
   margin: 1.25rem 0 3.125rem;
   line-height: 1.875rem;
 }
-
-/*# sourceMappingURL=404.css.map */
