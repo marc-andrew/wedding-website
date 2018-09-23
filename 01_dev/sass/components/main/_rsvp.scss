@@ -127,6 +127,16 @@
         }
     }
 
+    @at-root #{&}--form-confirmed-user {
+
+        .copy--error-confirmed {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+            transition: display 0s 500ms, opacity 500ms linear;
+        }
+    }
+
     @at-root #{&}--form-valid-user {
 
         .rsvp--col-check {

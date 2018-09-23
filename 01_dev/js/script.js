@@ -350,6 +350,7 @@
 
                         formId.classList.add('rsvp--form-valid-user');
                         formId.classList.remove('rsvp--form-invalid-user');
+                        formId.classList.remove('rsvp--form-confirmed-user');
                         lastNameId.readOnly = true;
 
                         if (maxGuests > 0) {
@@ -360,6 +361,7 @@
                             formId.classList.add('rsvp--form-with-guests');
                         }
                     } else {
+                        formId.classList.add('rsvp--form-confirmed-user');
                         console.log('Already confirmed');
                     }
                 } else {

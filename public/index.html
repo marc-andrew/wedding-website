@@ -597,6 +597,7 @@
                     <button style="display: none;" type="button" id="testBtn" class="btn btn--ghost btn--width">Submit</button>
                 <button type="button" id="checkNameBtn" class="btn btn--ghost btn--width trans--all">Next</button>
                 <span class="copy copy--error copy--error-unknown">We are sorry, we can't find you on our Guestlist! <br>Please check if your last name is correct and try again.</span>
+                <span class="copy copy--error copy--error-confirmed">You've already responded!</span>
             </div>
     
             <div class="rsvp__col rsvp--col-to-show">
@@ -667,7 +668,7 @@
         const firestoreSettings = { timestampsInSnapshots: true };
         firestore.settings(firestoreSettings);
     </script>
-
+    
     <!-- build:remove:prod -->
     <script src="//localhost:35729/livereload.js"></script>
     <!-- /build -->

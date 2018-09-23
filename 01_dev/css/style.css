@@ -1248,6 +1248,12 @@ li {
   visibility: visible;
   transition: display 0s 500ms, opacity 500ms linear;
 }
+.rsvp--form-confirmed-user .copy--error-confirmed {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  transition: display 0s 500ms, opacity 500ms linear;
+}
 .rsvp--form-valid-user .rsvp--col-check {
   display: none;
 }
