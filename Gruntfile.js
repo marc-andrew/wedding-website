@@ -131,12 +131,14 @@ module.exports = function (grunt) {
                 files: {
                     'public/index.html': ['01_dev/template/index.html'],
                     'public/404.html': ['01_dev/template/404.html'],
+                    'public/add.html': ['01_dev/template/add.html'],
                 }
             },
             prod: {
                 files: {
                     'public/index.html': ['01_dev/template/index.html'],
                     'public/404.html': ['01_dev/template/404.html'],
+                    'public/add.html': ['01_dev/template/add.html'],
                 }
             }
         },
