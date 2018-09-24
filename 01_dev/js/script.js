@@ -339,7 +339,7 @@
     // Check last name button
     checkNameBtn.addEventListener('click', function (e) {
         let lastnameVal = lastNameId.value;
-        if (checkIfempty(lastnameVal)) {
+        if (checkIfempty(lastnameVal) && !lastNameId.classList.contains('rsvp--input-invalid')) {
             let docRef = firestore.collection("rsvp").doc(lastnameVal.toLowerCase());
             docRef.get().then(function (doc) {
                 if (doc.exists) {
@@ -365,8 +365,9 @@
                         console.log('Already confirmed');
                     }
                 } else {
+                    formId.classList.add('rsvp--form-invalid-user');
+                    lastNameId.classList.add('rsvp--input-invalid');
                     if (searchAttempt < 9) {
-                        formId.classList.add('rsvp--form-invalid-user');
                         searchAttempt++;
                     } else {
                         console.log('Block user');
