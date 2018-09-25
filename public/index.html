@@ -663,9 +663,9 @@
         firebase.initializeApp(config);
         const timestamp = firebase.firestore.FieldValue.serverTimestamp();
         // Initialize Firestore
-        const firestore = firebase.firestore();
+        const db = firebase.firestore();
         const firestoreSettings = { timestampsInSnapshots: true };
-        firestore.settings(firestoreSettings);
+        db.settings(firestoreSettings);
     </script>
     
     <!-- build:remove:prod -->

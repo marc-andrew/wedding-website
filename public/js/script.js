@@ -340,7 +340,8 @@
     checkNameBtn.addEventListener('click', function (e) {
         let lastnameVal = lastNameId.value;
         if (checkIfempty(lastnameVal) && !lastNameId.classList.contains('rsvp--input-invalid')) {
-            let docRef = firestore.collection("rsvp").doc(lastnameVal.toLowerCase());
+            let docRef = db.collection("rsvp").doc(lastnameVal.toLowerCase());
+ 
             docRef.get().then(function (doc) {
                 if (doc.exists) {
                     let docData = doc.data();
@@ -429,9 +430,10 @@
                 let isAttending = (attendingId.options[attendingId.selectedIndex].value === 'true');
                 let guestNames = [];
                 // RSVP Collection
-                let rsvp = firestore.collection('rsvp');
-                let attending = firestore.collection('attending');
-                let notAttending = firestore.collection('notAttending');
+                let rsvp = db.collection('rsvp');
+                let attending = db.collection('attending');
+                let notAttending = db.collection('notAttending');
+                let batch = db.batch();
 
                 e.preventDefault();
                 if (formId.classList.contains('rsvp--form-with-guests')) {
@@ -445,44 +447,42 @@
                 }
 
                 // Save data
-                rsvp.doc(lastNameId.value.toLowerCase()).update({
+                batch.update(rsvp.doc(lastNameId.value.toLowerCase()), {
                     a: isAttending,
                     c: true,
                     n: nameId.value,
                     aG: parseInt(plusInt),
                     dC: timestamp,
                     gN: guestNames
-                }).then(function () {
+                });
+
+                // If attending
+                if(isAttending) {
+                    batch.set(attending.doc(lastNameId.value.toLowerCase()),{
+                        n: nameId.value,
+                        aG: parseInt(plusInt),
+                        dC: timestamp,
+                        gN: guestNames
+                    });
+                } else {
+                    batch.set(notAttending.doc(lastNameId.value.toLowerCase()), {
+                        n: nameId.value,
+                        aG: parseInt(plusInt),
+                        dC: timestamp,
+                        gN: guestNames
+                    });
+                }
+
+                // Batch commit 
+                batch.commit().then(function () {
                     rsvpWrapper.classList.add('rsvp--success');
 
                     emailId.classList.remove('rsvp--input-invalid');
                     nameId.classList.remove('rsvp--input-invalid');
                     lastNameId.classList.remove('rsvp--input-invalid');
-                }).catch(function (error) {
-                    console.log(error);
+                }).catch(function(error) {
+                    console.error("Error adding document: ", error);
                 });
-                // If attending
-                if(isAttending) {
-                    attending.doc(lastNameId.value.toLowerCase()).set({
-                        n: nameId.value,
-                        aG: parseInt(plusInt),
-                        dC: timestamp,
-                        gN: guestNames
-                    }).then(function () {
-                    }).catch(function (error) {
-                        console.log(error);
-                    });
-                } else {
-                    notAttending.doc(lastNameId.value.toLowerCase()).set({
-                        n: nameId.value,
-                        aG: parseInt(plusInt),
-                        dC: timestamp,
-                        gN: guestNames
-                    }).then(function () {
-                    }).catch(function (error) {
-                        console.log('Got an error: ', error);
-                    });
-                }
             } else {
                 e.preventDefault();
 

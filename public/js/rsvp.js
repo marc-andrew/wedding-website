@@ -11,6 +11,7 @@
     addBtn.addEventListener('click', function (e) {
         // RSVP Collection
         let rsvp = db.collection('rsvp');
+        let rsvpConfirmed = db.collection('rsvpConfirmed');
         let batch = db.batch();
 
         batch.set(rsvp.doc("valookaran"),{
@@ -40,14 +41,13 @@
             aG: 0,
             gN: null
         });
-        batch.set(rsvp.doc("kaiser"),{
-            a: false,
-            c: false,
-            dC: null,
-            n: null,
-            mG: 0,
-            aG: 0,
-            gN: null
+        // batch.update(rsvp.doc("kaiser"),{
+        //     a: true,
+        //     c: true
+        // });
+        batch.set(rsvpConfirmed.doc('kaiser'), {
+            a: true,
+            aG: 1,
         });
 
         // Batch commit 
