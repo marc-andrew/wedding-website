@@ -10,18 +10,10 @@
 
     addBtn.addEventListener('click', function (e) {
         // RSVP Collection
-        let rsvp = firestore.collection('rsvp');
+        let rsvp = db.collection('rsvp');
+        let batch = db.batch();
 
-        rsvp.doc("waight").set({
-            a: false,
-            c: false,
-            dC: null,
-            n: null,
-            mG: 1,
-            aG: 0,
-            gN: null
-        });
-        rsvp.doc("valookaran").set({
+        batch.set(rsvp.doc("valookaran"),{
             a: false,
             c: false,
             dC: null,
@@ -30,7 +22,7 @@
             aG: 0,
             gN: null
         });
-        rsvp.doc("tee").set({
+        batch.set(rsvp.doc("tee"),{
             a: false,
             c: false,
             dC: null,
@@ -39,7 +31,7 @@
             aG: 0,
             gN: null
         });
-        rsvp.doc("sosa").set({
+        batch.set(rsvp.doc("sosa"),{
             a: false,
             c: false,
             dC: null,
@@ -48,7 +40,7 @@
             aG: 0,
             gN: null
         });
-        rsvp.doc("kaiser").set({
+        batch.set(rsvp.doc("kaiser"),{
             a: false,
             c: false,
             dC: null,
@@ -58,6 +50,10 @@
             gN: null
         });
 
+        // Batch commit 
+        batch.commit().catch(function(error) {
+            console.error("Error adding document: ", error);
+        });
 
         // rsvp.doc("kaiser").update({
         //     dC: timestamp
