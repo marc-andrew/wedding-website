@@ -635,11 +635,11 @@ li {
 }
 .btn--close {
   position: absolute;
-  background-color: #fff;
-  width: 3.125rem;
-  height: 3.125rem;
+  width: 1.875rem;
+  height: 1.875rem;
   top: 0;
   right: 0;
+  bottom: 0;
 }
 .btn--width {
   width: 6.25rem;

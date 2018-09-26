@@ -181,11 +181,11 @@
 
     @at-root #{&}--close {
         position: absolute;
-        background-color: #fff;
-        width: px(50);
-        height: px(50);
+        width: px(30);
+        height: px(30);
         top: 0;
         right: 0;
+        bottom: 0;
     }
 
     @at-root #{&}--width {
