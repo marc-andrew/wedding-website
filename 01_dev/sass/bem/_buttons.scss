@@ -114,6 +114,15 @@
         }
     }
 
+    //-- MODIFIER: Ghost button
+    @at-root #{&}--txt {
+
+        &:hover,
+        &:focus {
+            color: $secondary;
+        }
+    }
+
     //-- MODIFIER: Burger icon modifier
     @at-root #{&}--burger {
         position: absolute;

@@ -693,6 +693,26 @@
         return t;
     }
 
+    // Read cookie
+    function readCookie(cName) {
+        let name = cName + '=',
+			ca = document.cookie.split(';');
+
+		for(let i=0; i<ca.length; i++) {
+			let c = ca[i];
+			while (c.charAt(0)==' ') c = c.substring(1);
+			if (c.indexOf(name) === 0) return c.substring(name.length, c.length);
+		}
+		return false;
+    }
+    // Set cookie
+    function setCookie(cName, cValue, cDays) {
+        var newDate = new Date();
+		newDate.setTime(newDate.getTime() + (cDays*24*60*60*1000));
+		var expires = 'expires=' + newDate.toGMTString();
+		document.cookie = cName + '=' + cValue + '; ' + expires + '; path=/';
+    }
+
     // Responsive Image
     let responsiveImg = new resImg(document.getElementsByClassName('res-data'));
     responsiveImg.init();
