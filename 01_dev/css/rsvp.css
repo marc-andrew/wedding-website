@@ -517,8 +517,17 @@ li {
 .btn--ghost-transparent:hover, .btn--ghost-transparent:focus {
   border-color: #1c1c1c;
 }
+.btn--txt {
+  text-decoration: underline;
+}
 .btn--txt:hover, .btn--txt:focus {
   color: #29b6f6;
+}
+.btn--txt-primary {
+  font-family: "Noto Serif JP", "Times New Roman", sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  letter-spacing: 0.03125rem;
 }
 .btn--burger {
   position: absolute;
@@ -565,13 +574,14 @@ li {
   -ms-transform: rotate(-45deg);
       transform: rotate(-45deg);
 }
-.btn--close {
+.btn--cookie-close {
   position: absolute;
   width: 1.875rem;
   height: 1.875rem;
   top: 0;
-  right: 0;
+  right: 0.3125rem;
   bottom: 0;
+  margin: auto 0;
 }
 .btn--width {
   width: 6.25rem;
