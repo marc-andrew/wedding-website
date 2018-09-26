@@ -3,8 +3,9 @@
 
 <head>
     <meta charset="UTF-8" />
+    <meta name="theme-color" content="#29b6f6" />
 
-    <title>The Wedding of Nira and Marc | The page you are looking for was not found.</title>
+    <title>The Wedding of Nira and Marc | Cookie Policy</title>
 
     <meta name="description" content="The Wedding of Nira and Marc will be held in Palais Coburg Vienna, 8th June 2018." />
     <meta name="keywords" content="wedding,vienna,austria,marc,nira,palais,coburg" />
@@ -12,7 +13,7 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1" />
 
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+JP|Open+Sans:400,600" rel="stylesheet">
-    <link href="css/404.css" rel="stylesheet" type="text/css" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
 
     <link rel="shortcut icon" href="assets/favicon/favicon.ico">
 	<link rel="icon" sizes="16x16 32x32 64x64" href="assets/favicon/favicon.ico">
@@ -31,6 +32,8 @@
 	<link rel="apple-touch-icon" sizes="76x76" href="assets/favicon/favicon-76.png">
 	<link rel="apple-touch-icon" sizes="152x152" href="assets/favicon/favicon-152.png">
 	<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/favicon-180.png">
+
+    <link rel="manifest" href="/assets/manifest.json">
 </head>
 
 <body>
@@ -40,15 +43,36 @@
     <!-- End Google Tag Manager (noscript) -->
     <!-- /build -->
 
-    <div class="wrapper page--404 flex flex--align-center flex--justify-center">
-        <main id="main" class="main" role="main">
-            <!-- build:include /components/main/404_content.html -->
-            <!-- /build -->
+    <div class="wrapper">
+        <header id="header" class="header" role="banner">
+            <div class="header__inner flex">
+                <button type="button" class="btn btn--burger trans--all trans--ease-in-out trans--all-before-after">
+                    <span class="btn__burger-icon trans--all-before-after">Navigation</span>
+                </button>
 
-            <!-- build:include /components/main/404_nav.html -->
+                <!-- build:include /components/header/primary-nav.html -->
+                <!-- /build -->
+
+                <!-- build:css inline -->
+                <link rel="stylesheet" type="text/css" href="../../public/css/nav.css" />
+                <!-- /build -->
+            </div>
+        </header>
+
+
+        <main id="main" class="main" role="main">
+            <!-- build:include /components/main/cookie-policy_content.html -->
             <!-- /build -->
         </main>
+
+        <footer id="footer" class="footer flex flex--justify-center flex--align-center flex--nowrap" role="contentinfo">
+            <div class="footer__inner">
+                <!-- build:include /components/footer/footer.html -->
+                <!-- /build -->
+            </div>
+        </footer>
     </div>
+
 
     <!-- build:remove:dev -->
     <!-- Google Tag Manager -->
@@ -61,6 +85,14 @@
                     'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-NFWBQQH');</script>
     <!-- End Google Tag Manager -->
+    <!-- /build -->
+    
+    <!-- build:remove:dev -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js', { scope: '/' });
+        }
+    </script>
     <!-- /build -->
 
     <!-- build:remove:prod -->
