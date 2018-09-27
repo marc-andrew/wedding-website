@@ -155,7 +155,7 @@ module.exports = function (grunt) {
                     deleteOriginals: true,
                     createCopies: true,
                 },
-                src: ['public/index.html', 'public/404.html', 'public/privacy-policy.html', 'public/add.html']
+                src: ['public/index.html', 'public/404.html', 'public/privacy-policy.html', 'public/cookie-policy.html', 'public/add.html']
             }
         },
 
