@@ -13,10 +13,12 @@
 
         obj.id = el;
         obj.init = function () {
-            obj.windowSize();
-            obj.imgData();
-            obj.windowScroll();
-            obj.windowResize();
+            if(obj.id.length) {
+                obj.windowSize();
+                obj.imgData();
+                obj.windowScroll();
+                obj.windowResize();
+            }
         };
         obj.imgData = function () {
             for (let i = 0; i < obj.id.length; i++) {
@@ -266,7 +268,19 @@
         mobileNav(true);
     };
 
-    let inputGuestHover = function(e) {
+    const viewMapClick = function(e) {
+        moveToHash(this.getAttribute('data-target-id'));
+    };
+
+    const burgerClick = function(e) {
+        if (this.classList.contains('btn--burger-active')) {
+            mobileNav(true);
+        } else {
+            mobileNav(false);
+        }
+    };
+
+    let inputGuestHover = function (e) {
         if (checkIfempty(this.value)) {
             this.classList.remove('rsvp--input-invalid');
         } else {
@@ -274,9 +288,11 @@
         }
     };
 
+    const restDataId = document.getElementsByClassName('res-data');
+
     // Nav links, Burger button & nav wrapper
     const navButton = document.getElementsByClassName('nav__list-link');
-    const burgerBtn = document.getElementsByClassName('btn--burger')[0];
+    const burgerBtn = document.getElementsByClassName('btn--burger');
     const navPrimary = document.getElementsByClassName('nav--primary')[0];
 
     // Title
@@ -298,228 +314,31 @@
     const additionalId = document.getElementById('additional');
     let searchAttempt = 0;
 
+    const countDownId = document.getElementsByClassName('countdown__timer');
+
     // Map
     const mapWarpper = document.getElementsByClassName('map')[0];
-    const viewMapBtn = document.getElementsByClassName('btn--view-map')[0];
+    const viewMapBtn = document.getElementsByClassName('btn--view-map');
 
     // Navigation click listener
-    for (let i = 0; i < navButton.length; i++) {
-        navButton[i].addEventListener('click', navClick, false);
+    if(document.body.classList.contains('home')) {
+        for (let i = 0; i < navButton.length; i++) {
+            navButton[i].addEventListener('click', navClick, false);
+        }
     }
 
-    // Remove HTML5 form validation
-    formId.setAttribute('novalidate', 'novalidate');
-    // On blur email input
-    emailId.addEventListener('blur', function (e) {
-        if (validateEmail(this.value)) {
-            this.classList.remove('rsvp--input-invalid');
-        } else {
-            this.classList.add('rsvp--input-invalid');
-        }
-    }, true);
-    // On blur name input
-    nameId.addEventListener('blur', function (e) {
-        if (checkIfempty(this.value)) {
-            this.classList.remove('rsvp--input-invalid');
-        } else {
-            this.classList.add('rsvp--input-invalid');
-        }
-    }, true);
-    // On blur last name input
-    lastNameId.addEventListener('blur', function (e) {
-        if (checkIfempty(this.value)) {
-            this.classList.remove('rsvp--input-invalid');
-        } else {
-            this.classList.add('rsvp--input-invalid');
-        }
-    }, true);
-    lastNameId.addEventListener('focus', function(e) {
-        formId.classList.remove('rsvp--form-invalid-user');
-    },false);
-    // Check last name button
-    checkNameBtn.addEventListener('click', function (e) {
-        let lastnameVal = lastNameId.value;
-        if (checkIfempty(lastnameVal) && !lastNameId.classList.contains('rsvp--input-invalid')) {
-            let docRef = db.collection("rsvp").doc(lastnameVal.toLowerCase());
- 
-            docRef.get().then(function (doc) {
-                if (doc.exists) {
-                    let docData = doc.data();
-                    if (docData.c === false) {
-                        let maxGuests = docData.mG;
-                        let optionsArr = [];
+    // Viewmap click listener
+    for (let i = 0; i < viewMapBtn.length; i++) {
+        viewMapBtn[i].addEventListener('click', viewMapClick, false);
+    }
 
-                        formId.classList.add('rsvp--form-valid-user');
-                        formId.classList.remove('rsvp--form-invalid-user');
-                        formId.classList.remove('rsvp--form-confirmed-user');
-                        lastNameId.readOnly = true;
+    // Burger button click listener
+    for (let i = 0; i < burgerBtn.length; i++) {
+        burgerBtn[i].addEventListener('click', burgerClick, false);
+    }
 
-                        if (maxGuests > 0) {
-                            for (let i = 0; i <= maxGuests; i++) {
-                                optionsArr.push('<option value="' + i + '">' + i + '</option>');
-                            }
-                            guestlistId.innerHTML = optionsArr.join('');
-                            formId.classList.add('rsvp--form-with-guests');
-                        }
-                    } else {
-                        formId.classList.add('rsvp--form-confirmed-user');
-                        console.log('Already confirmed');
-                    }
-                } else {
-                    formId.classList.add('rsvp--form-invalid-user');
-                    lastNameId.classList.add('rsvp--input-invalid');
-                    if (searchAttempt < 9) {
-                        searchAttempt++;
-                    } else {
-                        console.log('Block user');
-                    }
-                }
-            }).catch(function (error) {
-                console.log(error);
-            });
-        } else {
-            lastNameId.classList.add('rsvp--input-invalid');
-        }
-    });
-    // Listener for a change
-    guestlistId.addEventListener('change', function(e) {
-        let optionsLength = this.children.length;
-        // Loop through each option and find the one it is selected
-        for(let i = 0; i < optionsLength; i++) {
-            if(this.children[i].selected === true) {
-                buildAdditionalGuest(this.children[i].value);
-            }
-        }
-    });
-    // Rsvp cancel/back button
-    rsvpBackBtn.addEventListener('click', function (e) {
-        formId.classList.remove('rsvp--form-valid-user', 'rsvp--form-with-guests');
-        // Change read only to false
-        lastNameId.readOnly = false;
-        // Remove class name
-        colGuests.classList.remove('rsvp--col-to-show');
-        // Delete all options from the select list
-        guestlistId.options.length = 0;
-        // Delete everything inside
-        while (additionalId.firstChild) {
-            additionalId.removeChild(additionalId.firstChild);
-        }
-    });
-    // On form submit
-    formId.addEventListener('submit', function (e) {
-        if (this.classList.contains('rsvp--form-valid-user')) {
-            let emailValid = validateEmail(emailId.value);
-            let nameValid = checkIfempty(nameId.value);
-            let lastNameValid = checkIfempty(lastNameId.value);
-            let guestInputId = document.getElementsByClassName('rsvp--input-guest');
-            let guestInputValid = true;
-            
-            if(guestInputId.length > 0) {
-                for (let i = 0; i < guestInputId.length; i++) {
-                    if(checkIfempty(guestInputId[i].value) === false) {
-                        guestInputValid = false;
-                        guestInputId[i].classList.add('rsvp--input-invalid');
-                    } else {
-                        guestInputId[i].classList.remove('rsvp--input-invalid');
-                    }
-                }
-            }
-
-            if (emailValid && nameValid && lastNameValid && guestInputValid) {
-                let plusInt;
-                let isAttending = (attendingId.options[attendingId.selectedIndex].value === 'true');
-                let guestNames = [];
-                // RSVP Collection
-                let rsvp = db.collection('rsvp');
-                let attending = db.collection('attending');
-                let notAttending = db.collection('notAttending');
-                let batch = db.batch();
-
-                e.preventDefault();
-                if (formId.classList.contains('rsvp--form-with-guests')) {
-                    plusInt = guestlistId.options[guestlistId.selectedIndex].value;
-                    
-                    for (let i = 0; i < guestInputId.length; i++) {
-                        guestNames.push(guestInputId[i].value);
-                    }
-                } else {
-                    plusInt = 0;
-                }
-
-                // Save data
-                batch.update(rsvp.doc(lastNameId.value.toLowerCase()), {
-                    a: isAttending,
-                    c: true,
-                    n: nameId.value,
-                    aG: parseInt(plusInt),
-                    dC: timestamp,
-                    gN: guestNames
-                });
-
-                // If attending
-                if(isAttending) {
-                    batch.set(attending.doc(lastNameId.value.toLowerCase()),{
-                        n: nameId.value,
-                        aG: parseInt(plusInt),
-                        dC: timestamp,
-                        gN: guestNames
-                    });
-                } else {
-                    batch.set(notAttending.doc(lastNameId.value.toLowerCase()), {
-                        n: nameId.value,
-                        aG: parseInt(plusInt),
-                        dC: timestamp,
-                        gN: guestNames
-                    });
-                }
-
-                // Batch commit 
-                batch.commit().then(function () {
-                    rsvpWrapper.classList.add('rsvp--success');
-
-                    emailId.classList.remove('rsvp--input-invalid');
-                    nameId.classList.remove('rsvp--input-invalid');
-                    lastNameId.classList.remove('rsvp--input-invalid');
-                }).catch(function(error) {
-                    console.error("Error adding document: ", error);
-                });
-            } else {
-                e.preventDefault();
-
-                if (!emailValid) {
-                    emailId.classList.add('rsvp--input-invalid');
-                } else {
-                    emailId.classList.remove('rsvp--input-invalid');
-                }
-
-                if (!nameValid) {
-                    nameId.classList.add('rsvp--input-invalid');
-                } else {
-                    nameId.classList.remove('rsvp--input-invalid');
-                }
-
-                if (!lastNameValid) {
-                    lastNameId.classList.add('rsvp--input-invalid');
-                } else {
-                    lastNameId.classList.remove('rsvp--input-invalid');
-                }
-            }
-        } else {
-            e.preventDefault();
-        }
-    });
-    // Scroll down to map on button click
-    viewMapBtn.addEventListener('click', function (e) {
-        moveToHash(this.getAttribute('data-target-id'));
-    });
-    // Burger button click
-    burgerBtn.addEventListener('click', function (e) {
-        if (this.classList.contains('btn--burger-active')) {
-            mobileNav(true);
-        } else {
-            mobileNav(false);
-        }
-    });
+    // Check if form exists 
+    if (!!formId) rsvpForm();
 
     // This is required for scrollToY function
     window.requestAnimFrame = (function () {
@@ -531,13 +350,218 @@
             };
     })();
 
+    // Form
+    function rsvpForm() {
+        // Remove HTML5 form validation
+        formId.setAttribute('novalidate', 'novalidate');
+        // On blur email input
+        emailId.addEventListener('blur', function (e) {
+            if (validateEmail(this.value)) {
+                this.classList.remove('rsvp--input-invalid');
+            } else {
+                this.classList.add('rsvp--input-invalid');
+            }
+        }, true);
+        // On blur name input
+        nameId.addEventListener('blur', function (e) {
+            if (checkIfempty(this.value)) {
+                this.classList.remove('rsvp--input-invalid');
+            } else {
+                this.classList.add('rsvp--input-invalid');
+            }
+        }, true);
+        // On blur last name input
+        lastNameId.addEventListener('blur', function (e) {
+            if (checkIfempty(this.value)) {
+                this.classList.remove('rsvp--input-invalid');
+            } else {
+                this.classList.add('rsvp--input-invalid');
+            }
+        }, true);
+        lastNameId.addEventListener('focus', function (e) {
+            formId.classList.remove('rsvp--form-invalid-user');
+        }, false);
+        // Check last name button
+        checkNameBtn.addEventListener('click', function (e) {
+            let lastnameVal = lastNameId.value;
+            if (checkIfempty(lastnameVal) && !lastNameId.classList.contains('rsvp--input-invalid')) {
+                let docRef = db.collection("rsvp").doc(lastnameVal.toLowerCase());
+
+                docRef.get().then(function (doc) {
+                    if (doc.exists) {
+                        let docData = doc.data();
+                        if (docData.c === false) {
+                            let maxGuests = docData.mG;
+                            let optionsArr = [];
+
+                            formId.classList.add('rsvp--form-valid-user');
+                            formId.classList.remove('rsvp--form-invalid-user');
+                            formId.classList.remove('rsvp--form-confirmed-user');
+                            lastNameId.readOnly = true;
+
+                            if (maxGuests > 0) {
+                                for (let i = 0; i <= maxGuests; i++) {
+                                    optionsArr.push('<option value="' + i + '">' + i + '</option>');
+                                }
+                                guestlistId.innerHTML = optionsArr.join('');
+                                formId.classList.add('rsvp--form-with-guests');
+                            }
+                        } else {
+                            formId.classList.add('rsvp--form-confirmed-user');
+                            console.log('Already confirmed');
+                        }
+                    } else {
+                        formId.classList.add('rsvp--form-invalid-user');
+                        lastNameId.classList.add('rsvp--input-invalid');
+                        if (searchAttempt < 9) {
+                            searchAttempt++;
+                        } else {
+                            console.log('Block user');
+                        }
+                    }
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            } else {
+                lastNameId.classList.add('rsvp--input-invalid');
+            }
+        });
+        // Listener for a change
+        guestlistId.addEventListener('change', function (e) {
+            let optionsLength = this.children.length;
+            // Loop through each option and find the one it is selected
+            for (let i = 0; i < optionsLength; i++) {
+                if (this.children[i].selected === true) {
+                    buildAdditionalGuest(this.children[i].value);
+                }
+            }
+        });
+        // Rsvp cancel/back button
+        rsvpBackBtn.addEventListener('click', function (e) {
+            formId.classList.remove('rsvp--form-valid-user', 'rsvp--form-with-guests');
+            // Change read only to false
+            lastNameId.readOnly = false;
+            // Remove class name
+            colGuests.classList.remove('rsvp--col-to-show');
+            // Delete all options from the select list
+            guestlistId.options.length = 0;
+            // Delete everything inside
+            while (additionalId.firstChild) {
+                additionalId.removeChild(additionalId.firstChild);
+            }
+        });
+        // On form submit
+        formId.addEventListener('submit', function (e) {
+            if (this.classList.contains('rsvp--form-valid-user')) {
+                let emailValid = validateEmail(emailId.value);
+                let nameValid = checkIfempty(nameId.value);
+                let lastNameValid = checkIfempty(lastNameId.value);
+                let guestInputId = document.getElementsByClassName('rsvp--input-guest');
+                let guestInputValid = true;
+
+                if (guestInputId.length > 0) {
+                    for (let i = 0; i < guestInputId.length; i++) {
+                        if (checkIfempty(guestInputId[i].value) === false) {
+                            guestInputValid = false;
+                            guestInputId[i].classList.add('rsvp--input-invalid');
+                        } else {
+                            guestInputId[i].classList.remove('rsvp--input-invalid');
+                        }
+                    }
+                }
+
+                if (emailValid && nameValid && lastNameValid && guestInputValid) {
+                    let plusInt;
+                    let isAttending = (attendingId.options[attendingId.selectedIndex].value === 'true');
+                    let guestNames = [];
+                    // RSVP Collection
+                    let rsvp = db.collection('rsvp');
+                    let attending = db.collection('attending');
+                    let notAttending = db.collection('notAttending');
+                    let batch = db.batch();
+
+                    e.preventDefault();
+                    if (formId.classList.contains('rsvp--form-with-guests')) {
+                        plusInt = guestlistId.options[guestlistId.selectedIndex].value;
+
+                        for (let i = 0; i < guestInputId.length; i++) {
+                            guestNames.push(guestInputId[i].value);
+                        }
+                    } else {
+                        plusInt = 0;
+                    }
+
+                    // Save data
+                    batch.update(rsvp.doc(lastNameId.value.toLowerCase()), {
+                        a: isAttending,
+                        c: true,
+                        n: nameId.value,
+                        aG: parseInt(plusInt),
+                        dC: timestamp,
+                        gN: guestNames
+                    });
+
+                    // If attending
+                    if (isAttending) {
+                        batch.set(attending.doc(lastNameId.value.toLowerCase()), {
+                            n: nameId.value,
+                            aG: parseInt(plusInt),
+                            dC: timestamp,
+                            gN: guestNames
+                        });
+                    } else {
+                        batch.set(notAttending.doc(lastNameId.value.toLowerCase()), {
+                            n: nameId.value,
+                            aG: parseInt(plusInt),
+                            dC: timestamp,
+                            gN: guestNames
+                        });
+                    }
+
+                    // Batch commit 
+                    batch.commit().then(function () {
+                        rsvpWrapper.classList.add('rsvp--success');
+
+                        emailId.classList.remove('rsvp--input-invalid');
+                        nameId.classList.remove('rsvp--input-invalid');
+                        lastNameId.classList.remove('rsvp--input-invalid');
+                    }).catch(function (error) {
+                        console.error("Error adding document: ", error);
+                    });
+                } else {
+                    e.preventDefault();
+
+                    if (!emailValid) {
+                        emailId.classList.add('rsvp--input-invalid');
+                    } else {
+                        emailId.classList.remove('rsvp--input-invalid');
+                    }
+
+                    if (!nameValid) {
+                        nameId.classList.add('rsvp--input-invalid');
+                    } else {
+                        nameId.classList.remove('rsvp--input-invalid');
+                    }
+
+                    if (!lastNameValid) {
+                        lastNameId.classList.add('rsvp--input-invalid');
+                    } else {
+                        lastNameId.classList.remove('rsvp--input-invalid');
+                    }
+                }
+            } else {
+                e.preventDefault();
+            }
+        });
+    }
+
     // Additional Guest Inputs
     function buildAdditionalGuest(nr) {
         let elArr = [];
 
-        if(nr > 0) {
+        if (nr > 0) {
             for (let i = 0; i < nr; i++) {
-                elArr.push('<div class="rsvp__col rsvp--col-to-show"><label class="rsvp__label" for="rsvp-guest-'+(i+1)+'">Guest '+(i+1)+' First &amp; Last Name:</label><input type="text" class="rsvp__input rsvp--input-guest trans--all" id="rsvp--guest-'+i+'"></div>');
+                elArr.push('<div class="rsvp__col rsvp--col-to-show"><label class="rsvp__label" for="rsvp-guest-' + (i + 1) + '">Guest ' + (i + 1) + ' First &amp; Last Name:</label><input type="text" class="rsvp__input rsvp--input-guest trans--all" id="rsvp--guest-' + i + '"></div>');
             }
             additionalId.innerHTML = elArr.join('');
             guestInputListener();
@@ -660,11 +684,11 @@
     // Hide show mobile nav
     function mobileNav(isVisible) {
         if (isVisible) {
-            burgerBtn.classList.remove('btn--burger-active');
+            burgerBtn[0].classList.remove('btn--burger-active');
             navPrimary.classList.remove('nav--primary-open');
             document.removeEventListener('click', checkIfOutside);
         } else {
-            burgerBtn.classList.add('btn--burger-active');
+            burgerBtn[0].classList.add('btn--burger-active');
             navPrimary.classList.add('nav--primary-open');
             document.addEventListener('click', checkIfOutside);
         }
@@ -694,17 +718,21 @@
     }
 
     // Responsive Image
-    let responsiveImg = new resImg(document.getElementsByClassName('res-data'));
-    responsiveImg.init();
+    if(restDataId.length) {
+        let responsiveImg = new resImg(restDataId);
+        responsiveImg.init();
+    }
 
     // Element is visible
     let containerVisible = new elInViewPort(document.getElementsByClassName('container'));
     containerVisible.init();
 
     // Countdown
-    let countdownTimer = new countdown(document.getElementsByClassName('countdown__timer')[0]);
-    countdownTimer.init('08/06/2019 14:00 GMT');
-
+    if(countDownId.length) {
+        let countdownTimer = new countdown(countDownId[0]);
+        countdownTimer.init('08/06/2019 14:00 GMT');
+    }
+    
     moveToHash();
     window.onhashchange = function () { moveToHash(); };
 }());

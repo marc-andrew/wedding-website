@@ -321,8 +321,10 @@
     const viewMapBtn = document.getElementsByClassName('btn--view-map');
 
     // Navigation click listener
-    for (let i = 0; i < navButton.length; i++) {
-        navButton[i].addEventListener('click', navClick, false);
+    if(document.body.classList.contains('home')) {
+        for (let i = 0; i < navButton.length; i++) {
+            navButton[i].addEventListener('click', navClick, false);
+        }
     }
 
     // Viewmap click listener

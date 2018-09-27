@@ -132,6 +132,7 @@ module.exports = function (grunt) {
                     'public/index.html': ['01_dev/template/index.html'],
                     'public/404.html': ['01_dev/template/404.html'],
                     'public/privacy-policy.html': ['01_dev/template/privacy-policy.html'],
+                    'public/cookie-policy.html': ['01_dev/template/cookie-policy.html'],
                     'public/add.html': ['01_dev/template/add.html'],
                 }
             },
@@ -140,6 +141,7 @@ module.exports = function (grunt) {
                     'public/index.html': ['01_dev/template/index.html'],
                     'public/404.html': ['01_dev/template/404.html'],
                     'public/privacy-policy.html': ['01_dev/template/privacy-policy.html'],
+                    'public/cookie-policy.html': ['01_dev/template/cookie-policy.html'],
                     'public/add.html': ['01_dev/template/add.html'],
                 }
             }
