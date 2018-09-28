@@ -487,7 +487,7 @@ li {
 }
 @media screen and (max-width: 666px) {
   .img--container-hero {
-    height: calc(100vw / 0.8054474708);
+    height: calc(100vw / 0.7295719844);
   }
 }
 .img--container-venue {
