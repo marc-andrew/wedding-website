@@ -47,37 +47,37 @@
                 <nav class="nav nav--primary" role="navigation">
     <ul class="nav__list nav--list-primary flex">
         <li class="nav__list-item">
-            <a href="/#home" class="nav__list-link" data-target-id="home">
+            <a href="/#home" class="nav__list-link trans--all" data-target-id="home">
                 <span class="nav__list-link-txt trans--all-before-after">Home</span>
             </a>
         </li>
         <li class="nav__list-item">
-            <a href="/#ceremony" class="nav__list-link" data-target-id="ceremony">
+            <a href="/#ceremony" class="nav__list-link trans--all" data-target-id="ceremony">
                 <span class="nav__list-link-txt trans--all-before-after">Ceremony</span>
             </a>
         </li>
         <li class="nav__list-item">
-            <a href="/#venue" class="nav__list-link" data-target-id="venue">
+            <a href="/#venue" class="nav__list-link trans--all" data-target-id="venue">
                 <span class="nav__list-link-txt trans--all-before-after">Venue</span>
             </a>
         </li>
         <li class="nav__list-item">
-            <a href="/#brides" class="nav__list-link" data-target-id="brides">
+            <a href="/#brides" class="nav__list-link trans--all" data-target-id="brides">
                 <span class="nav__list-link-txt trans--all-before-after">Brides</span>
             </a>
         </li>
         <li class="nav__list-item">
-            <a href="/#grooms" class="nav__list-link" data-target-id="grooms">
+            <a href="/#grooms" class="nav__list-link trans--all" data-target-id="grooms">
                 <span class="nav__list-link-txt trans--all-before-after">Grooms</span>
             </a>
         </li>
         <li class="nav__list-item">
-            <a href="/#rsvp" class="nav__list-link" data-target-id="rsvp">
+            <a href="/#rsvp" class="nav__list-link trans--all" data-target-id="rsvp">
                 <span class="nav__list-link-txt trans--all-before-after">RSVP</span>
             </a>
         </li>
         <li class="nav__list-item">
-            <a href="/#gift-registration" class="nav__list-link" data-target-id="gift-registration">
+            <a href="/#gift-registration" class="nav__list-link trans--all" data-target-id="gift-registration">
                 <span class="nav__list-link-txt trans--all-before-after">Gift Regristration</span>
             </a>
         </li>
@@ -98,7 +98,7 @@
 .nav__list-link-txt:after {
   position: absolute;
   display: block;
-  background-color: #1c1c1c;
+  background-color: #29b6f6;
   content: '';
   width: 0;
   height: 0.125rem;
@@ -132,6 +132,7 @@
   position: absolute;
   display: block;
   content: '/';
+  color: #1c1c1c;
   right: -0.1875rem;
   top: 1.3125rem;
 }
@@ -139,6 +140,9 @@
   .nav__list-link:after {
     content: normal;
   }
+}
+.nav__list-link:hover, .nav__list-link:focus {
+  color: #29b6f6;
 }
 .nav__list-link:hover .nav__list-link-txt:after, .nav__list-link:focus .nav__list-link-txt:after {
   width: 100%;
@@ -361,7 +365,7 @@
 </section>
 
             <section class="container container--slidein countdown" data-section-id="countdown">
-    <h4 class="title title--secondary-medium title--underline">We'll tie the knot in ...</h4>
+    <h4 class="title title--secondary-large title--underline">We'll tie the knot in ...</h4>
     <div class="countdown__timer flex flex--justify-center">
         <div class="countdown__time days"></div>
         <div class="countdown__time hrs"></div>
@@ -376,26 +380,10 @@
     </div>
 </section>
 
-            <section class="container container--slidein container--full venue" data-section-id="venue">
+            <section class="container container--slidein venue" data-section-id="venue">
     <div class="venue__slider">
         <div class="img__container img--container-venue" data-section-id="hero">
-            <noscript class="res-data" data-srcset="img/venue-3-s.jpg 0w, img/venue-3-m.jpg 667w, img/venue-3-l.jpg 1024w"
-                data-lazy="true">
-                <img src="img/venue-3-l.jpg" alt="Palais Coburg" class="img">
-            </noscript>
-            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Palais Coburg"
-                class="img res-img">
-        </div>
-        <div class="img__container img--container-venue" data-section-id="hero">
-            <noscript class="res-data" data-srcset="img/venue-2-s.jpg 0w, img/venue-2-m.jpg 667w, img/venue-2-l.jpg 1024w"
-                data-lazy="true">
-                <img src="img/venue-2-l.jpg" alt="Palais Coburg" class="img">
-            </noscript>
-            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Palais Coburg"
-                class="img res-img">
-        </div>
-        <div class="img__container img--container-venue" data-section-id="hero">
-            <noscript class="res-data" data-srcset="img/venue-1-s.jpg 0w, img/venue-1-m.jpg 667w, img/venue-1-l.jpg 1024w"
+            <noscript class="res-data" data-srcset="img/venue-1-s.jpg 0w, img/venue-1-l.jpg 667w"
                 data-lazy="true">
                 <img src="img/venue-1-l.jpg" alt="Palais Coburg" class="img">
             </noscript>
@@ -403,9 +391,17 @@
                 class="img res-img">
         </div>
         <div class="img__container img--container-venue" data-section-id="hero">
-            <noscript class="res-data" data-srcset="img/venue-4-s.jpg 0w, img/venue-4-m.jpg 667w, img/venue-4-l.jpg 1024w"
+            <noscript class="res-data" data-srcset="img/venue-2-s.jpg 0w, img/venue-2-l.jpg 667w"
                 data-lazy="true">
-                <img src="img/venue-4-l.jpg" alt="Palais Coburg" class="img">
+                <img src="img/venue-2-l.jpg" alt="Palais Coburg" class="img">
+            </noscript>
+            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Palais Coburg"
+                class="img res-img">
+        </div>
+        <div class="img__container img--container-venue" data-section-id="hero">
+            <noscript class="res-data" data-srcset="img/venue-3-s.jpg 0w, img/venue-3-l.jpg 667w"
+                data-lazy="true">
+                <img src="img/venue-3-l.jpg" alt="Palais Coburg" class="img">
             </noscript>
             <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Palais Coburg"
                 class="img res-img">

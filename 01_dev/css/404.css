@@ -448,7 +448,7 @@ li {
 .nav__list-link-txt:after {
   position: absolute;
   display: block;
-  background-color: #1c1c1c;
+  background-color: #29b6f6;
   content: '';
   width: 0;
   height: 0.125rem;
@@ -482,6 +482,7 @@ li {
   position: absolute;
   display: block;
   content: '/';
+  color: #1c1c1c;
   right: -0.1875rem;
   top: 1.3125rem;
 }
@@ -489,6 +490,9 @@ li {
   .nav__list-link:after {
     content: normal;
   }
+}
+.nav__list-link:hover, .nav__list-link:focus {
+  color: #29b6f6;
 }
 .nav__list-link:hover .nav__list-link-txt:after, .nav__list-link:focus .nav__list-link-txt:after {
   width: 100%;
@@ -787,14 +791,14 @@ li {
 }
 .title--underline {
   position: relative;
-  padding-bottom: 0.5rem;
+  padding-bottom: 1.25rem;
 }
 .title--underline:after {
   position: absolute;
   display: block;
-  background-color: #1c1c1c;
+  background-color: #29b6f6;
   content: '';
-  width: 3.75rem;
+  width: 1.875rem;
   height: 0.125rem;
   right: 0;
   bottom: 0;

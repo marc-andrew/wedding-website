@@ -47,37 +47,37 @@
                 <nav class="nav nav--primary" role="navigation">
     <ul class="nav__list nav--list-primary flex">
         <li class="nav__list-item">
-            <a href="/#home" class="nav__list-link" data-target-id="home">
+            <a href="/#home" class="nav__list-link trans--all" data-target-id="home">
                 <span class="nav__list-link-txt trans--all-before-after">Home</span>
             </a>
         </li>
         <li class="nav__list-item">
-            <a href="/#ceremony" class="nav__list-link" data-target-id="ceremony">
+            <a href="/#ceremony" class="nav__list-link trans--all" data-target-id="ceremony">
                 <span class="nav__list-link-txt trans--all-before-after">Ceremony</span>
             </a>
         </li>
         <li class="nav__list-item">
-            <a href="/#venue" class="nav__list-link" data-target-id="venue">
+            <a href="/#venue" class="nav__list-link trans--all" data-target-id="venue">
                 <span class="nav__list-link-txt trans--all-before-after">Venue</span>
             </a>
         </li>
         <li class="nav__list-item">
-            <a href="/#brides" class="nav__list-link" data-target-id="brides">
+            <a href="/#brides" class="nav__list-link trans--all" data-target-id="brides">
                 <span class="nav__list-link-txt trans--all-before-after">Brides</span>
             </a>
         </li>
         <li class="nav__list-item">
-            <a href="/#grooms" class="nav__list-link" data-target-id="grooms">
+            <a href="/#grooms" class="nav__list-link trans--all" data-target-id="grooms">
                 <span class="nav__list-link-txt trans--all-before-after">Grooms</span>
             </a>
         </li>
         <li class="nav__list-item">
-            <a href="/#rsvp" class="nav__list-link" data-target-id="rsvp">
+            <a href="/#rsvp" class="nav__list-link trans--all" data-target-id="rsvp">
                 <span class="nav__list-link-txt trans--all-before-after">RSVP</span>
             </a>
         </li>
         <li class="nav__list-item">
-            <a href="/#gift-registration" class="nav__list-link" data-target-id="gift-registration">
+            <a href="/#gift-registration" class="nav__list-link trans--all" data-target-id="gift-registration">
                 <span class="nav__list-link-txt trans--all-before-after">Gift Regristration</span>
             </a>
         </li>
@@ -98,7 +98,7 @@
 .nav__list-link-txt:after {
   position: absolute;
   display: block;
-  background-color: #1c1c1c;
+  background-color: #29b6f6;
   content: '';
   width: 0;
   height: 0.125rem;
@@ -132,6 +132,7 @@
   position: absolute;
   display: block;
   content: '/';
+  color: #1c1c1c;
   right: -0.1875rem;
   top: 1.3125rem;
 }
@@ -139,6 +140,9 @@
   .nav__list-link:after {
     content: normal;
   }
+}
+.nav__list-link:hover, .nav__list-link:focus {
+  color: #29b6f6;
 }
 .nav__list-link:hover .nav__list-link-txt:after, .nav__list-link:focus .nav__list-link-txt:after {
   width: 100%;

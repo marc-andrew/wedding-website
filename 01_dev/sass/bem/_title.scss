@@ -104,14 +104,14 @@
     }//-- MODIFIER: Title underline
     @at-root #{&}--underline {
         position: relative;
-        padding-bottom: px(8);
+        padding-bottom: px(20);
 
         &:after {
             position: absolute;
             display: block;
-            background-color: $primary;
+            background-color: $secondary;
             content: '';
-            width: px(60);
+            width: px(30);
             height: px(2);
             right: 0;
             bottom: 0;

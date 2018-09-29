@@ -41,23 +41,27 @@
     //-- MODIFIER: Container Venue
     @at-root #{&}--container-venue {
         position: absolute;
-        height: calc(100vw / 2.8); // 1400/500=2.8
+        // height: calc(100vw / 2.8); // 1400/500=2.8
         width: 100%;
         top: 0;
         left: 0;
+        padding-top: 56.25%; /* 16:9 Aspect Ratio */
 
         &:first-child {
             position: relative;
         }
 
         @include media(screen,max,666px) {
-            height: calc(100vw / 1);
+            padding-top: 100%;
         }
 
         .img {
+            position: absolute;
             transform: scale(1.1);
             opacity: 0;
             transition-delay: 600ms;
+            top: 0;
+            left: 0;
         }
     }
 

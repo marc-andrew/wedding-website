@@ -28,7 +28,7 @@
         &:after {
             position: absolute;
             display: block;
-            background-color: $primary;
+            background-color: $secondary;
             content: '';
             width: 0;
             height: px(2);
@@ -62,6 +62,7 @@
             position: absolute;
             display: block;
             content: '/';
+            color: $primary;
             right: px(-3);
             top: px(21);
 
@@ -72,6 +73,7 @@
 
         &:hover,
         &:focus {
+            color: $secondary;
 
             #{$navParent}__list-link-txt {
 
