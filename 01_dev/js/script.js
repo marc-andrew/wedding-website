@@ -312,6 +312,10 @@
     const rsvpBackBtn = document.getElementById('rsvpBackBtn');
     const colGuests = document.getElementsByClassName('rsvp--col-guests')[0];
     const additionalId = document.getElementById('additional');
+    const msgUnknown = '<span class="copy copy--error copy--error-unknown">We are sorry, we can\'t find you on our Guestlist! <br>Please check if your name is correct and try again.</span>';
+    const msgConfirmed = '<span class="copy copy--error copy--error-confirmed">You are already confirmed!</span>';
+    const msgBlocked = '<span class="copy copy--error copy--error-confirmed">Sorry, you\'ve tried too many times. We\'re blocking you for awhile!</span>';
+    const msgError = '<span class="copy copy--error copy--error-confirmed">Sorry, something went wrong! <br>Please try again later.</span>';
     let searchAttempt = 0;
     let currentName;
     let relationArr = []; // All unconfirmed names
@@ -375,17 +379,26 @@
                 this.classList.remove('rsvp--input-valid');
             }
         }, true);
-
+        // Click on Continue button
         checkNameBtn.addEventListener('click', function (e) {
             let thisBtn = this;
             let nameVal = nameId.value.toLowerCase();
             let lastnameVal = lastNameId.value.toLowerCase();
             let nameValid = checkIfempty(nameVal);
             let lastnameValid = checkIfempty(lastnameVal);
+            let errorMsgs = document.getElementsByClassName('copy--error');
 
             thisBtn.classList.add('btn--loading');
             thisBtn.disabled = true;
 
+            // Delete error message
+            if(errorMsgs.length) {
+                for(let i = 0; i < errorMsgs.length; i++) {
+                    errorMsgs[i].parentNode.removeChild(errorMsgs[i]);
+                }
+            }
+
+            // Validated Name and Last Name
             if (nameValid && lastnameValid) {
                 currentName = toTitleCase(nameVal) + ' ' + toTitleCase(lastnameVal);
 
@@ -416,16 +429,24 @@
                             nameId.readOnly = true;
                             lastNameId.readOnly = true;
                         } else {
+                            // Already confirmed
                             formId.classList.add('rsvp--form-confirmed-user');
-                            console.log('Already confirmed');
+                            checkNameBtn.insertAdjacentHTML('afterend', msgConfirmed);
                         }
                     } else {
-                        // Block user
+                        // Unknown Name or Block user
+                        if(searchAttempt === 10) {
+                            thisBtn.disabled = true;
+                            checkNameBtn.insertAdjacentHTML('afterend', msgBlocked);
+                        } else {
+                            checkNameBtn.insertAdjacentHTML('afterend', msgUnknown);
+                        }
+                        searchAttempt++;
                     }
                 }).catch(function (error) {
                     thisBtn.classList.remove('btn--loading');
                     thisBtn.disabled = false;
-
+                    checkNameBtn.insertAdjacentHTML('afterend', msgError);
                     console.log("Error getting documents: ", error);
                 });     
             } else {

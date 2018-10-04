@@ -755,6 +755,9 @@ li {
   width: 6.25rem;
   text-align: center;
 }
+.btn--loading {
+  color: transparent;
+}
 
 /**
  Copy
@@ -782,13 +785,11 @@ li {
   font-weight: 600;
 }
 .copy--error {
-  display: none;
   font-family: "Open Sans", Helvetica, sans-serif;
   font-size: 0.75rem;
   line-height: 1.125rem;
   color: #EF4640;
   margin: 0.625rem 0 0;
-  opacity: 0;
 }
 .copy--list {
   list-style: disc inside;
@@ -1203,32 +1204,57 @@ li {
   padding-top: 1.25rem;
 }
 .rsvp__col {
+  position: relative;
   width: 100%;
-  margin-bottom: 0.625rem;
+  margin-bottom: 1.25rem;
+  padding: 0 0.3125rem;
 }
 .rsvp__label {
+  position: absolute;
   display: block;
+  background-color: #f4f4f4;
+  border-radius: 0.25rem;
   font-family: "Open Sans", Helvetica, sans-serif;
   font-size: 0.875rem;
   line-height: 1.125rem;
-  text-transform: uppercase;
-  margin: 0 0 0.625rem;
+  color: #1c1c1c;
   letter-spacing: 0.03125rem;
+  height: 1.125rem;
+  top: 0;
+  left: 0.625rem;
+  bottom: 0;
+  margin: auto 0;
+  padding: 0 0.3125rem;
+}
+@media screen and (max-width: 768px) {
+  .rsvp__label {
+    font-size: 1rem;
+  }
 }
 .rsvp__input {
+  box-shadow: 0 0 0 0.125rem transparent;
   border: 0.0625rem solid #c1c1c1;
-  border-radius: 0;
+  border-radius: 0.1875rem;
+  background-color: transparent;
   outline: none;
   font-family: "Noto Serif JP", "Times New Roman", sans-serif;
-  font-size: 0.875rem;
+  font-size: 1rem;
   line-height: 1.125rem;
   letter-spacing: 0.03125rem;
   height: 2.5rem;
   width: 100%;
   padding: 0 0.625rem;
+  -webkit-appearance: none;
 }
 .rsvp__input:focus {
-  border-color: #1c1c1c;
+  border-color: #29b6f6;
+  box-shadow: 0 0 0 0.0625rem #29b6f6;
+}
+.rsvp__input:focus + .rsvp__label {
+  font-size: 0.75rem;
+  -ms-transform: translateY(-0.5625rem);
+      transform: translateY(-0.5625rem);
+  bottom: auto;
 }
 .rsvp__select {
   -webkit-appearance: none;
@@ -1249,10 +1275,11 @@ li {
 }
 .rsvp--col-6 {
   width: 50%;
-  padding: 0 0.3125rem 0 0;
 }
-.rsvp--col-6 + .rsvp--col-6 {
-  padding: 0 0 0 0.3125rem;
+@media screen and (max-width: 480px) {
+  .rsvp--col-6 {
+    width: 100%;
+  }
 }
 .rsvp--copy {
   position: absolute;
@@ -1263,10 +1290,25 @@ li {
 }
 .rsvp--input-invalid {
   border-color: #EF4640;
-  border-width: 0.125rem;
+  box-shadow: 0 0 0 0.0625rem #EF4640;
+}
+.rsvp--input-invalid + .rsvp__label {
+  font-size: 0.75rem;
+  color: #EF4640;
+  -ms-transform: translateY(-0.5625rem);
+      transform: translateY(-0.5625rem);
+  bottom: auto;
+}
+.rsvp--input-invalid:focus + .rsvp__label {
+  color: #1c1c1c;
+}
+.rsvp--input-valid + .rsvp__label {
+  font-size: 0.75rem;
+  -ms-transform: translateY(-0.5625rem);
+      transform: translateY(-0.5625rem);
+  bottom: auto;
 }
 .rsvp--col-submit {
-  padding: 1.25rem 0 0;
   text-align: center;
 }
 .rsvp--col-submit .btn {
@@ -1277,18 +1319,6 @@ li {
 }
 .rsvp--col-guests {
   display: none;
-}
-.rsvp--form-invalid-user .copy--error-unknown {
-  display: block;
-  opacity: 1;
-  visibility: visible;
-  transition: display 0s 500ms, opacity 500ms linear;
-}
-.rsvp--form-confirmed-user .copy--error-confirmed {
-  display: block;
-  opacity: 1;
-  visibility: visible;
-  transition: display 0s 500ms, opacity 500ms linear;
 }
 .rsvp--form-valid-user .rsvp--col-check {
   display: none;

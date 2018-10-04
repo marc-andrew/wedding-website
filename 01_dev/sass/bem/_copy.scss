@@ -36,13 +36,11 @@
     }
     //-- MODIFIER: Copy error
     @at-root #{&}--error {
-        display: none;
         font-family: $font-2;
         font-size: px(12);
         line-height: px(18);
         color: $red;
         margin: px(10) 0 0;
-        opacity: 0;
     }
 
     @at-root #{&}--list {

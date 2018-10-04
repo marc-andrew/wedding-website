@@ -13,7 +13,7 @@
 
         obj.id = el;
         obj.init = function () {
-            if(obj.id.length) {
+            if (obj.id.length) {
                 obj.windowSize();
                 obj.imgData();
                 obj.windowScroll();
@@ -268,11 +268,11 @@
         mobileNav(true);
     };
 
-    const viewMapClick = function(e) {
+    const viewMapClick = function (e) {
         moveToHash(this.getAttribute('data-target-id'));
     };
 
-    const burgerClick = function(e) {
+    const burgerClick = function (e) {
         if (this.classList.contains('btn--burger-active')) {
             mobileNav(true);
         } else {
@@ -312,7 +312,14 @@
     const rsvpBackBtn = document.getElementById('rsvpBackBtn');
     const colGuests = document.getElementsByClassName('rsvp--col-guests')[0];
     const additionalId = document.getElementById('additional');
+    const msgUnknown = '<span class="copy copy--error copy--error-unknown">We are sorry, we can\'t find you on our Guestlist! <br>Please check if your name is correct and try again.</span>';
+    const msgConfirmed = '<span class="copy copy--error copy--error-confirmed">You are already confirmed!</span>';
+    const msgBlocked = '<span class="copy copy--error copy--error-confirmed">Sorry, you\'ve tried too many times. We\'re blocking you for awhile!</span>';
+    const msgError = '<span class="copy copy--error copy--error-confirmed">Sorry, something went wrong! <br>Please try again later.</span>';
     let searchAttempt = 0;
+    let currentName;
+    let relationArr = []; // All unconfirmed names
+    let confirmRelationArr = []; // New confirmed names
 
     const countDownId = document.getElementsByClassName('countdown__timer');
 
@@ -321,7 +328,7 @@
     const viewMapBtn = document.getElementsByClassName('btn--view-map');
 
     // Navigation click listener
-    if(document.body.classList.contains('home')) {
+    if (document.body.classList.contains('home')) {
         for (let i = 0; i < navButton.length; i++) {
             navButton[i].addEventListener('click', navClick, false);
         }
@@ -352,6 +359,116 @@
 
     // Form
     function rsvpForm() {
+        // On blur name input
+        nameId.addEventListener('blur', function (e) {
+            if (checkIfempty(this.value)) {
+                this.classList.add('rsvp--input-valid');
+                this.classList.remove('rsvp--input-invalid');
+            } else {
+                this.classList.add('rsvp--input-invalid');
+                this.classList.remove('rsvp--input-valid');
+            }
+        }, true);
+        // On blur last name input
+        lastNameId.addEventListener('blur', function (e) {
+            if (checkIfempty(this.value)) {
+                this.classList.add('rsvp--input-valid');
+                this.classList.remove('rsvp--input-invalid');
+            } else {
+                this.classList.add('rsvp--input-invalid');
+                this.classList.remove('rsvp--input-valid');
+            }
+        }, true);
+        // Click on Continue button
+        checkNameBtn.addEventListener('click', function (e) {
+            let thisBtn = this;
+            let nameVal = nameId.value.toLowerCase();
+            let lastnameVal = lastNameId.value.toLowerCase();
+            let nameValid = checkIfempty(nameVal);
+            let lastnameValid = checkIfempty(lastnameVal);
+            let errorMsgs = document.getElementsByClassName('copy--error');
+
+            thisBtn.classList.add('btn--loading');
+            thisBtn.disabled = true;
+
+            // Delete error message
+            if(errorMsgs.length) {
+                for(let i = 0; i < errorMsgs.length; i++) {
+                    errorMsgs[i].parentNode.removeChild(errorMsgs[i]);
+                }
+            }
+
+            // Validated Name and Last Name
+            if (nameValid && lastnameValid) {
+                currentName = toTitleCase(nameVal) + ' ' + toTitleCase(lastnameVal);
+
+                let docRef = db.collection("rsvp").doc(currentName);
+
+                docRef.get().then(function(doc) {
+                    thisBtn.classList.remove('btn--loading');
+                    thisBtn.disabled = false;
+                    relationArr = [];
+
+                    if (doc.exists) {
+                        let docData = doc.data();
+                        let relation = docData.r;
+
+                        if (docData.c === false) {
+                            if (relation !== null) {
+                                let key;
+        
+                                for (key in relation) {
+                                    if (relation.hasOwnProperty(key)) {
+                                        if (relation[key].confirmed === false) relationArr.push(key);
+                                    }
+                                }
+                                console.log(relationArr);
+                            }
+        
+                            formId.classList.remove('rsvp--form-confirmed-user');
+                            nameId.readOnly = true;
+                            lastNameId.readOnly = true;
+                        } else {
+                            // Already confirmed
+                            formId.classList.add('rsvp--form-confirmed-user');
+                            checkNameBtn.insertAdjacentHTML('afterend', msgConfirmed);
+                        }
+                    } else {
+                        // Unknown Name or Block user
+                        if(searchAttempt === 10) {
+                            thisBtn.disabled = true;
+                            checkNameBtn.insertAdjacentHTML('afterend', msgBlocked);
+                        } else {
+                            checkNameBtn.insertAdjacentHTML('afterend', msgUnknown);
+                        }
+                        searchAttempt++;
+                    }
+                }).catch(function (error) {
+                    thisBtn.classList.remove('btn--loading');
+                    thisBtn.disabled = false;
+                    checkNameBtn.insertAdjacentHTML('afterend', msgError);
+                    console.log("Error getting documents: ", error);
+                });     
+            } else {
+                if(nameValid) {
+                    nameId.classList.add('rsvp--input-valid');
+                    nameId.classList.remove('rsvp--input-invalid');
+                } else {
+                    nameId.classList.add('rsvp--input-invalid');
+                    nameId.classList.remove('rsvp--input-valid');
+                }
+                
+                if (lastnameValid) {
+                    lastNameId.classList.add('rsvp--input-valid');
+                    lastNameId.classList.remove('rsvp--input-invalid');
+                } else {
+                    lastNameId.classList.add('rsvp--input-invalid');
+                    lastNameId.classList.remove('rsvp--input-valid');
+                }
+            }
+        });
+    }
+    function rsvpForm1() {
         // Remove HTML5 form validation
         formId.setAttribute('novalidate', 'novalidate');
         // On blur email input
@@ -710,6 +827,13 @@
         mapWarpper.innerHTML = '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2659.039350114157!2d16.374486315703955!3d48.20585797922898!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476d079e21d92331%3A0x417b4c58d40531b5!2sPalais+Coburg+Residenz!5e0!3m2!1sen!2suk!4v1537184868153" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>';
     }
 
+    // Capitalize each word
+    function toTitleCase(str) {
+        return str.replace(/\w\S*/g, function (txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        });
+    }
+
     // Convert seconds to a date
     function toDateTime(secs) {
         let t = new Date(1970, 0, 1);
@@ -718,7 +842,7 @@
     }
 
     // Responsive Image
-    if(restDataId.length) {
+    if (restDataId.length) {
         let responsiveImg = new resImg(restDataId);
         responsiveImg.init();
     }
@@ -728,11 +852,11 @@
     containerVisible.init();
 
     // Countdown
-    if(countDownId.length) {
+    if (countDownId.length) {
         let countdownTimer = new countdown(countDownId[0]);
         countdownTimer.init('08/06/2019 14:00 GMT');
     }
-    
+
     moveToHash();
     window.onhashchange = function () { moveToHash(); };
 }());

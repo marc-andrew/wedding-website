@@ -659,6 +659,9 @@ li {
   width: 6.25rem;
   text-align: center;
 }
+.btn--loading {
+  color: transparent;
+}
 
 /**
  Copy
@@ -686,13 +689,11 @@ li {
   font-weight: 600;
 }
 .copy--error {
-  display: none;
   font-family: "Open Sans", Helvetica, sans-serif;
   font-size: 0.75rem;
   line-height: 1.125rem;
   color: #EF4640;
   margin: 0.625rem 0 0;
-  opacity: 0;
 }
 .copy--list {
   list-style: disc inside;

@@ -587,3 +587,6 @@ li {
   width: 6.25rem;
   text-align: center;
 }
+.btn--loading {
+  color: transparent;
+}
