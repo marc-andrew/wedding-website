@@ -1321,6 +1321,40 @@ li {
 }
 
 /**
+ Information
+**/
+.info {
+  padding-right: 0.625rem;
+  padding-bottom: 0;
+  padding-left: 0.625rem;
+}
+.info .copy {
+  padding-right: 0.625rem;
+  padding-left: 0.625rem;
+}
+.info .img__container {
+  position: relative;
+  padding-top: 133%;
+}
+.info .img__container .img {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.info__list {
+  padding: 0.9375rem 0 0;
+}
+.info__col {
+  width: 33.33%;
+  padding: 0 0.625rem;
+}
+@media screen and (max-width: 666px) {
+  .info__col {
+    width: 100%;
+  }
+}
+
+/**
  Gift
 **/
 .gifts__btns {
