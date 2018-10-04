@@ -26,36 +26,60 @@
 
     //-- ELEMENT: Label
     @at-root #{&}__col {
+        position: relative;
         width: 100%;
-        margin-bottom: px(10);
+        margin-bottom: px(20);
+        padding: 0 px(5);
     }
 
     //-- ELEMENT: Label
     @at-root #{&}__label {
+        position: absolute;
         display: block;
+        background-color: $primaryLight;
+        border-radius: px(4);
         font-family: $font-2;
         font-size: px(14);
         line-height: px(18);
-        text-transform: uppercase;
-        margin: 0 0 px(10);
+        color: $primary;
         letter-spacing: px(0.5);
+        height: px(18);
+        top: 0;
+        left: px(10);
+        bottom: 0;
+        margin: auto 0;
+        padding: 0 px(5);
+
+        @include media(screen,max, 768px) {
+            font-size: px(16);
+        }
     }
 
     //-- ELEMENT: Input
     @at-root #{&}__input {
+        box-shadow: 0 0 0 px(2) transparent;
         border: px(1) solid $primaryMedium;
-        border-radius: 0;
+        border-radius: px(3);
+        background-color: transparent;
         outline: none;
         font-family: $font-1;
-        font-size: px(14);
+        font-size: px(16);
         line-height: px(18);
         letter-spacing: px(0.5);
         height: px(40);
         width: 100%;
         padding: 0 px(10);
+        -webkit-appearance: none;
 
         &:focus {
-            border-color: $primary;
+            border-color: $secondary;
+            box-shadow: 0 0 0 px(1) $secondary;
+
+            & + .rsvp__label {
+                font-size: px(12);
+                transform: translateY(px(-9));
+                bottom: auto;
+            }
         }
     }
 
@@ -81,10 +105,9 @@
 
     @at-root #{&}--col-6 {
         width: 50%;
-        padding: 0 px(5) 0 0;
 
-        & + .rsvp--col-6 {
-            padding: 0 0 0 px(5);
+        @include media(screen,max, 480px) {
+            width: 100%;
         }
     }
 
@@ -98,11 +121,32 @@
 
     @at-root #{&}--input-invalid {
         border-color: $red;
-        border-width: px(2);
+        box-shadow: 0 0 0 px(1) $red;
+
+        & + .rsvp__label {
+            font-size: px(12);
+            color: $red;
+            transform: translateY(px(-9));
+            bottom: auto;
+        }
+
+        &:focus {
+            & + .rsvp__label  {
+                color: $primary;
+            }
+        }
+    }
+
+    @at-root #{&}--input-valid {
+
+        & + .rsvp__label {
+            font-size: px(12);
+            transform: translateY(px(-9));
+            bottom: auto;
+        }
     }
 
     @at-root #{&}--col-submit {
-        padding: px(20) 0 0;
         text-align: center;
 
         .btn {

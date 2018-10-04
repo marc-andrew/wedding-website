@@ -201,4 +201,8 @@
         width: px(100);
         text-align: center;
     }
+
+    @at-root #{&}--loading {
+        color: transparent;
+    }
 }
