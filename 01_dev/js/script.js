@@ -311,6 +311,7 @@
     const attendingId = document.getElementById('rsvp-attending');
     const rsvpBackBtn = document.getElementById('rsvpBackBtn');
     const colGuests = document.getElementsByClassName('rsvp--col-guests')[0];
+    const relationId = document.getElementById('relation');
     const additionalId = document.getElementById('additional');
     const msgUnknown = '<span class="copy copy--error copy--error-unknown">We are sorry, we can\'t find you on our Guestlist! <br>Please check if your name is correct and try again.</span>';
     const msgConfirmed = '<span class="copy copy--error copy--error-confirmed">You are already confirmed!</span>';
@@ -379,6 +380,26 @@
                 this.classList.remove('rsvp--input-valid');
             }
         }, true);
+        // On blur email input
+        emailId.addEventListener('blur', function (e) {
+            if (validateEmail(this.value)) {
+                this.classList.add('rsvp--input-valid');
+                this.classList.remove('rsvp--input-invalid');
+            } else {
+                this.classList.add('rsvp--input-invalid');
+                this.classList.remove('rsvp--input-valid');
+            }
+        }, true);
+        // Listener for a change
+        guestlistId.addEventListener('change', function (e) {
+            let optionsLength = this.children.length;
+            // Loop through each option and find the one it is selected
+            for (let i = 0; i < optionsLength; i++) {
+                if (this.children[i].selected === true) {
+                    buildAdditionalGuest(this.children[i].value);
+                }
+            }
+        });
         // Click on Continue button
         checkNameBtn.addEventListener('click', function (e) {
             let thisBtn = this;
@@ -412,8 +433,11 @@
                     if (doc.exists) {
                         let docData = doc.data();
                         let relation = docData.r;
-
+                        let maxGuests = docData.mG;
+                        let maxGuestsArr = [];
+                        console.log(docData);
                         if (docData.c === false) {
+
                             if (relation !== null) {
                                 let key;
         
@@ -423,17 +447,26 @@
                                     }
                                 }
                                 console.log(relationArr);
+                                buildRelationGuest();
+                            }
+
+                            if (maxGuests > 0) {
+                                for (let i = 0; i <= maxGuests; i++) {
+                                    maxGuestsArr.push('<option value="' + i + '">' + i + '</option>');
+                                }
+                                guestlistId.innerHTML = maxGuestsArr.join('');
+                                formId.classList.add('rsvp--form-with-guests');
                             }
         
-                            formId.classList.remove('rsvp--form-confirmed-user');
+                            formId.classList.add('rsvp--form-valid-user');
                             nameId.readOnly = true;
                             lastNameId.readOnly = true;
                         } else {
                             // Already confirmed
-                            formId.classList.add('rsvp--form-confirmed-user');
                             checkNameBtn.insertAdjacentHTML('afterend', msgConfirmed);
                         }
                     } else {
+                        console.log('unknown');
                         // Unknown Name or Block user
                         if(searchAttempt === 10) {
                             thisBtn.disabled = true;
@@ -465,6 +498,9 @@
                     lastNameId.classList.add('rsvp--input-invalid');
                     lastNameId.classList.remove('rsvp--input-valid');
                 }
+
+                thisBtn.classList.remove('btn--loading');
+                thisBtn.disabled = false;
             }
         });
     }
@@ -672,13 +708,23 @@
         });
     }
 
+    // Relation list
+    function buildRelationGuest() {
+        let elArr = [];
+
+        for (let i = 0; i < relationArr.length; i++) {
+            elArr.push('<div class="rsvp__col"><input type="checkbox" class="rsvp__checkbox" id="rsvp-relation-'+i+'"><label class="rsvp__label-checkbox trans--all" for="rsvp-relation-'+i+'">'+relationArr[i]+'</label></div>');
+        }
+        relationId.innerHTML = elArr.join('');
+    }
+
     // Additional Guest Inputs
     function buildAdditionalGuest(nr) {
         let elArr = [];
 
         if (nr > 0) {
             for (let i = 0; i < nr; i++) {
-                elArr.push('<div class="rsvp__col rsvp--col-to-show"><label class="rsvp__label" for="rsvp-guest-' + (i + 1) + '">Guest ' + (i + 1) + ' First &amp; Last Name:</label><input type="text" class="rsvp__input rsvp--input-guest trans--all" id="rsvp--guest-' + i + '"></div>');
+                elArr.push('<div class="rsvp__col"><input type="text" class="rsvp__input rsvp--input-guest trans--all" id="rsvp--guest-' + i + '"><label class="rsvp__label" for="rsvp-guest-' + (i + 1) + '">Guest ' + (i + 1) + ' First &amp; Last Name:</label></div>');
             }
             additionalId.innerHTML = elArr.join('');
             guestInputListener();

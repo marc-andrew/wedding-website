@@ -24,12 +24,21 @@
         padding-top: px(20);
     }
 
-    //-- ELEMENT: Label
+    //-- ELEMENT: Row
+    @at-root #{&}__row {
+        width: 100%;
+    }
+
+    //-- ELEMENT: Col
     @at-root #{&}__col {
         position: relative;
         width: 100%;
         margin-bottom: px(20);
         padding: 0 px(5);
+
+        .btn {
+            margin: 0 px(5);
+        }
     }
 
     //-- ELEMENT: Label
@@ -57,7 +66,7 @@
 
     //-- ELEMENT: Input
     @at-root #{&}__input {
-        box-shadow: 0 0 0 px(2) transparent;
+        box-shadow: 0 0 0 px(1) transparent;
         border: px(1) solid $primaryMedium;
         border-radius: px(3);
         background-color: transparent;
@@ -81,25 +90,35 @@
                 bottom: auto;
             }
         }
+
+        &:read-only {
+
+            &:focus {
+                border-color: $primaryMedium;
+                box-shadow: 0 0 0 px(1) transparent;
+            }
+        }
     }
 
     //-- ELEMENT: Select
     @at-root #{&}__select {
-        -webkit-appearance: none;
+        box-shadow: 0 0 0 px(1) transparent;
         border: px(1) solid $primaryMedium;
-        border-radius: 0;
-        background: #fff;
+        border-radius: px(3);
+        background-color: transparent;
         outline: none;
         font-family: $font-1;
-        font-size: px(14);
+        font-size: px(16);
         line-height: px(18);
         letter-spacing: px(0.5);
         height: px(40);
         width: 100%;
         padding: 0 px(10);
+        -webkit-appearance: none;
 
         &:focus {
-            border-color: $primary;
+            border-color: $secondary;
+            box-shadow: 0 0 0 px(1) $secondary;
         }
     }
 
@@ -146,19 +165,16 @@
         }
     }
 
-    @at-root #{&}--col-submit {
-        text-align: center;
-
-        .btn {
-            margin: 0 px(10);
-        }
-    }
-
-    @at-root #{&}--col-to-show {
-        display: none;
+    @at-root #{&}--row-second {
+        visibility: hidden;
+        height: 0;
     }
 
     @at-root #{&}--col-guests {
+        display: none;
+    }
+
+    @at-root #{&}--col-additional-list {
         display: none;
     }
 
@@ -168,14 +184,23 @@
             display: none;
         }
 
-        .rsvp--col-to-show {
-            display: block;
+        .rsvp--row-second {
+            visibility: visible;
+            height: auto;
+        }
+    }
+
+    @at-root #{&}--form-with-guests {
+        .rsvp--col-attending {
+            width: 50%;
         }
 
-        &.rsvp--form-with-guests {
-            .rsvp--col-guests {
-                display: block;
-            }   
+        .rsvp--col-additional {
+            width: 50%;
+        }
+
+        .rsvp--col-additional-list {
+            display: block;
         }
     }
 

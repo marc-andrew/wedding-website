@@ -689,11 +689,14 @@ li {
   font-weight: 600;
 }
 .copy--error {
+  display: block;
   font-family: "Open Sans", Helvetica, sans-serif;
   font-size: 0.75rem;
   line-height: 1.125rem;
+  text-align: center;
   color: #EF4640;
   margin: 0.625rem 0 0;
+  width: 100%;
 }
 .copy--list {
   list-style: disc inside;

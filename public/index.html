@@ -587,18 +587,54 @@
         <form id="rsvp-form" class="rsvp__form flex" action="/" method="post">
 
             <div class="rsvp__row rsvp--row-first flex">
-                <div class="rsvp__col rsvp--col-6 rsvp--col-name">
+                <div class="rsvp__col rsvp--col-6">
                     <input type="text" class="rsvp__input trans--all" id="rsvp-name">
                     <label class="rsvp__label trans--all" for="rsvp-name">First Name:</label>
                 </div>
 
-                <div class="rsvp__col rsvp--col-6 rsvp--col-lastname">
+                <div class="rsvp__col rsvp--col-6">
                     <input type="text" class="rsvp__input trans--all" id="rsvp-lastname">
                     <label class="rsvp__label trans--all" for="rsvp-lastname">Last Name:</label>
                 </div>
 
-                <div class="rsvp__col rsvp--col-submit rsvp--col-check">
-                    <button type="button" id="checkNameBtn" class="btn btn--ghost trans--all">Continue</button>
+                <div class="rsvp__col rsvp--col-check">
+                    <div class="flex flex--justify-center">
+                        <button type="button" id="checkNameBtn" class="btn btn--ghost trans--all">Continue</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rsvp__row rsvp--row-second flex">
+                <div class="rsvp__col">
+                    <input type="text" class="rsvp__input trans--all" id="rsvp-email">
+                    <label class="rsvp__label trans--all" for="rsvp-email">E-Mail:</label>
+                </div>
+
+                <div class="rsvp__col rsvp--col-attending">
+                    <select class="rsvp__select trans--all rsvp--input-valid" id="rsvp-attending">
+                        <option value="true" selected>Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                    <label class="rsvp__label trans--all" for="rsvp-attending">Are you attending:</label>
+                </div>
+
+                <div class="rsvp__col rsvp--col-additional">
+                    <select class="rsvp__select trans--all rsvp--input-valid" id="rsvp-guests"></select>
+                    <label class="rsvp__label trans--all" for="rsvp-guests">Additional guests:</label>
+                </div>
+
+                <div class="rsvp__col rsvp--col-relation-list">
+                    <p class="copy copy--center">Do you want to confirm for your Family member or Partner?</p>
+                    <div id="relation"></div>
+                </div>
+
+                <div class="rsvp__col rsvp--col-additional-list" id="additional"></div>
+
+                <div class="rsvp__col rsvp--col-submit">
+                    <div class="flex flex--justify-center">
+                        <button type="button" id="rsvpBackBtn" class="btn btn--ghost btn--width btn--ghost-transparent trans--all">Cancel</button>
+                        <input type="submit" class="btn btn--ghost btn--width trans--all" id="rsvp-submit" value="Submit">
+                    </div>
                 </div>
             </div>
 
