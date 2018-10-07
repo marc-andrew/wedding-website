@@ -319,8 +319,7 @@
     const msgError = '<span class="copy copy--error copy--error-confirmed">Sorry, something went wrong! <br>Please try again later.</span>';
     let searchAttempt = 0;
     let currentName;
-    let relationArr = []; // All unconfirmed names
-    let confirmRelationArr = []; // New confirmed names
+    let relationListArr;
 
     const countDownId = document.getElementsByClassName('countdown__timer');
 
@@ -425,17 +424,22 @@
 
                 let docRef = db.collection("rsvp").doc(currentName);
 
+                console.log('Current Name: ', currentName);
+
                 docRef.get().then(function(doc) {
                     thisBtn.classList.remove('btn--loading');
                     thisBtn.disabled = false;
-                    relationArr = [];
+                    let notConfirmedRelationArr = [];
+                    relationListArr = [];
+
+                    relationListArr.push(currentName);
 
                     if (doc.exists) {
                         let docData = doc.data();
                         let relation = docData.r;
                         let maxGuests = docData.mG;
                         let maxGuestsArr = [];
-                        console.log(docData);
+                        console.log('docData: ', docData);
                         if (docData.c === false) {
 
                             if (relation !== null) {
@@ -443,11 +447,13 @@
         
                                 for (key in relation) {
                                     if (relation.hasOwnProperty(key)) {
-                                        if (relation[key].confirmed === false) relationArr.push(key);
+                                        if (relation[key].confirmed === false) notConfirmedRelationArr.push(key);
+                                        relationListArr.push(key);
                                     }
                                 }
-                                console.log(relationArr);
-                                buildRelationGuest();
+                                console.log('notConfirmedRelationArr: ', notConfirmedRelationArr);
+                                formId.classList.add('rsvp--form-with-relation');
+                                buildRelationGuest(notConfirmedRelationArr);
                             }
 
                             if (maxGuests > 0) {
@@ -503,113 +509,19 @@
                 thisBtn.disabled = false;
             }
         });
-    }
-    function rsvpForm1() {
-        // Remove HTML5 form validation
-        formId.setAttribute('novalidate', 'novalidate');
-        // On blur email input
-        emailId.addEventListener('blur', function (e) {
-            if (validateEmail(this.value)) {
-                this.classList.remove('rsvp--input-invalid');
-            } else {
-                this.classList.add('rsvp--input-invalid');
-            }
-        }, true);
-        // On blur name input
-        nameId.addEventListener('blur', function (e) {
-            if (checkIfempty(this.value)) {
-                this.classList.remove('rsvp--input-invalid');
-            } else {
-                this.classList.add('rsvp--input-invalid');
-            }
-        }, true);
-        // On blur last name input
-        lastNameId.addEventListener('blur', function (e) {
-            if (checkIfempty(this.value)) {
-                this.classList.remove('rsvp--input-invalid');
-            } else {
-                this.classList.add('rsvp--input-invalid');
-            }
-        }, true);
-        lastNameId.addEventListener('focus', function (e) {
-            formId.classList.remove('rsvp--form-invalid-user');
-        }, false);
-        // Check last name button
-        checkNameBtn.addEventListener('click', function (e) {
-            let lastnameVal = lastNameId.value;
-            if (checkIfempty(lastnameVal) && !lastNameId.classList.contains('rsvp--input-invalid')) {
-                let docRef = db.collection("rsvp").doc(lastnameVal.toLowerCase());
-
-                docRef.get().then(function (doc) {
-                    if (doc.exists) {
-                        let docData = doc.data();
-                        if (docData.c === false) {
-                            let maxGuests = docData.mG;
-                            let optionsArr = [];
-
-                            formId.classList.add('rsvp--form-valid-user');
-                            formId.classList.remove('rsvp--form-invalid-user');
-                            formId.classList.remove('rsvp--form-confirmed-user');
-                            lastNameId.readOnly = true;
-
-                            if (maxGuests > 0) {
-                                for (let i = 0; i <= maxGuests; i++) {
-                                    optionsArr.push('<option value="' + i + '">' + i + '</option>');
-                                }
-                                guestlistId.innerHTML = optionsArr.join('');
-                                formId.classList.add('rsvp--form-with-guests');
-                            }
-                        } else {
-                            formId.classList.add('rsvp--form-confirmed-user');
-                            console.log('Already confirmed');
-                        }
-                    } else {
-                        formId.classList.add('rsvp--form-invalid-user');
-                        lastNameId.classList.add('rsvp--input-invalid');
-                        if (searchAttempt < 9) {
-                            searchAttempt++;
-                        } else {
-                            console.log('Block user');
-                        }
-                    }
-                }).catch(function (error) {
-                    console.log(error);
-                });
-            } else {
-                lastNameId.classList.add('rsvp--input-invalid');
-            }
-        });
-        // Listener for a change
-        guestlistId.addEventListener('change', function (e) {
-            let optionsLength = this.children.length;
-            // Loop through each option and find the one it is selected
-            for (let i = 0; i < optionsLength; i++) {
-                if (this.children[i].selected === true) {
-                    buildAdditionalGuest(this.children[i].value);
-                }
-            }
-        });
         // Rsvp cancel/back button
         rsvpBackBtn.addEventListener('click', function (e) {
-            formId.classList.remove('rsvp--form-valid-user', 'rsvp--form-with-guests');
-            // Change read only to false
-            lastNameId.readOnly = false;
-            // Remove class name
-            colGuests.classList.remove('rsvp--col-to-show');
-            // Delete all options from the select list
-            guestlistId.options.length = 0;
-            // Delete everything inside
-            while (additionalId.firstChild) {
-                additionalId.removeChild(additionalId.firstChild);
-            }
+            formReset();
         });
         // On form submit
         formId.addEventListener('submit', function (e) {
             if (this.classList.contains('rsvp--form-valid-user')) {
-                let emailValid = validateEmail(emailId.value);
+                let emailVal = emailId.value;
+                let emailValid = validateEmail(emailVal);
                 let nameValid = checkIfempty(nameId.value);
                 let lastNameValid = checkIfempty(lastNameId.value);
                 let guestInputId = document.getElementsByClassName('rsvp--input-guest');
+                let checkboxId = document.getElementsByClassName('rsvp__checkbox');
                 let guestInputValid = true;
 
                 if (guestInputId.length > 0) {
@@ -624,65 +536,137 @@
                 }
 
                 if (emailValid && nameValid && lastNameValid && guestInputValid) {
-                    let plusInt;
-                    let isAttending = (attendingId.options[attendingId.selectedIndex].value === 'true');
-                    let guestNames = [];
+                    e.preventDefault();
                     // RSVP Collection
-                    let rsvp = db.collection('rsvp');
-                    let attending = db.collection('attending');
-                    let notAttending = db.collection('notAttending');
+                    let rsvpDb = db.collection('rsvp');
+                    let attendingDb = db.collection('attending');
+                    let notAttendingDb = db.collection('notAttending');
                     let batch = db.batch();
 
-                    e.preventDefault();
+                    let confirmedNameArr = [];
+                    let nonConfirmedNameArr = [];
+                    let plusInt = 0;
+                    let isAttending = (attendingId.options[attendingId.selectedIndex].value === 'true');
+                    let guestNames = [];
+
+                    confirmedNameArr.push(currentName);
+    
+                    if (checkboxId.length > 0) {
+                        for (let i = 0; i < checkboxId.length; i++) {
+                            if(checkboxId[i].checked) {
+                                confirmedNameArr.push(checkboxId[i].value);
+                            } else {
+                                nonConfirmedNameArr.push(checkboxId[i].value);
+                            }
+                        }
+                    }
+
                     if (formId.classList.contains('rsvp--form-with-guests')) {
                         plusInt = guestlistId.options[guestlistId.selectedIndex].value;
 
                         for (let i = 0; i < guestInputId.length; i++) {
                             guestNames.push(guestInputId[i].value);
                         }
-                    } else {
-                        plusInt = 0;
                     }
 
-                    // Save data
-                    batch.update(rsvp.doc(lastNameId.value.toLowerCase()), {
-                        a: isAttending,
-                        c: true,
-                        n: nameId.value,
-                        aG: parseInt(plusInt),
-                        dC: timestamp,
-                        gN: guestNames
-                    });
-
-                    // If attending
+                    // Check if attending
                     if (isAttending) {
-                        batch.set(attending.doc(lastNameId.value.toLowerCase()), {
-                            n: nameId.value,
-                            aG: parseInt(plusInt),
-                            dC: timestamp,
-                            gN: guestNames
-                        });
+                        if (formId.classList.contains('rsvp--form-with-relation')) {
+
+                            for(let i = 0; i < nonConfirmedNameArr.length; i++) {
+                                let namesObj = {};
+                                for (let a = 0; a < confirmedNameArr.length; a++) {
+                                    if(nonConfirmedNameArr[i] !== confirmedNameArr[a]) {
+                                        namesObj["r." + confirmedNameArr[a]] = { confirmed: true };
+                                    }
+                                }
+                                console.log(namesObj);
+                                //Update relation list
+                                batch.update(rsvpDb.doc(nonConfirmedNameArr[i]),namesObj);
+                            }
+
+                            for(let i = 0; i < confirmedNameArr.length; i++) {
+                                let namesObj = {};
+                                for (let a = 0; a < confirmedNameArr.length; a++) {
+                                    if(confirmedNameArr[i] !== confirmedNameArr[a]) {
+                                        namesObj["r." + confirmedNameArr[a]] = { confirmed: true };
+                                    }
+                                }
+                                // Update
+                                batch.update(rsvpDb.doc(confirmedNameArr[i]), {
+                                    a: true,
+                                    c: true,
+                                    dC: timestamp
+                                });
+                                //Update relation list
+                                batch.update(rsvpDb.doc(confirmedNameArr[i]),namesObj);
+                                // Set
+                                batch.set(attendingDb.doc(confirmedNameArr[i]), {
+                                    dC: timestamp,
+                                    aG: parseInt(plusInt),
+                                    gN: guestNames
+                                });
+                            }
+                        }
+                        if (formId.classList.contains('rsvp--form-with-guests')) {
+                            batch.update(rsvpDb.doc(currentName), {
+                                a: true,
+                                c: true,
+                                dC: timestamp,
+                                aG: parseInt(plusInt),
+                                gN: guestNames
+                            });
+                            // Set
+                            batch.set(attendingDb.doc(currentName), {
+                                dC: timestamp,
+                                aG: parseInt(plusInt),
+                                gN: guestNames
+                            });
+                        }
                     } else {
-                        batch.set(notAttending.doc(lastNameId.value.toLowerCase()), {
-                            n: nameId.value,
-                            aG: parseInt(plusInt),
-                            dC: timestamp,
-                            gN: guestNames
-                        });
+                        if (formId.classList.contains('rsvp--form-with-relation')) {
+                            for(let i = 0; i < confirmedNameArr.length; i++) {
+                                let namesObj = {};
+                                for (let a = 0; a < confirmedNameArr.length; a++) {
+                                    if(confirmedNameArr[i] !== confirmedNameArr[a]) {
+                                        namesObj["r." + confirmedNameArr[a]] = { confirmed: true };
+                                    }
+                                }
+                                // Update
+                                batch.update(rsvpDb.doc(confirmedNameArr[i]), {
+                                    a: false,
+                                    c: true,
+                                    dC: timestamp
+                                });
+                                //Update relation list
+                                batch.update(rsvpDb.doc(confirmedNameArr[i]),myObj);
+                                // Set
+                                batch.set(notAttendingDb.doc(confirmedNameArr[i]), {
+                                    dC: timestamp
+                                });
+                            }
+                        } 
                     }
 
                     // Batch commit 
                     batch.commit().then(function () {
                         rsvpWrapper.classList.add('rsvp--success');
 
-                        emailId.classList.remove('rsvp--input-invalid');
-                        nameId.classList.remove('rsvp--input-invalid');
-                        lastNameId.classList.remove('rsvp--input-invalid');
+                        formReset();
                     }).catch(function (error) {
                         console.error("Error adding document: ", error);
                     });
+
+                    console.log('send');
+                    console.log('Name: ', currentName);
+                    console.log('Email: ', emailVal);
+                    console.log('Confirmed names: ', confirmedNameArr);
+                    console.log('Is attending: ', isAttending);
+                    console.log('Plus nr: ', plusInt);
+                    console.log('Guest Names: ', guestNames);
                 } else {
                     e.preventDefault();
+                    console.log('invalid');
 
                     if (!emailValid) {
                         emailId.classList.add('rsvp--input-invalid');
@@ -707,13 +691,38 @@
             }
         });
     }
+    function formReset() {
+        formId.classList.remove('rsvp--form-valid-user', 'rsvp--form-with-guests', 'rsvp--form-with-relation');
+        // Change read only to false
+        nameId.readOnly = false;
+        lastNameId.readOnly = false;
+        // Reset values
+        nameId.value = '';
+        lastNameId.value = '';
+        emailId.value = '';
+        // Delete class name
+        nameId.classList.remove('rsvp--input-invalid', 'rsvp--input-valid');
+        lastNameId.classList.remove('rsvp--input-invalid', 'rsvp--input-valid');
+        emailId.classList.remove('rsvp--input-invalid', 'rsvp--input-valid');
+        // Delete all options from the select list
+        guestlistId.options.length = 0;
+        // Delete everything inside
+        while (additionalId.firstChild) {
+            additionalId.removeChild(additionalId.firstChild);
+        }
+
+        while (relationId.firstChild) {
+            relationId.removeChild(relationId.firstChild);
+        }
+    }
 
     // Relation list
-    function buildRelationGuest() {
+    function buildRelationGuest(rArr) {
+        let relationArr = rArr;
         let elArr = [];
 
         for (let i = 0; i < relationArr.length; i++) {
-            elArr.push('<div class="rsvp__col"><input type="checkbox" class="rsvp__checkbox" id="rsvp-relation-'+i+'"><label class="rsvp__label-checkbox trans--all" for="rsvp-relation-'+i+'">'+relationArr[i]+'</label></div>');
+            elArr.push('<div class="rsvp__col"><input type="checkbox" class="rsvp__checkbox" id="rsvp-relation-'+i+'" value="'+relationArr[i]+'"><label class="rsvp__label-checkbox trans--all" for="rsvp-relation-'+i+'">'+relationArr[i]+'</label></div>');
         }
         relationId.innerHTML = elArr.join('');
     }

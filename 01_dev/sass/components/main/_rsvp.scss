@@ -64,6 +64,55 @@
         }
     }
 
+    @at-root #{&}__label-checkbox {
+        position: relative;
+        display: block;
+        font-family: $font-1;
+        font-size: px(16);
+        line-height: px(18);
+        letter-spacing: px(0.5);
+        padding: 0 0 0 px(30);
+        cursor: pointer;
+
+        &:before {
+            position: absolute;
+            display: block;
+            border: px(2) solid $primaryMedium;
+            border-radius: px(4);
+            content: '';
+            width: px(14);
+            height: px(14);
+            top: 0;
+            left: 0;
+        }
+
+        &:after {
+            position: absolute;
+            display: none;
+            border-right: px(2) solid $primary;
+            border-bottom: px(2) solid $primary;
+            content: '';
+            width: px(5);
+            height: px(10);
+            top: px(2);
+            left: px(6);
+            transform: rotate(38deg);
+        }
+    }
+
+    @at-root #{&}__checkbox {
+        visibility: hidden;
+        position: absolute;
+        z-index: -999;
+
+        &:checked {
+
+            & + .rsvp__label-checkbox:after {
+                display: block;
+            }
+        }
+    }
+
     //-- ELEMENT: Input
     @at-root #{&}__input {
         box-shadow: 0 0 0 px(1) transparent;
@@ -166,11 +215,22 @@
     }
 
     @at-root #{&}--row-second {
-        visibility: hidden;
-        height: 0;
+        display: none;
     }
 
     @at-root #{&}--col-guests {
+        display: none;
+    }
+
+    @at-root #{&}--col-relation-list {
+        display: none;
+
+        .copy {
+            margin-bottom: px(30);
+        }
+    }
+
+    @at-root #{&}--col-additional {
         display: none;
     }
 
@@ -185,8 +245,14 @@
         }
 
         .rsvp--row-second {
-            visibility: visible;
-            height: auto;
+            display: flex;
+            flex-wrap: wrap;
+        }
+    }
+
+    @at-root #{&}--form-with-relation {
+        .rsvp--col-relation-list {
+            display: block;
         }
     }
 
@@ -197,6 +263,7 @@
 
         .rsvp--col-additional {
             width: 50%;
+            display: block;
         }
 
         .rsvp--col-additional-list {
