@@ -34,6 +34,7 @@
 
         @include media(screen,max,666px) {
             width: 100%;
+            margin-bottom: px(10);
         }
     }
 
@@ -47,6 +48,14 @@
 
         &:hover {
             background-color: rgba(#000,0.5);
+        }
+    }
+
+    @at-root #{&}__main-inner {
+
+        .title {
+            width: 100%;
+            margin-bottom: px(10);
         }
     }
 }

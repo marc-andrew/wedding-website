@@ -767,7 +767,12 @@ li {
   text-align: center;
 }
 .btn--loading {
-  color: transparent;
+  border-color: #c1c1c1;
+  outline-color: #c1c1c1;
+}
+.btn--loading:hover, .btn--loading:focus {
+  border-color: #c1c1c1;
+  outline-color: #c1c1c1;
 }
 
 /**
@@ -915,6 +920,9 @@ li {
   bottom: 0;
   left: 0;
   margin: 0 auto;
+}
+.title--white {
+  color: #fff;
 }
 .title--left {
   text-align: left;
@@ -1469,6 +1477,7 @@ li {
 @media screen and (max-width: 666px) {
   .info__col {
     width: 100%;
+    margin-bottom: 0.625rem;
   }
 }
 .info__main {
@@ -1481,6 +1490,10 @@ li {
 }
 .info__main:hover {
   background-color: rgba(0, 0, 0, 0.5);
+}
+.info__main-inner .title {
+  width: 100%;
+  margin-bottom: 0.625rem;
 }
 
 /**

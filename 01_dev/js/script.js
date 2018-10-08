@@ -315,7 +315,7 @@
     const additionalId = document.getElementById('additional');
     const msgUnknown = '<span class="copy copy--error copy--error-unknown">We are sorry, we can\'t find you on our Guestlist! <br>Please check if your name is correct and try again.</span>';
     const msgConfirmed = '<span class="copy copy--error copy--error-confirmed">You are already confirmed!</span>';
-    const msgBlocked = '<span class="copy copy--error copy--error-confirmed">Sorry, you\'ve tried too many times. We\'re blocking you for awhile!</span>';
+    const msgBlocked = '<span class="copy copy--error copy--error-confirmed">Sorry, you\'ve tried too many times. <br>Please try again later.</span>';
     const msgError = '<span class="copy copy--error copy--error-confirmed">Sorry, something went wrong! <br>Please try again later.</span>';
     let searchAttempt = 0;
     let currentName;
@@ -402,8 +402,8 @@
         // Click on Continue button
         checkNameBtn.addEventListener('click', function (e) {
             let thisBtn = this;
-            let nameVal = nameId.value.toLowerCase();
-            let lastnameVal = lastNameId.value.toLowerCase();
+            let nameVal = trimStr(nameId.value.toLowerCase());
+            let lastnameVal = trimStr(lastNameId.value.toLowerCase());
             let nameValid = checkIfempty(nameVal);
             let lastnameValid = checkIfempty(lastnameVal);
             let errorMsgs = document.getElementsByClassName('copy--error');
@@ -424,8 +424,6 @@
 
                 let docRef = db.collection("rsvp").doc(currentName);
 
-                console.log('Current Name: ', currentName);
-
                 docRef.get().then(function(doc) {
                     thisBtn.classList.remove('btn--loading');
                     thisBtn.disabled = false;
@@ -439,7 +437,7 @@
                         let relation = docData.r;
                         let maxGuests = docData.mG;
                         let maxGuestsArr = [];
-                        console.log('docData: ', docData);
+
                         if (docData.c === false) {
 
                             if (relation !== null) {
@@ -451,7 +449,6 @@
                                         relationListArr.push(key);
                                     }
                                 }
-                                console.log('notConfirmedRelationArr: ', notConfirmedRelationArr);
                                 // Check if not confirmed relation array is not empty
                                 if(notConfirmedRelationArr.length) formId.classList.add('rsvp--form-with-relation');
                                 buildRelationGuest(notConfirmedRelationArr);
@@ -473,7 +470,6 @@
                             checkNameBtn.insertAdjacentHTML('afterend', msgConfirmed);
                         }
                     } else {
-                        console.log('unknown');
                         // Unknown Name or Block user
                         if(searchAttempt === 10) {
                             thisBtn.disabled = true;
@@ -488,7 +484,7 @@
                     thisBtn.classList.remove('btn--loading');
                     thisBtn.disabled = false;
                     checkNameBtn.insertAdjacentHTML('afterend', msgError);
-                    console.log("Error getting documents: ", error);
+                    console.log(error);
                 });     
             } else {
                 if(nameValid) {
@@ -582,7 +578,6 @@
                                         namesObj["r." + confirmedNameArr[a]] = { confirmed: true };
                                     }
                                 }
-                                console.log(namesObj);
                                 //Update relation list
                                 batch.update(rsvpDb.doc(nonConfirmedNameArr[i]),namesObj);
                             }
@@ -636,6 +631,17 @@
                         }
                     } else {
                         if (formId.classList.contains('rsvp--form-with-relation')) {
+                            for(let i = 0; i < nonConfirmedNameArr.length; i++) {
+                                let namesObj = {};
+                                for (let a = 0; a < confirmedNameArr.length; a++) {
+                                    if(nonConfirmedNameArr[i] !== confirmedNameArr[a]) {
+                                        namesObj["r." + confirmedNameArr[a]] = { confirmed: true };
+                                    }
+                                }
+                                //Update relation list
+                                batch.update(rsvpDb.doc(nonConfirmedNameArr[i]),namesObj);
+                            }
+
                             for(let i = 0; i < confirmedNameArr.length; i++) {
                                 let namesObj = {};
                                 for (let a = 0; a < confirmedNameArr.length; a++) {
@@ -650,7 +656,7 @@
                                     dC: timestamp
                                 });
                                 //Update relation list
-                                batch.update(rsvpDb.doc(confirmedNameArr[i]),myObj);
+                                batch.update(rsvpDb.doc(confirmedNameArr[i]),namesObj);
                                 // Set
                                 batch.set(notAttendingDb.doc(confirmedNameArr[i]), {
                                     dC: timestamp
@@ -675,7 +681,7 @@
 
                         formReset();
                     }).catch(function (error) {
-                        console.error("Error adding document: ", error);
+                        console.error(error);
                     });
                 } else {
                     e.preventDefault();
@@ -889,6 +895,11 @@
         return str.replace(/\w\S*/g, function (txt) {
             return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
         });
+    }
+    // Trim string
+    function trimStr(str) {
+        if(str == null) return str;
+        return str.replace(/^\s+|\s+$/g, '');
     }
     // Read cookie
     function readCookie(cName) {

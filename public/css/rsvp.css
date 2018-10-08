@@ -599,5 +599,10 @@ li {
   text-align: center;
 }
 .btn--loading {
-  color: transparent;
+  border-color: #c1c1c1;
+  outline-color: #c1c1c1;
+}
+.btn--loading:hover, .btn--loading:focus {
+  border-color: #c1c1c1;
+  outline-color: #c1c1c1;
 }

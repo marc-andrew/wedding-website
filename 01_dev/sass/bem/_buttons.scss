@@ -217,6 +217,13 @@
     }
 
     @at-root #{&}--loading {
-        color: transparent;
+        border-color: $primaryMedium;
+        outline-color: $primaryMedium;
+
+        &:hover,
+        &:focus {
+            border-color: $primaryMedium;
+            outline-color: $primaryMedium;
+        }
     }
 }
