@@ -683,6 +683,7 @@ li {
   border: 0.0625rem solid #fff;
   outline: 0.0625rem solid transparent;
   font-weight: 500;
+  color: #fff;
   text-transform: uppercase;
   padding: 0.625rem 1.25rem 0.5625rem;
 }
@@ -1474,8 +1475,8 @@ li {
   position: absolute;
   background-color: transparent;
   top: 0;
-  left: 0;
-  width: 100%;
+  left: 0.625rem;
+  right: 0.625rem;
   height: 100%;
 }
 .info__main:hover {

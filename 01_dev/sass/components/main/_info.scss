@@ -41,8 +41,8 @@
         position: absolute;
         background-color: transparent;
         top: 0;
-        left: 0;
-        width: 100%;
+        left: px(10);
+        right: px(10);
         height: 100%;
 
         &:hover {
