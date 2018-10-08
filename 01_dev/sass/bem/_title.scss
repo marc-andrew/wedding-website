@@ -119,7 +119,10 @@
             margin: 0 auto;
         }
     }
-
+    // Text color white
+    @at-root #{&}--white {
+        color: #fff;
+    }
     @at-root #{&}--left {
         text-align: left;
     }
