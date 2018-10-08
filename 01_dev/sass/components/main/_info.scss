@@ -28,11 +28,25 @@
     }
 
     @at-root #{&}__col {
+        position: relative;
         width: 33.33%;
         padding: 0 px(10);
 
         @include media(screen,max,666px) {
             width: 100%;
+        }
+    }
+
+    @at-root #{&}__main {
+        position: absolute;
+        background-color: transparent;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        &:hover {
+            background-color: rgba(#000,0.5);
         }
     }
 }

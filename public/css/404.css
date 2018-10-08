@@ -583,6 +583,16 @@ li {
 .btn--ghost:hover, .btn--ghost:focus {
   outline: 0.0625rem solid #1c1c1c;
 }
+.btn--ghost-white {
+  border: 0.0625rem solid #fff;
+  outline: 0.0625rem solid transparent;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 0.625rem 1.25rem 0.5625rem;
+}
+.btn--ghost-white:hover, .btn--ghost-white:focus {
+  outline: 0.0625rem solid #fff;
+}
 .btn--ghost-transparent {
   border-color: transparent;
 }

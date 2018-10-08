@@ -452,7 +452,8 @@
                                     }
                                 }
                                 console.log('notConfirmedRelationArr: ', notConfirmedRelationArr);
-                                formId.classList.add('rsvp--form-with-relation');
+                                // Check if not confirmed relation array is not empty
+                                if(notConfirmedRelationArr.length) formId.classList.add('rsvp--form-with-relation');
                                 buildRelationGuest(notConfirmedRelationArr);
                             }
 
@@ -477,6 +478,7 @@
                         if(searchAttempt === 10) {
                             thisBtn.disabled = true;
                             checkNameBtn.insertAdjacentHTML('afterend', msgBlocked);
+                            setCookie('blocked', 'true', 1);
                         } else {
                             checkNameBtn.insertAdjacentHTML('afterend', msgUnknown);
                         }
@@ -607,8 +609,7 @@
                                     gN: guestNames
                                 });
                             }
-                        }
-                        if (formId.classList.contains('rsvp--form-with-guests')) {
+                        } else if (formId.classList.contains('rsvp--form-with-guests')) {
                             batch.update(rsvpDb.doc(currentName), {
                                 a: true,
                                 c: true,
@@ -621,6 +622,16 @@
                                 dC: timestamp,
                                 aG: parseInt(plusInt),
                                 gN: guestNames
+                            });
+                        } else {
+                            batch.update(rsvpDb.doc(currentName), {
+                                a: true,
+                                c: true,
+                                dC: timestamp
+                            });
+                            // Set
+                            batch.set(attendingDb.doc(currentName), {
+                                dC: timestamp
                             });
                         }
                     } else {
@@ -645,7 +656,17 @@
                                     dC: timestamp
                                 });
                             }
-                        } 
+                        } else {
+                            batch.update(rsvpDb.doc(currentName), {
+                                a: false,
+                                c: true,
+                                dC: timestamp
+                            });
+
+                            batch.set(notAttendingDb.doc(currentName), {
+                                dC: timestamp
+                            });
+                        }
                     }
 
                     // Batch commit 
@@ -656,30 +677,21 @@
                     }).catch(function (error) {
                         console.error("Error adding document: ", error);
                     });
-
-                    console.log('send');
-                    console.log('Name: ', currentName);
-                    console.log('Email: ', emailVal);
-                    console.log('Confirmed names: ', confirmedNameArr);
-                    console.log('Is attending: ', isAttending);
-                    console.log('Plus nr: ', plusInt);
-                    console.log('Guest Names: ', guestNames);
                 } else {
                     e.preventDefault();
-                    console.log('invalid');
-
+                    // Email
                     if (!emailValid) {
                         emailId.classList.add('rsvp--input-invalid');
                     } else {
                         emailId.classList.remove('rsvp--input-invalid');
                     }
-
+                    // Name
                     if (!nameValid) {
                         nameId.classList.add('rsvp--input-invalid');
                     } else {
                         nameId.classList.remove('rsvp--input-invalid');
                     }
-
+                    // Last name
                     if (!lastNameValid) {
                         lastNameId.classList.add('rsvp--input-invalid');
                     } else {
@@ -691,6 +703,7 @@
             }
         });
     }
+    // Reset the form
     function formReset() {
         formId.classList.remove('rsvp--form-valid-user', 'rsvp--form-with-guests', 'rsvp--form-with-relation');
         // Change read only to false
@@ -715,7 +728,6 @@
             relationId.removeChild(relationId.firstChild);
         }
     }
-
     // Relation list
     function buildRelationGuest(rArr) {
         let relationArr = rArr;
@@ -726,7 +738,6 @@
         }
         relationId.innerHTML = elArr.join('');
     }
-
     // Additional Guest Inputs
     function buildAdditionalGuest(nr) {
         let elArr = [];
@@ -744,7 +755,6 @@
             }
         }
     }
-
     // Loop trough input guest elements and add event listener for blur
     function guestInputListener() {
         let guestInputId = document.getElementsByClassName('rsvp--input-guest');
@@ -753,7 +763,6 @@
             guestInputId[i].addEventListener('blur', inputGuestHover, true);
         }
     }
-
     // Scroll to element
     function scrollToY(scrollTargetY, speed, easing) {
         // scrollTargetY: the target scrollY property of the window
@@ -800,7 +809,6 @@
         // call it once to get started
         tick();
     }
-
     // Loop through title class
     function titleVisible() {
         for (let i = 0; i < titleSpans.length; i++) {
@@ -814,7 +822,6 @@
 
         addTitleClass();
     }
-
     // Shuffle array function
     function shuffleArr(a) {
         let j, x, i;
@@ -826,7 +833,6 @@
         }
         return a;
     }
-
     // Add visible class to title
     function addTitleClass() {
         let counter = 0;
@@ -841,18 +847,15 @@
         // Run script every 20 milliseconds
         timer = setInterval(runScript, 20);
     }
-
     // Regex for empty fields
     function checkIfempty(str) {
         return /([^\s])/.test(str);
     }
-
     // Email validation
     function validateEmail(email) {
         let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(String(email).toLowerCase());
     }
-
     // Hide show mobile nav
     function mobileNav(isVisible) {
         if (isVisible) {
@@ -865,11 +868,11 @@
             document.addEventListener('click', checkIfOutside);
         }
     }
-
+    // Check if click is outside
     function checkIfOutside(e) {
         if (!e.target.classList.contains('btn__burger-icon') && !e.target.classList.contains('btn--burger') && !e.target.classList.contains('nav--primary')) mobileNav(true);
     }
-
+    // Scroll to target hash
     function moveToHash(targetHash) {
         targetHash = targetHash || window.location.hash.substring(1);
         let targetEl = document.querySelector('[data-section-id="' + targetHash + '"]');
@@ -877,41 +880,51 @@
             scrollToY(targetEl.offsetTop - 52, 500, 'easeInOutQuint');
         }
     }
-
+    // Load map once it's in viewport
     function loadMap() {
         mapWarpper.innerHTML = '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2659.039350114157!2d16.374486315703955!3d48.20585797922898!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476d079e21d92331%3A0x417b4c58d40531b5!2sPalais+Coburg+Residenz!5e0!3m2!1sen!2suk!4v1537184868153" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>';
     }
-
     // Capitalize each word
     function toTitleCase(str) {
         return str.replace(/\w\S*/g, function (txt) {
             return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
         });
     }
+    // Read cookie
+    function readCookie(cName) {
+        var name = cName + '=',
+			ca = document.cookie.split(';');
 
-    // Convert seconds to a date
-    function toDateTime(secs) {
-        let t = new Date(1970, 0, 1);
-        t.setSeconds(secs);
-        return t;
+		for(let i=0; i<ca.length; i++) {
+			let c = ca[i];
+			while (c.charAt(0)==' ') c = c.substring(1);
+			if (c.indexOf(name) === 0) return c.substring(name.length, c.length);
+		}
+		return '';
     }
-
-    // Responsive Image
+    // Set cookie
+    function setCookie(cName, cValue, cDays) {
+        let newDate = new Date();
+		newDate.setTime(newDate.getTime() + (cDays*24*60*60*1000));
+		let expires = 'expires=' + newDate.toGMTString();
+		document.cookie = cName + '=' + cValue + '; ' + expires + '; path=/';
+    }
+    // Responsive Image trigger
     if (restDataId.length) {
         let responsiveImg = new resImg(restDataId);
         responsiveImg.init();
     }
-
-    // Element is visible
+    // Element is visible trigger
     let containerVisible = new elInViewPort(document.getElementsByClassName('container'));
     containerVisible.init();
-
     // Countdown
     if (countDownId.length) {
         let countdownTimer = new countdown(countDownId[0]);
         countdownTimer.init('08/06/2019 14:00 GMT');
     }
-
+    // Check if blocked
+    if (readCookie('blocked') === 'true') checkNameBtn.disabled = true;
+    // Trigger move to hash function
     moveToHash();
     window.onhashchange = function () { moveToHash(); };
 }());

@@ -214,4 +214,11 @@
         });
     });
 
+    // Convert seconds to a date
+    function toDateTime(secs) {
+        let t = new Date(1970, 0, 1);
+        t.setSeconds(secs);
+        return t;
+    }
+
 }());

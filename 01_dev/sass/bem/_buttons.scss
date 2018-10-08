@@ -104,6 +104,19 @@
         }
     }
 
+    @at-root #{&}--ghost-white {
+        border: px(1) solid #fff;
+        outline: px(1) solid transparent;
+        font-weight: 500;
+        text-transform: uppercase;
+        padding: px(10) px(20) px(9);
+
+        &:hover,
+        &:focus {
+            outline: px(1) solid #fff;
+        }
+    }
+
     //-- MODIFIER: Ghost button
     @at-root #{&}--ghost-transparent {
         border-color: transparent;
