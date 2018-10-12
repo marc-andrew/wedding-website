@@ -69,6 +69,13 @@
         letter-spacing: px(1.2);
         text-align: center;
     }
+    @at-root #{&}--primary-small {
+        font-family: $font-1;
+        font-size: px(14);
+        line-height: px(18);
+        letter-spacing: px(1.2);
+        text-align: center;
+    }
     //-- MODIFIER: Title secondary medium
     @at-root #{&}--secondary-large {
         font-size: px(24);

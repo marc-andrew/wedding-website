@@ -28,6 +28,9 @@
     @at-root #{&}--align-center {
         align-items: center;
     }
+    @at-root #{&}--align-end {
+        align-items: flex-end;
+    }
     //-- MODIFIER: Flex Grow
     @at-root #{&}--grow {
         flex-grow: 1;

@@ -444,6 +444,10 @@ li {
   -ms-flex-align: center;
       align-items: center;
 }
+.flex--align-end {
+  -ms-flex-align: end;
+      align-items: flex-end;
+}
 .flex--grow {
   -ms-flex-positive: 1;
       flex-grow: 1;
@@ -873,6 +877,13 @@ li {
 .title--primary-medium {
   font-family: "Noto Serif JP", "Times New Roman", sans-serif;
   font-size: 1.125rem;
+  line-height: 1.125rem;
+  letter-spacing: 0.075rem;
+  text-align: center;
+}
+.title--primary-small {
+  font-family: "Noto Serif JP", "Times New Roman", sans-serif;
+  font-size: 0.875rem;
   line-height: 1.125rem;
   letter-spacing: 0.075rem;
   text-align: center;
@@ -1490,6 +1501,9 @@ li {
 }
 .info__main:hover {
   background-color: rgba(0, 0, 0, 0.5);
+}
+.info__main-inner {
+  padding-bottom: 2.5rem;
 }
 .info__main-inner .title {
   width: 100%;
