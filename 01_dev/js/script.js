@@ -593,6 +593,7 @@
                                 batch.update(rsvpDb.doc(confirmedNameArr[i]), {
                                     a: true,
                                     c: true,
+                                    e: emailVal,
                                     dC: timestamp
                                 });
                                 //Update relation list
@@ -601,6 +602,7 @@
                                 batch.set(attendingDb.doc(confirmedNameArr[i]), {
                                     dC: timestamp,
                                     aG: parseInt(plusInt),
+                                    e: emailVal,
                                     gN: guestNames
                                 });
                             }
@@ -608,6 +610,7 @@
                             batch.update(rsvpDb.doc(currentName), {
                                 a: true,
                                 c: true,
+                                e: emailVal,
                                 dC: timestamp,
                                 aG: parseInt(plusInt),
                                 gN: guestNames
@@ -616,17 +619,20 @@
                             batch.set(attendingDb.doc(currentName), {
                                 dC: timestamp,
                                 aG: parseInt(plusInt),
+                                e: emailVal,
                                 gN: guestNames
                             });
                         } else {
                             batch.update(rsvpDb.doc(currentName), {
                                 a: true,
                                 c: true,
+                                e: emailVal,
                                 dC: timestamp
                             });
                             // Set
                             batch.set(attendingDb.doc(currentName), {
-                                dC: timestamp
+                                dC: timestamp,
+                                e: emailVal
                             });
                         }
                     } else {
