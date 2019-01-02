@@ -937,7 +937,7 @@
     // Countdown
     if (countDownId.length) {
         let countdownTimer = new countdown(countDownId[0]);
-        countdownTimer.init('08/06/2019 14:00 GMT');
+        countdownTimer.init('06/08/2019 15:30 GMT');
     }
     // Check if blocked
     if (readCookie('blocked') === 'true') checkNameBtn.disabled = true;

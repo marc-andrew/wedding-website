@@ -729,7 +729,7 @@
         <br>But if you'd like to spoil us, we've picked out a few items or contribute to our dream honeymoon.</p>
 
     <div class="gifts__btns flex flex--justify-center">
-        <a href="https://www.weddingshop.com/Buy/View/50940" target="_blank" rel="noopener" class="btn btn--ghost btn--width-big btn--margin trans--all">Honeymoon</a>
+        <a href="https://www.weddingshop.com/Buy/View/50940" target="_blank" rel="noopener" class="btn btn--ghost btn--width-big btn--margin trans--all">Contributions</a>
         <a href="https://www.amazon.co.uk/wedding/marc-san-buenaventura-nira-dejust-vienna-june-2019/registry/1XFJXYDZOTFN1" target="_blank" rel="noopener" class="btn btn--ghost btn--width-big btn--margin trans--all">Gift list</a>
     </div>
 </section>
@@ -753,7 +753,12 @@
     <script>
         // Initialize Firebase
         const config = {
-            
+            apiKey: "AIzaSyCp2KnROYMdFBG_xLXA3a1FXNPgf3OmEzc",
+            authDomain: "wedding-website-firestore.firebaseapp.com",
+            databaseURL: "https://wedding-website-firestore.firebaseio.com",
+            projectId: "wedding-website-firestore",
+            storageBucket: "wedding-website-firestore.appspot.com",
+            messagingSenderId: "230751398963"
         };
         firebase.initializeApp(config);
         const timestamp = firebase.firestore.FieldValue.serverTimestamp();
