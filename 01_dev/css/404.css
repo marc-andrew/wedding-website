@@ -180,9 +180,9 @@ select {
  * Correct the inability to style clickable types in iOS and Safari.
  */
 button,
-[type="button"],
-[type="reset"],
-[type="submit"] {
+[type=button],
+[type=reset],
+[type=submit] {
   -webkit-appearance: button;
 }
 
@@ -190,9 +190,9 @@ button,
  * Remove the inner border and padding in Firefox.
  */
 button::-moz-focus-inner,
-[type="button"]::-moz-focus-inner,
-[type="reset"]::-moz-focus-inner,
-[type="submit"]::-moz-focus-inner {
+[type=button]::-moz-focus-inner,
+[type=reset]::-moz-focus-inner,
+[type=submit]::-moz-focus-inner {
   border-style: none;
   padding: 0;
 }
@@ -201,9 +201,9 @@ button::-moz-focus-inner,
  * Restore the focus styles unset by the previous rule.
  */
 button:-moz-focusring,
-[type="button"]:-moz-focusring,
-[type="reset"]:-moz-focusring,
-[type="submit"]:-moz-focusring {
+[type=button]:-moz-focusring,
+[type=reset]:-moz-focusring,
+[type=submit]:-moz-focusring {
   outline: 1px dotted ButtonText;
 }
 
@@ -253,8 +253,8 @@ textarea {
  * 1. Add the correct box sizing in IE 10.
  * 2. Remove the padding in IE 10.
  */
-[type="checkbox"],
-[type="radio"] {
+[type=checkbox],
+[type=radio] {
   box-sizing: border-box;
   /* 1 */
   padding: 0;
@@ -264,8 +264,8 @@ textarea {
 /**
  * Correct the cursor style of increment and decrement buttons in Chrome.
  */
-[type="number"]::-webkit-inner-spin-button,
-[type="number"]::-webkit-outer-spin-button {
+[type=number]::-webkit-inner-spin-button,
+[type=number]::-webkit-outer-spin-button {
   height: auto;
 }
 
@@ -273,7 +273,7 @@ textarea {
  * 1. Correct the odd appearance in Chrome and Safari.
  * 2. Correct the outline style in Safari.
  */
-[type="search"] {
+[type=search] {
   -webkit-appearance: textfield;
   /* 1 */
   outline-offset: -2px;
@@ -283,7 +283,7 @@ textarea {
 /**
  * Remove the inner padding in Chrome and Safari on macOS.
  */
-[type="search"]::-webkit-search-decoration {
+[type=search]::-webkit-search-decoration {
   -webkit-appearance: none;
 }
 
@@ -342,7 +342,7 @@ html {
 }
 
 body {
-  font-family: 'Times New Roman', sans-serif;
+  font-family: "Times New Roman", sans-serif;
   font-size: 62.5%;
   color: #1c1c1c;
   height: 100%;
@@ -399,22 +399,27 @@ li {
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
 }
+
 .flex--justify-center {
   -ms-flex-pack: center;
       justify-content: center;
 }
+
 .flex--justify-end {
   -ms-flex-pack: end;
       justify-content: flex-end;
 }
+
 .flex--align-center {
   -ms-flex-align: center;
       align-items: center;
 }
+
 .flex--align-end {
   -ms-flex-align: end;
       align-items: flex-end;
 }
+
 .flex--grow {
   -ms-flex-positive: 1;
       flex-grow: 1;
@@ -426,12 +431,15 @@ li {
 .trans--all {
   transition: all 800ms;
 }
+
 .trans--all-slow {
   transition: all 1500ms;
 }
+
 .trans--all-before-after:before, .trans--all-before-after:after {
   transition: all 800ms;
 }
+
 .trans--ease-in-out {
   transition-timing-function: ease-in-out;
 }
@@ -453,7 +461,7 @@ li {
   position: absolute;
   display: block;
   background-color: #29b6f6;
-  content: '';
+  content: "";
   width: 0;
   height: 0.125rem;
   right: 0;
@@ -466,6 +474,7 @@ li {
     content: normal;
   }
 }
+
 .nav__list-link {
   position: relative;
   display: block;
@@ -485,7 +494,7 @@ li {
 .nav__list-link:after {
   position: absolute;
   display: block;
-  content: '/';
+  content: "/";
   color: #1c1c1c;
   right: -0.1875rem;
   top: 1.3125rem;
@@ -501,6 +510,7 @@ li {
 .nav__list-link:hover .nav__list-link-txt:after, .nav__list-link:focus .nav__list-link-txt:after {
   width: 100%;
 }
+
 @media screen and (max-width: 666px) {
   .nav__list-item {
     border-bottom: 0.0625rem solid #f4f4f4;
@@ -538,6 +548,7 @@ li {
   width: 100%;
   height: 100%;
 }
+
 .btn__burger-icon {
   position: absolute;
   display: block;
@@ -554,7 +565,7 @@ li {
   position: absolute;
   display: block;
   background-color: #1c1c1c;
-  content: '';
+  content: "";
   width: 100%;
   height: 0.125rem;
   top: 0;
@@ -562,6 +573,7 @@ li {
   left: 0;
   margin: auto 0;
 }
+
 .btn--scroll-down {
   position: absolute;
   border-radius: 50%;
@@ -577,6 +589,7 @@ li {
 .btn--scroll-down:hover .btn__icon {
   animation: arrowBounce 500ms ease-in-out 200ms infinite alternate;
 }
+
 .btn--ghost {
   border: 0.0625rem solid #1c1c1c;
   outline: 0.0625rem solid transparent;
@@ -587,6 +600,7 @@ li {
 .btn--ghost:hover, .btn--ghost:focus {
   outline: 0.0625rem solid #1c1c1c;
 }
+
 .btn--ghost-white {
   border: 0.0625rem solid #fff;
   outline: 0.0625rem solid transparent;
@@ -598,24 +612,28 @@ li {
 .btn--ghost-white:hover, .btn--ghost-white:focus {
   outline: 0.0625rem solid #fff;
 }
+
 .btn--ghost-transparent {
   border-color: transparent;
 }
 .btn--ghost-transparent:hover, .btn--ghost-transparent:focus {
   border-color: #1c1c1c;
 }
+
 .btn--txt {
   text-decoration: underline;
 }
 .btn--txt:hover, .btn--txt:focus {
   color: #29b6f6;
 }
+
 .btn--txt-primary {
   font-family: "Noto Serif JP", "Times New Roman", sans-serif;
   font-size: 0.875rem;
   line-height: 1.25rem;
   letter-spacing: 0.03125rem;
 }
+
 .btn--burger {
   position: absolute;
   display: none;
@@ -633,7 +651,7 @@ li {
   position: absolute;
   display: block;
   background-color: #1c1c1c;
-  content: '';
+  content: "";
   width: 1.375rem;
   height: 0.125rem;
   right: 0;
@@ -646,6 +664,7 @@ li {
 .btn--burger:after {
   bottom: 0.4375rem;
 }
+
 .btn--burger-active {
   -ms-transform: translateX(280px);
       transform: translateX(280px);
@@ -661,6 +680,7 @@ li {
   -ms-transform: rotate(-45deg);
       transform: rotate(-45deg);
 }
+
 .btn--cookie-close {
   position: absolute;
   width: 1.875rem;
@@ -670,10 +690,21 @@ li {
   bottom: 0;
   margin: auto 0;
 }
+
 .btn--width {
   width: 6.25rem;
   text-align: center;
 }
+
+.btn--width-big {
+  width: 9.375rem;
+  text-align: center;
+}
+
+.btn--margin {
+  margin: 0.3125rem;
+}
+
 .btn--loading {
   border-color: #c1c1c1;
   outline-color: #c1c1c1;
@@ -697,9 +728,11 @@ li {
 .copy--center {
   text-align: center;
 }
+
 .copy--sub {
   margin: 1.25rem 0;
 }
+
 .copy--secondary {
   font-family: "Open Sans", Helvetica, sans-serif;
   color: #1c1c1c;
@@ -708,6 +741,7 @@ li {
 .copy--secondary strong {
   font-weight: 600;
 }
+
 .copy--error {
   display: block;
   font-family: "Open Sans", Helvetica, sans-serif;
@@ -718,6 +752,7 @@ li {
   margin: 0.625rem 0 0;
   width: 100%;
 }
+
 .copy--list {
   list-style: disc inside;
   padding: 0 0 0 1.25rem;
@@ -753,6 +788,7 @@ li {
     line-height: 1.125rem;
   }
 }
+
 .title__main {
   display: block;
   font-family: "Noto Serif JP", "Times New Roman", sans-serif;
@@ -766,6 +802,7 @@ li {
     line-height: 1.75rem;
   }
 }
+
 .title__small {
   font-size: 1.75rem;
 }
@@ -775,9 +812,11 @@ li {
     line-height: 1.125rem;
   }
 }
+
 .title--hero {
   text-align: center;
 }
+
 .title--primary-medium {
   font-family: "Noto Serif JP", "Times New Roman", sans-serif;
   font-size: 1.125rem;
@@ -785,6 +824,7 @@ li {
   letter-spacing: 0.075rem;
   text-align: center;
 }
+
 .title--primary-small {
   font-family: "Noto Serif JP", "Times New Roman", sans-serif;
   font-size: 0.875rem;
@@ -792,6 +832,7 @@ li {
   letter-spacing: 0.075rem;
   text-align: center;
 }
+
 .title--secondary-large {
   font-size: 1.5rem;
   line-height: 1.5rem;
@@ -799,6 +840,7 @@ li {
   text-transform: uppercase;
   text-align: center;
 }
+
 .title--secondary-medium {
   font-size: 1.125rem;
   line-height: 1.5rem;
@@ -806,6 +848,7 @@ li {
   text-transform: uppercase;
   text-align: center;
 }
+
 .title--secondary-small {
   font-size: 0.9375rem;
   font-weight: 600;
@@ -814,12 +857,15 @@ li {
   text-transform: uppercase;
   text-align: center;
 }
+
 .title--secondary-small-profile {
   margin-bottom: 0.3125rem;
 }
+
 .title--secondary-small-ceremony {
   margin-bottom: 0.625rem;
 }
+
 .title--underline {
   position: relative;
   padding-bottom: 1.25rem;
@@ -828,7 +874,7 @@ li {
   position: absolute;
   display: block;
   background-color: #29b6f6;
-  content: '';
+  content: "";
   width: 1.875rem;
   height: 0.125rem;
   right: 0;
@@ -836,12 +882,15 @@ li {
   left: 0;
   margin: 0 auto;
 }
+
 .title--white {
   color: #fff;
 }
+
 .title--left {
   text-align: left;
 }
+
 .title--space {
   margin: 1.875rem 0 1.25rem;
 }

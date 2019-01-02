@@ -18,13 +18,8 @@ module.exports = function (grunt) {
             }
         },
 
-        sass: {
-            dist: {
-                options: {
-                    style: 'expanded',
-                    sourcemap: 'auto',
-                    noCache: true
-                },
+        'dart-sass': {
+            target: {
                 files: [
                     {
                         expand: true,
@@ -196,7 +191,7 @@ module.exports = function (grunt) {
             },
             sass: {
                 files: '01_dev/sass/**/*',
-                tasks: ['sass'],
+                tasks: ['dart-sass'],
             },
             css: {
                 files: '01_dev/css/**/*',
@@ -222,7 +217,7 @@ module.exports = function (grunt) {
         } // end watch
     });
 
-    grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-dart-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-uglify-es');
@@ -238,7 +233,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-sw-precache');
 
     grunt.registerTask('default', ['watch']);
-    grunt.registerTask('dev', ['connect', 'clean:build', 'sass', 'autoprefixer', 'copy:css', 'jshint', 'copy:js', 'copy:img', 'processhtml:dev', 'watch']);
-    grunt.registerTask('prod', ['clean:build', 'sass', 'autoprefixer', 'copy:css', 'cssmin', 'copy:js', 'uglify', 'copy:img', 'processhtml:prod', 'cacheBust', 'htmlmin', 'clean:release', 'sw-precache']);
+    grunt.registerTask('dev', ['connect', 'clean:build', 'dart-sass', 'autoprefixer', 'copy:css', 'jshint', 'copy:js', 'copy:img', 'processhtml:dev', 'watch']);
+    grunt.registerTask('prod', ['clean:build', 'dart-sass', 'autoprefixer', 'copy:css', 'cssmin', 'copy:js', 'uglify', 'copy:img', 'processhtml:prod', 'cacheBust', 'htmlmin', 'clean:release', 'sw-precache']);
     grunt.registerTask('checkjs', ['jshint']);
 };

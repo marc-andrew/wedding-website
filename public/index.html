@@ -106,7 +106,7 @@
   position: absolute;
   display: block;
   background-color: #29b6f6;
-  content: '';
+  content: "";
   width: 0;
   height: 0.125rem;
   right: 0;
@@ -119,6 +119,7 @@
     content: normal;
   }
 }
+
 .nav__list-link {
   position: relative;
   display: block;
@@ -138,7 +139,7 @@
 .nav__list-link:after {
   position: absolute;
   display: block;
-  content: '/';
+  content: "/";
   color: #1c1c1c;
   right: -0.1875rem;
   top: 1.3125rem;
@@ -154,6 +155,7 @@
 .nav__list-link:hover .nav__list-link-txt:after, .nav__list-link:focus .nav__list-link-txt:after {
   width: 100%;
 }
+
 @media screen and (max-width: 666px) {
   .nav__list-item {
     border-bottom: 0.0625rem solid #f4f4f4;
@@ -163,6 +165,7 @@
 .nav__list-item:last-child .nav__list-link:after {
   content: normal;
 }
+
 @media screen and (max-width: 666px) {
   .nav--primary {
     -ms-transform: translateX(-100%);
@@ -178,13 +181,13 @@
     transition-timing-function: ease-in-out;
   }
 }
+
 @media screen and (max-width: 666px) {
   .nav--primary-open {
     -ms-transform: translateX(0%);
         transform: translateX(0%);
   }
-}
-                </style>
+}                </style>
             </div>
         </header>
 
@@ -223,10 +226,12 @@
   top: 0;
   left: 0;
 }
+
 .hero__main-inner {
   transition: all 1200ms ease-in-out;
   transition-delay: 1200ms;
 }
+
 .hero__copy {
   position: relative;
   font-family: "Open Sans", Helvetica, sans-serif;
@@ -243,7 +248,7 @@
   position: absolute;
   display: block;
   background-color: #1c1c1c;
-  content: '';
+  content: "";
   width: 0%;
   height: 0.125rem;
   top: 0;
@@ -253,6 +258,7 @@
   transition-delay: 1000ms;
   opacity: 0;
 }
+
 .hero .t {
   opacity: 0;
 }
@@ -287,8 +293,7 @@
   -ms-transform: scale(1);
       transform: scale(1);
   opacity: 1;
-}
-            </style>
+}            </style>
 
             <section class="container container--slidein ceremony" data-section-id="ceremony">
     <h3 class="title title--primary-small title--ceremony trans--all-slow trans--ease-in-out">Mr. &amp; Mrs. Dejust and Mr. &amp; Mrs. San Buenaventura <br>request the honor of your presence at the marriage of their children</h3>
@@ -723,8 +728,9 @@
     <p class="copy copy--center copy--sub">The best present you could possibly give us is attending our wedding. 
         <br>But if you'd like to spoil us, we've picked out a few items or contribute to our dream honeymoon.</p>
 
-    <div class="gifts__btns">
-        <a href="https://www.weddingshop.com/Buy/View/50940" target="_blank" rel="noopener" class="btn btn--ghost trans--all">Browse our list</a>
+    <div class="gifts__btns flex flex--justify-center">
+        <a href="https://www.weddingshop.com/Buy/View/50940" target="_blank" rel="noopener" class="btn btn--ghost btn--width-big btn--margin trans--all">Honeymoon</a>
+        <a href="https://www.weddingshop.com/Buy/View/50940" target="_blank" rel="noopener" class="btn btn--ghost btn--width-big btn--margin trans--all">Gift list</a>
     </div>
 </section>
 

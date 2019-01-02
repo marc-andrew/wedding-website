@@ -11,10 +11,12 @@
   top: 0;
   left: 0;
 }
+
 .hero__main-inner {
   transition: all 1200ms ease-in-out;
   transition-delay: 1200ms;
 }
+
 .hero__copy {
   position: relative;
   font-family: "Open Sans", Helvetica, sans-serif;
@@ -31,7 +33,7 @@
   position: absolute;
   display: block;
   background-color: #1c1c1c;
-  content: '';
+  content: "";
   width: 0%;
   height: 0.125rem;
   top: 0;
@@ -41,6 +43,7 @@
   transition-delay: 1000ms;
   opacity: 0;
 }
+
 .hero .t {
   opacity: 0;
 }

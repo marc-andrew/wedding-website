@@ -216,6 +216,15 @@
         text-align: center;
     }
 
+    @at-root #{&}--width-big {
+        width: px(150);
+        text-align: center;
+    }
+
+    @at-root #{&}--margin {
+        margin: px(5);
+    }
+
     @at-root #{&}--loading {
         border-color: $primaryMedium;
         outline-color: $primaryMedium;
