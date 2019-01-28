@@ -2,43 +2,6 @@
  Content
 **/
 
-.content {
-
-    @at-root #{&}__main {
-        margin-bottom: px(30);
-
-        & + .content__main {
-
-            .content__col-rest-left {
-                border-top: px(1) dashed $primaryMedium;
-                padding: px(30) 0 0;
-            }
-
-            .content__col-rest-right {
-                padding-top: px(30);
-            }
-        }
-    }
-
-    @at-root #{&}__col-rest-left {
-        width: 60%;
-
-        @include media(screen,max,666px) {
-            width: 100%;
-        }
-    }
-
-    @at-root #{&}__col-rest-right {
-        width: 40%;
-        padding-left: px(20);
-
-        @include media(screen,max,666px) {
-            width: 100%;
-            padding: 0;
-        }
-    }
-}
-
 .restaurants {
 
     .content__main {
