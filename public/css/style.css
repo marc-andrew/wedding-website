@@ -1729,6 +1729,11 @@ li {
 .restaurants__list .flex--align-stretch:first-child .restaurants__item {
   border-top: 0.0625rem solid #f4f4f4;
 }
+@media screen and (max-width: 666px) {
+  .restaurants__list .flex--align-stretch:first-child .restaurants__item {
+    border-top: none;
+  }
+}
 
 .restaurants__item {
   padding: 1.0625rem 0 0;

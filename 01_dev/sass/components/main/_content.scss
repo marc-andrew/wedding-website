@@ -30,6 +30,10 @@
             &:first-child {
                 .restaurants__item {
                     border-top: px(1) solid $primaryLight;
+
+                    @include media(screen,max,666px) {
+                        border-top: none;
+                    }
                 }
             }
         }
