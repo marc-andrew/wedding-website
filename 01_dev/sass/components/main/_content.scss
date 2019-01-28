@@ -10,7 +10,7 @@
         & + .content__main {
 
             .gs--col-7 {
-                border-top: px(1) dashed $primaryMedium;
+                border-top: px(1) solid $primaryLight;
             }
         }
 
@@ -21,5 +21,23 @@
         .gs--col-5 {
             padding-top: px(30);
         }
+    }
+
+    @at-root #{&}__list {
+
+        .flex--align-stretch {
+
+            &:first-child {
+                .restaurants__item {
+                    border-top: px(1) solid $primaryLight;
+                }
+            }
+        }
+    }
+
+    @at-root #{&}__item {
+        padding: px(17) 0 0;
+        height: 100%;
+        border-bottom: px(1) solid $primaryLight;
     }
 }

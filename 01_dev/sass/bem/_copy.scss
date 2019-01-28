@@ -24,15 +24,16 @@
         margin: px(20) 0;
     }
 
+    @at-root #{&}--small {
+        font-size: px(12);
+    }
+
+
     //-- MODIFIER: Copy secondary
     @at-root #{&}--secondary {
         font-family: $font-2;
         color: $primary;
         font-size: px(14);
-
-        strong {
-            font-weight: 600;
-        }
     }
     //-- MODIFIER: Copy error
     @at-root #{&}--error {
@@ -53,5 +54,21 @@
         li {
             display: list-item;
         }
+    }
+
+    @at-root #{&}--grey {
+        color: $primaryMedium;
+    }
+
+    @at-root #{&}--caps {
+        text-transform: uppercase;
+    }
+
+    @at-root #{&}--italic {
+        font-style: italic;
+    }
+
+    strong {
+        font-weight: 600;
     }
 }

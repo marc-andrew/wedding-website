@@ -39,4 +39,9 @@
             width: 100%;
         }
     }
+
+    @at-root #{&}--no-padding {
+        padding-right: 0;
+        padding-left: 0;
+    }
 }

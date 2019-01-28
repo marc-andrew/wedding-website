@@ -444,6 +444,11 @@ li {
       justify-content: flex-end;
 }
 
+.flex--align-stretch {
+  -ms-flex-align: stretch;
+      align-items: stretch;
+}
+
 .flex--align-center {
   -ms-flex-align: center;
       align-items: center;
@@ -676,6 +681,11 @@ li {
   margin: auto 0;
 }
 
+.btn__wrapper {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
 .btn--scroll-down {
   position: absolute;
   border-radius: 50%;
@@ -835,13 +845,14 @@ li {
   margin: 1.25rem 0;
 }
 
+.copy--small {
+  font-size: 0.75rem;
+}
+
 .copy--secondary {
   font-family: "Open Sans", Helvetica, sans-serif;
   color: #1c1c1c;
   font-size: 0.875rem;
-}
-.copy--secondary strong {
-  font-weight: 600;
 }
 
 .copy--error {
@@ -861,6 +872,22 @@ li {
 }
 .copy--list li {
   display: list-item;
+}
+
+.copy--grey {
+  color: #c1c1c1;
+}
+
+.copy--caps {
+  text-transform: uppercase;
+}
+
+.copy--italic {
+  font-style: italic;
+}
+
+.copy strong {
+  font-weight: 600;
 }
 
 /**
@@ -1113,6 +1140,11 @@ li {
   .gs--col-2-s {
     width: 100%;
   }
+}
+
+.gs--no-padding {
+  padding-right: 0;
+  padding-left: 0;
 }
 
 /**
@@ -1682,46 +1714,24 @@ li {
 /**
  Content
 **/
-.content__main {
-  margin-bottom: 1.875rem;
-}
-.content__main + .content__main .content__col-rest-left {
-  border-top: 0.0625rem dashed #c1c1c1;
-  padding: 1.875rem 0 0;
-}
-.content__main + .content__main .content__col-rest-right {
-  padding-top: 1.875rem;
-}
-
-.content__col-rest-left {
-  width: 60%;
-}
-@media screen and (max-width: 666px) {
-  .content__col-rest-left {
-    width: 100%;
-  }
-}
-
-.content__col-rest-right {
-  width: 40%;
-  padding-left: 1.25rem;
-}
-@media screen and (max-width: 666px) {
-  .content__col-rest-right {
-    width: 100%;
-    padding: 0;
-  }
-}
-
 .restaurants .content__main {
   margin-bottom: 1.875rem;
 }
 .restaurants .content__main + .content__main .gs--col-7 {
-  border-top: 0.0625rem dashed #c1c1c1;
+  border-top: 0.0625rem solid #f4f4f4;
 }
 .restaurants .content__main .gs--col-7 {
   padding-top: 1.875rem;
 }
 .restaurants .content__main .gs--col-5 {
   padding-top: 1.875rem;
+}
+.restaurants__list .flex--align-stretch:first-child .restaurants__item {
+  border-top: 0.0625rem solid #f4f4f4;
+}
+
+.restaurants__item {
+  padding: 1.0625rem 0 0;
+  height: 100%;
+  border-bottom: 0.0625rem solid #f4f4f4;
 }

@@ -24,6 +24,9 @@
     @at-root #{&}--justify-end {
         justify-content: flex-end;
     }
+    @at-root #{&}--align-stretch {
+        align-items: stretch;
+    }
     //-- MODIFIER: Align Items to Center
     @at-root #{&}--align-center {
         align-items: center;
