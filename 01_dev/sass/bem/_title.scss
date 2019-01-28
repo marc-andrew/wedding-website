@@ -137,4 +137,8 @@
     @at-root #{&}--space {
         margin: px(30) 0 px(20);
     }
+
+    @at-root #{&}--margin-bottom {
+        margin-bottom: px(22);
+    }
 }

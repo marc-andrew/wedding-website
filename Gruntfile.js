@@ -123,22 +123,22 @@ module.exports = function (grunt) {
 
         processhtml: {
             dev: {
-                files: {
-                    'public/index.html': ['01_dev/template/index.html'],
-                    'public/404.html': ['01_dev/template/404.html'],
-                    'public/privacy-policy.html': ['01_dev/template/privacy-policy.html'],
-                    'public/cookie-policy.html': ['01_dev/template/cookie-policy.html'],
-                    'public/add.html': ['01_dev/template/add.html'],
-                }
+                files: [{
+                    expand: true,
+                    cwd: '01_dev/template/',
+                    src: ['*.html'],
+                    dest: 'public/',
+                    ext: '.html'
+                }],
             },
             prod: {
-                files: {
-                    'public/index.html': ['01_dev/template/index.html'],
-                    'public/404.html': ['01_dev/template/404.html'],
-                    'public/privacy-policy.html': ['01_dev/template/privacy-policy.html'],
-                    'public/cookie-policy.html': ['01_dev/template/cookie-policy.html'],
-                    'public/add.html': ['01_dev/template/add.html'],
-                }
+                files: [{
+                    expand: true,
+                    cwd: '01_dev/template/',
+                    src: ['*.html'],
+                    dest: 'public/',
+                    ext: '.html'
+                }],
             }
         },
 
@@ -150,7 +150,7 @@ module.exports = function (grunt) {
                     deleteOriginals: true,
                     createCopies: true,
                 },
-                src: ['public/index.html', 'public/404.html', 'public/privacy-policy.html', 'public/cookie-policy.html', 'public/add.html']
+                src: ['public/index.html', 'public/404.html', 'public/privacy-policy.html', 'public/cookie-policy.html', 'public/experiences-and-sights.html']
             }
         },
 

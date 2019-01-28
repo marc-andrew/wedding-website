@@ -1,0 +1,42 @@
+/**
+ Grid
+**/
+
+.gs {
+    width: 100%;
+    padding: 0 10px;
+
+    @at-root #{&}--col-3 {
+        width: column(3, 12);
+    }
+    @at-root #{&}--col-4 {
+        width: column(4, 12);
+    }
+    @at-root #{&}--col-5 {
+        width: column(5, 12);
+    }
+    @at-root #{&}--col-6 {
+        width: column(6, 12);
+    }
+    @at-root #{&}--col-7 {
+        width: column(7, 12);
+    }
+    @at-root #{&}--col-8 {
+        width: column(8, 12);
+    }
+    @at-root #{&}--col-9 {
+        width: column(9, 12);
+    }
+
+    // Mobile
+    @at-root #{&}--col-1-s {
+        @include media(screen,max,666px) {
+            width: 50%;
+        }
+    }
+    @at-root #{&}--col-2-s {
+        @include media(screen,max,666px) {
+            width: 100%;
+        }
+    }
+}

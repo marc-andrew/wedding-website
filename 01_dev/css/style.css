@@ -415,6 +415,7 @@ li {
 .footer .copy {
   padding: 0.125rem 0 0;
   margin: 0;
+  font-size: 0.8125rem;
 }
 
 /**
@@ -823,7 +824,7 @@ li {
   font-family: "Noto Serif JP", "Times New Roman", sans-serif;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  margin: 0 0 0.625rem;
+  margin: 0 0 1.25rem;
   letter-spacing: 0.03125rem;
 }
 .copy--center {
@@ -837,7 +838,7 @@ li {
 .copy--secondary {
   font-family: "Open Sans", Helvetica, sans-serif;
   color: #1c1c1c;
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
 }
 .copy--secondary strong {
   font-weight: 600;
@@ -996,6 +997,10 @@ li {
   margin: 1.875rem 0 1.25rem;
 }
 
+.title--margin-bottom {
+  margin-bottom: 1.375rem;
+}
+
 /**
  Container
 **/
@@ -1063,6 +1068,53 @@ li {
     transform: scale(1);
   }
 }
+/**
+ Grid
+**/
+.gs {
+  width: 100%;
+  padding: 0 10px;
+}
+.gs--col-3 {
+  width: 25%;
+}
+
+.gs--col-4 {
+  width: 33.3333333333%;
+}
+
+.gs--col-5 {
+  width: 41.6666666667%;
+}
+
+.gs--col-6 {
+  width: 50%;
+}
+
+.gs--col-7 {
+  width: 58.3333333333%;
+}
+
+.gs--col-8 {
+  width: 66.6666666667%;
+}
+
+.gs--col-9 {
+  width: 75%;
+}
+
+@media screen and (max-width: 666px) {
+  .gs--col-1-s {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 666px) {
+  .gs--col-2-s {
+    width: 100%;
+  }
+}
+
 /**
  Ceremony
 **/
@@ -1625,4 +1677,51 @@ li {
 }
 .map.visible {
   opacity: 1;
+}
+
+/**
+ Content
+**/
+.content__main {
+  margin-bottom: 1.875rem;
+}
+.content__main + .content__main .content__col-rest-left {
+  border-top: 0.0625rem dashed #c1c1c1;
+  padding: 1.875rem 0 0;
+}
+.content__main + .content__main .content__col-rest-right {
+  padding-top: 1.875rem;
+}
+
+.content__col-rest-left {
+  width: 60%;
+}
+@media screen and (max-width: 666px) {
+  .content__col-rest-left {
+    width: 100%;
+  }
+}
+
+.content__col-rest-right {
+  width: 40%;
+  padding-left: 1.25rem;
+}
+@media screen and (max-width: 666px) {
+  .content__col-rest-right {
+    width: 100%;
+    padding: 0;
+  }
+}
+
+.restaurants .content__main {
+  margin-bottom: 1.875rem;
+}
+.restaurants .content__main + .content__main .gs--col-7 {
+  border-top: 0.0625rem dashed #c1c1c1;
+}
+.restaurants .content__main .gs--col-7 {
+  padding-top: 1.875rem;
+}
+.restaurants .content__main .gs--col-5 {
+  padding-top: 1.875rem;
 }
