@@ -23,10 +23,15 @@
         padding: 0;
     }
 
+    @at-root #{&}--no-padding-top {
+        padding-top: 0;
+    }
+
     //-- MODIFIER: Container slide in
     @at-root #{&}--slidein {
         &.visible {
             animation: moveIn 1000ms ease-out  forwards;
         }
     }
+    
 }

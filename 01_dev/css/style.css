@@ -1047,6 +1047,10 @@ li {
   padding: 0;
 }
 
+.container--no-padding-top {
+  padding-top: 0;
+}
+
 .container--slidein.visible {
   animation: moveIn 1000ms ease-out forwards;
 }
