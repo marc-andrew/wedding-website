@@ -925,6 +925,10 @@ li {
   margin-bottom: 1.375rem;
 }
 
+.title--bold {
+  font-weight: 600;
+}
+
 /**
  404
 **/

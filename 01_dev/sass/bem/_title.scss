@@ -141,4 +141,8 @@
     @at-root #{&}--margin-bottom {
         margin-bottom: px(22);
     }
+
+    @at-root #{&}--bold {
+        font-weight: 600;
+    }
 }
