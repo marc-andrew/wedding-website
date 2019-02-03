@@ -19,17 +19,25 @@
         overflow: hidden;
     }
 
+    @at-root #{&}__ratio {
+        position: relative;
+        transition: padding 0s;
+
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    }
+
     //
     //------------------------------- Start Modifier
     //
 
-    //-- MODIFIER: Image loaded
-    @at-root #{&}--loaded {
-
-        #{$imgParent} {
-            opacity: 1;
-        }
+    @at-root #{&}--fade-in {
+        transition: all 500ms;
     }
+
     //-- MODIFIER: Container Hero
     @at-root #{&}--container-hero {
         height: calc(100vw / 1.8666666667); // 1400/750=1.8666666667
@@ -65,6 +73,10 @@
         }
     }
 
+    @at-root #{&}--ratio-16x9 {
+        padding-top: getratio(820,461);
+    }
+
     //-- MODIFIER: Img Container
     @at-root #{&}--container-visible {
         z-index: 1;
@@ -74,6 +86,22 @@
             transition: opacity 800ms ease, transform 1800ms ease-out;
             transition-delay: 0ms;
             transform: scale(1);
+        }
+    }
+
+    //-- MODIFIER: Image loaded
+    @at-root #{&}--loaded {
+
+        #{$imgParent} {
+            opacity: 1;
+        }
+
+        &.img__ratio {
+            padding-top: 0;
+
+            img {
+                position: static;
+            }
         }
     }
 }

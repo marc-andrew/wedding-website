@@ -45,3 +45,29 @@
         border-bottom: px(1) solid $primaryLight;
     }
 }
+
+.experiences {
+
+    .content__main {
+        margin-bottom: px(30);
+
+        & + .content__main {
+
+            .gs--col-7 {
+                border-top: px(1) solid $primaryLight;
+            }
+        }
+
+        .gs--col-7 {
+            padding-top: px(30);
+        }
+
+        .gs--col-5 {
+            padding-top: px(30);
+        }
+    }
+
+    .img__container {
+        margin-bottom: px(30);
+    }
+}

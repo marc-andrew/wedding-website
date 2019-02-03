@@ -37,3 +37,7 @@
 @function column($target-column, $max-columns) {
 	@return (100% / $max-columns) * $target-column;
 }
+
+@function getratio($targetWidth, $targetHeight) {
+	@return ($targetHeight / $targetWidth) * 100%;
+}

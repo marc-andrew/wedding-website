@@ -498,8 +498,18 @@ li {
   overflow: hidden;
 }
 
-.img--loaded .img {
-  opacity: 1;
+.img__ratio {
+  position: relative;
+  transition: padding 0s;
+}
+.img__ratio img {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.img--fade-in {
+  transition: all 500ms;
 }
 
 .img--container-hero {
@@ -537,6 +547,10 @@ li {
   left: 0;
 }
 
+.img--ratio-16x9 {
+  padding-top: 56.2195121951%;
+}
+
 .img--container-visible {
   z-index: 1;
 }
@@ -546,6 +560,16 @@ li {
   transition-delay: 0ms;
   -ms-transform: scale(1);
       transform: scale(1);
+}
+
+.img--loaded .img {
+  opacity: 1;
+}
+.img--loaded.img__ratio {
+  padding-top: 0;
+}
+.img--loaded.img__ratio img {
+  position: static;
 }
 
 .no-js .img {
@@ -1746,4 +1770,20 @@ li {
   padding: 1.0625rem 0 0;
   height: 100%;
   border-bottom: 0.0625rem solid #f4f4f4;
+}
+
+.experiences .content__main {
+  margin-bottom: 1.875rem;
+}
+.experiences .content__main + .content__main .gs--col-7 {
+  border-top: 0.0625rem solid #f4f4f4;
+}
+.experiences .content__main .gs--col-7 {
+  padding-top: 1.875rem;
+}
+.experiences .content__main .gs--col-5 {
+  padding-top: 1.875rem;
+}
+.experiences .img__container {
+  margin-bottom: 1.875rem;
 }
