@@ -33,5 +33,9 @@
             animation: moveIn 1000ms ease-out  forwards;
         }
     }
+
+    @at-root #{&}--line {
+        border-top: px(1) dashed $primaryMedium;
+    }
     
 }
