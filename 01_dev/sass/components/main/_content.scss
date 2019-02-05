@@ -63,7 +63,11 @@
         }
 
         .gs--col-5 {
-            padding-top: px(30);
+            padding-top: px(85);
+
+            @include media(screen,max,666px) {
+                padding-top: px(30);
+            }
         }
     }
 

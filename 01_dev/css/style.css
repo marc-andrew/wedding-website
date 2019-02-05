@@ -1083,6 +1083,10 @@ li {
   animation: moveIn 1000ms ease-out forwards;
 }
 
+.container--line {
+  border-top: 0.0625rem dashed #c1c1c1;
+}
+
 /**
  Animation
 **/
@@ -1782,7 +1786,12 @@ li {
   padding-top: 1.875rem;
 }
 .experiences .content__main .gs--col-5 {
-  padding-top: 1.875rem;
+  padding-top: 5.3125rem;
+}
+@media screen and (max-width: 666px) {
+  .experiences .content__main .gs--col-5 {
+    padding-top: 1.875rem;
+  }
 }
 .experiences .img__container {
   margin-bottom: 1.875rem;
