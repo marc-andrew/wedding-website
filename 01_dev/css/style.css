@@ -1749,28 +1749,28 @@ li {
 /**
  Content
 **/
-.restaurants .content__main {
+.drinks-foods .content__main {
   margin-bottom: 1.875rem;
 }
-.restaurants .content__main + .content__main .gs--col-7 {
+.drinks-foods .content__main + .content__main .gs--col-7 {
   border-top: 0.0625rem solid #f4f4f4;
 }
-.restaurants .content__main .gs--col-7 {
+.drinks-foods .content__main .gs--col-7 {
   padding-top: 1.875rem;
 }
-.restaurants .content__main .gs--col-5 {
+.drinks-foods .content__main .gs--col-5 {
   padding-top: 1.875rem;
 }
-.restaurants__list .flex--align-stretch:first-child .restaurants__item {
+.drinks-foods__list .flex--align-stretch:first-child .restaurants__item {
   border-top: 0.0625rem solid #f4f4f4;
 }
 @media screen and (max-width: 666px) {
-  .restaurants__list .flex--align-stretch:first-child .restaurants__item {
+  .drinks-foods__list .flex--align-stretch:first-child .restaurants__item {
     border-top: none;
   }
 }
 
-.restaurants__item {
+.drinks-foods__item {
   padding: 1.0625rem 0 0;
   height: 100%;
   border-bottom: 0.0625rem solid #f4f4f4;
