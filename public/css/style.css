@@ -890,11 +890,12 @@ li {
 }
 
 .copy--list {
-  list-style: disc inside;
+  list-style: disc outside;
   padding: 0 0 0 1.25rem;
 }
 .copy--list li {
   display: list-item;
+  margin-bottom: 0.3125rem;
 }
 
 .copy--grey {
@@ -1669,9 +1670,7 @@ li {
  Information
 **/
 .info {
-  padding-right: 0.625rem;
   padding-bottom: 0;
-  padding-left: 0.625rem;
 }
 .info .copy {
   padding-right: 0.625rem;
@@ -1679,13 +1678,23 @@ li {
 }
 .info .img__container {
   position: relative;
-  padding-top: 133%;
+  padding-top: 56.2561094819%;
+}
+@media screen and (max-width: 666px) {
+  .info .img__container {
+    padding-top: 100%;
+  }
 }
 .info .img__container .img {
   position: absolute;
   top: 0;
   left: 0;
 }
+.info__item {
+  position: relative;
+  margin-top: 2.5rem;
+}
+
 .info__list {
   padding: 0.9375rem 0 0;
 }
@@ -1706,17 +1715,14 @@ li {
   position: absolute;
   background-color: transparent;
   top: 0;
-  left: 0.625rem;
-  right: 0.625rem;
+  left: 0;
+  right: 0;
   height: 100%;
 }
 .info__main:hover {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.info__main-inner {
-  padding-bottom: 2.5rem;
-}
 .info__main-inner .title {
   width: 100%;
   margin-bottom: 0.625rem;

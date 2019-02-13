@@ -3,9 +3,7 @@
 **/
 
 .info {
-    padding-right: px(10);
     padding-bottom: 0;
-    padding-left: px(10);
 
     .copy {
         padding-right: px(10);
@@ -14,13 +12,22 @@
 
     .img__container {
         position: relative;
-        padding-top: 133%;
+        padding-top: getratio(2046,1151);
+
+        @include media(screen,max,666px) {
+            padding-top: 100%;
+        }
 
         .img {
             position: absolute;
             top: 0;
             left: 0;
         }
+    }
+
+    @at-root #{&}__item {
+        position: relative;
+        margin-top: px(40);
     }
 
     @at-root #{&}__list {
@@ -42,8 +49,8 @@
         position: absolute;
         background-color: transparent;
         top: 0;
-        left: px(10);
-        right: px(10);
+        left: 0;
+        right: 0;
         height: 100%;
 
         &:hover {
@@ -52,7 +59,6 @@
     }
 
     @at-root #{&}__main-inner {
-        padding-bottom: px(40);
 
         .title {
             width: 100%;

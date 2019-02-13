@@ -48,11 +48,12 @@
     }
 
     @at-root #{&}--list {
-        list-style: disc inside;
+        list-style: disc outside;
         padding: 0 0 0 px(20);
 
         li {
             display: list-item;
+            margin-bottom: px(5);
         }
     }
 
