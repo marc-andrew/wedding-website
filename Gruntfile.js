@@ -150,7 +150,7 @@ module.exports = function (grunt) {
                     deleteOriginals: true,
                     createCopies: true,
                 },
-                src: ['public/index.html', 'public/404.html', 'public/privacy-policy.html', 'public/cookie-policy.html', 'public/experiences-and-sights.html']
+                src: ['public/index.html', 'public/404.html', 'public/privacy-policy.html', 'public/cookie-policy.html', 'public/experiences-and-sights.html', 'public/restaurants.html', 'public/about-vienna.html', 'public/coffee-places.html']
             }
         },
 
