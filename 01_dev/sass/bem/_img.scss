@@ -77,6 +77,10 @@
         padding-top: getratio(820,461);
     }
 
+    @at-root #{&}--ratio-menu {
+        padding-top: getratio(2800,1038);
+    }
+
     //-- MODIFIER: Img Container
     @at-root #{&}--container-visible {
         z-index: 1;

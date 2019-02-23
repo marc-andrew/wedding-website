@@ -69,6 +69,38 @@
         font-style: italic;
     }
 
+    @at-root #{&}--no-margin {
+        margin-bottom: 0;
+    }
+
+    @at-root #{&}--title-line {
+        position: relative;
+        display: table;
+        white-space: nowrap;
+        width: 100%;
+        overflow: hidden;
+        max-width: px(400);
+        margin: px(55) auto px(50);
+
+        &:before,
+        &:after {
+            border-top: 1px dashed $primaryMedium;
+            content: '';
+            display: table-cell;
+            position: relative;
+            top: px(10);
+            width: 50%;
+        }
+
+        &:before {
+            right: px(30);
+        }
+
+        &:after {
+            left: px(30);
+        }
+    }
+
     strong {
         font-weight: 600;
     }

@@ -75,3 +75,19 @@
         margin-bottom: px(30);
     }
 }
+
+.food-menu {
+
+    .gs {
+        padding-top: px(30);
+        padding-bottom: px(50);
+
+        & + .gs {
+            border-top: px(1) solid $primaryLight;
+        }
+    }
+}
+
+.choose-menu {
+    border-top: px(1) dashed $primaryMedium;
+}

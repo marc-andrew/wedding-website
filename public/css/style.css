@@ -551,6 +551,10 @@ li {
   padding-top: 56.2195121951%;
 }
 
+.img--ratio-menu {
+  padding-top: 37.0714285714%;
+}
+
 .img--container-visible {
   z-index: 1;
 }
@@ -908,6 +912,34 @@ li {
 
 .copy--italic {
   font-style: italic;
+}
+
+.copy--no-margin {
+  margin-bottom: 0;
+}
+
+.copy--title-line {
+  position: relative;
+  display: table;
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  max-width: 25rem;
+  margin: 3.4375rem auto 3.125rem;
+}
+.copy--title-line:before, .copy--title-line:after {
+  border-top: 1px dashed #c1c1c1;
+  content: "";
+  display: table-cell;
+  position: relative;
+  top: 0.625rem;
+  width: 50%;
+}
+.copy--title-line:before {
+  right: 1.875rem;
+}
+.copy--title-line:after {
+  left: 1.875rem;
 }
 
 .copy strong {
@@ -1798,4 +1830,16 @@ li {
 }
 .experiences .img__container {
   margin-bottom: 1.875rem;
+}
+
+.food-menu .gs {
+  padding-top: 1.875rem;
+  padding-bottom: 3.125rem;
+}
+.food-menu .gs + .gs {
+  border-top: 0.0625rem solid #f4f4f4;
+}
+
+.choose-menu {
+  border-top: 0.0625rem dashed #c1c1c1;
 }
