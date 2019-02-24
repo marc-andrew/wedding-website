@@ -90,4 +90,38 @@
 
 .choose-menu {
     border-top: px(1) dashed $primaryMedium;
+
+    .menu__row {
+        margin-bottom: px(20);
+
+        .copy {
+            margin-bottom: 0;
+        }
+    }
+
+    .menu__row-inner {
+        position: relative;
+        padding-left: px(30);
+    }
+
+    .menu__row-submit {
+        padding-top: px(20);
+    }
+
+    .menu__radio {
+        position: absolute;
+        width: px(15);
+        height: px(15);
+        top: px(3);
+        left: 0;
+    }
+
+    .menu__container {
+
+        & + .menu__container {
+            border-top: px(1) solid $primaryLight;
+            margin-top: px(40);
+            padding-top: px(40);
+        }
+    }
 }

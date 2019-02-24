@@ -1843,3 +1843,28 @@ li {
 .choose-menu {
   border-top: 0.0625rem dashed #c1c1c1;
 }
+.choose-menu .menu__row {
+  margin-bottom: 1.25rem;
+}
+.choose-menu .menu__row .copy {
+  margin-bottom: 0;
+}
+.choose-menu .menu__row-inner {
+  position: relative;
+  padding-left: 1.875rem;
+}
+.choose-menu .menu__row-submit {
+  padding-top: 1.25rem;
+}
+.choose-menu .menu__radio {
+  position: absolute;
+  width: 0.9375rem;
+  height: 0.9375rem;
+  top: 0.1875rem;
+  left: 0;
+}
+.choose-menu .menu__container + .menu__container {
+  border-top: 0.0625rem solid #f4f4f4;
+  margin-top: 2.5rem;
+  padding-top: 2.5rem;
+}
