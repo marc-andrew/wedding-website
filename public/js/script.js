@@ -911,8 +911,8 @@
             </div>
             <span class="title title--secondary-medium title--bold title--space">Main</span>
             <div class="menu__row">
-                <p class="copy copy--no-margin copy--center">Veal / Fries</p>
-                <p class="copy copy--small copy--italic copy--grey copy--center">Kalb / Pommes</p>
+                <p class="copy copy--no-margin copy--center">Schnitzel / Fries</p>
+                <p class="copy copy--small copy--italic copy--grey copy--center">Schnitzel / Pommes</p>
             </div>
             <span class="title title--secondary-medium title--bold title--space">Dessert</span>
             <div class="menu__row">
