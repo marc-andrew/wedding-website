@@ -74,6 +74,20 @@
     </div>
 
     <script src="js/script.js" type="text/javascript" async></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-firestore.js"></script>
+    <script>
+        // Initialize Firebase
+        const config = {
+            
+        };
+        firebase.initializeApp(config);
+        const timestamp = firebase.firestore.FieldValue.serverTimestamp();
+        // Initialize Firestore
+        const db = firebase.firestore();
+        const firestoreSettings = { timestampsInSnapshots: true };
+        db.settings(firestoreSettings);
+    </script>
 
     <!-- build:remove:dev -->
     <!-- Google Tag Manager -->

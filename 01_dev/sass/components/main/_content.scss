@@ -89,6 +89,7 @@
 }
 
 .choose-menu {
+    display: none;
     border-top: px(1) dashed $primaryMedium;
 
     .menu__row {
@@ -122,6 +123,25 @@
             border-top: px(1) solid $primaryLight;
             margin-top: px(40);
             padding-top: px(40);
+        }
+    }
+
+    &.need-confirmation {
+        display: block;
+    }
+
+    &.confirmed {
+        display: block;
+
+        .menu__form {
+            display: none;
+        }
+    }
+
+    &.submitted {
+
+        .menu__form {
+            display: none;
         }
     }
 }

@@ -70,7 +70,7 @@
             <p class="copy copy--small copy--italic copy--grey copy--center">Rosa gebratene Entenbrust mit Selleriecrème, Stangenselleriegemüse und Portweinsauce</p>
         </div>
 
-        <div class="gs">
+        <div class="gs" id="kids-menu">
 
             <h3 class="title title--secondary-medium title--bold title--space">Kids Menu</h3>
 
@@ -107,8 +107,9 @@
         <div id="menu-selection">
             <div class="menu__container">
                 <span class="title title--primary-medium">Marc Andrew, please select your ...</span>
-
                 <span class="title title--secondary-medium title--bold title--space">Starter</span>
+
+                <input type="hidden" id="name-${id}" name="item-name" value="Marc">
                 <div class="menu__row flex flex--justify-center">
                     <div class="menu__row-inner">
                         <input type="radio" class="menu__radio" id="starter-option-1" name="starter-options" value="starter-option-1" checked>
@@ -180,21 +181,19 @@
                 <span class="title title--primary-medium">Marc Andrew, your selection is the kids menu</span>
 
                 <span class="title title--secondary-medium title--bold title--space">Soup</span>
-                <div class="menu__row flex flex--justify-center">
-                    <p class="copy copy--no-margin">Beef / Root Vegetabels / Chives</p>
+                <div class="menu__row">
+                    <p class="copy copy--no-margin copy--center">Beef / Root Vegetabels / Chives</p>
                     <p class="copy copy--small copy--italic copy--grey copy--center">Rind / Wurzelgemüse / Schnittlauch</p>
                 </div>
-
                 <span class="title title--secondary-medium title--bold title--space">Main</span>
-                <div class="menu__row flex flex--justify-center">
-                    <p class="copy copy--no-margin">Veal / Fries (A, C, G, O)</p>
-                    <p class="copy copy--small copy--italic copy--grey">Kalb / Pommes</p>
+                <div class="menu__row">
+                    <p class="copy copy--no-margin copy--center">Veal / Fries</p>
+                    <p class="copy copy--small copy--italic copy--grey copy--center">Kalb / Pommes</p>
                 </div>
-
                 <span class="title title--secondary-medium title--bold title--space">Dessert</span>
-                <div class="menu__row flex flex--justify-center">
-                    <p class="copy copy--no-margin">Ice Cream</p>
-                    <p class="copy copy--small copy--italic copy--grey">Gemischtes Eis</p>
+                <div class="menu__row">
+                    <p class="copy copy--no-margin copy--center">Ice Cream</p>
+                    <p class="copy copy--small copy--italic copy--grey copy--center">Gemischtes Eis</p>
                 </div>
             </div>
         </div>
@@ -203,4 +202,5 @@
             <input type="submit" class="btn btn--ghost btn--width trans--all" id="menu-submit" value="Submit">
         </div>
     </form>
+
 </section>

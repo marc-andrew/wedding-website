@@ -1841,6 +1841,7 @@ li {
 }
 
 .choose-menu {
+  display: none;
   border-top: 0.0625rem dashed #c1c1c1;
 }
 .choose-menu .menu__row {
@@ -1867,4 +1868,16 @@ li {
   border-top: 0.0625rem solid #f4f4f4;
   margin-top: 2.5rem;
   padding-top: 2.5rem;
+}
+.choose-menu.need-confirmation {
+  display: block;
+}
+.choose-menu.confirmed {
+  display: block;
+}
+.choose-menu.confirmed .menu__form {
+  display: none;
+}
+.choose-menu.submitted .menu__form {
+  display: none;
 }
