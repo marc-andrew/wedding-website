@@ -835,12 +835,12 @@
         menuSelection.innerHTML = menuItemArr.join('');
     }
     // Menu Form Items
-    function menuFormItem(id, name, isKid) {
+    function menuFormItem(id, name, lastname, isKid) {
         let menuItem = `
             <div class="menu__container menu--form-item">
                 <span class="title title--primary-medium">${name}, please select your ...</span>
                 <span class="title title--secondary-medium title--bold title--space">Starter</span>
-                <input type="hidden" id="name-${id}" name="item-name" value="${name}">
+                <input type="hidden" id="name-${id}" name="item-name" value="${name} ${lastname}">
                 <div class="menu__row flex flex--justify-center">
                     <div class="menu__row-inner">
                         <input type="radio" class="menu__radio item-radio-${id}" id="starter-${id}-option-1" name="starter-${id}-options" value="Starter 1" checked>
