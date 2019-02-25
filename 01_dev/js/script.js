@@ -327,6 +327,10 @@
     const mapWarpper = document.getElementsByClassName('map')[0];
     const viewMapBtn = document.getElementsByClassName('btn--view-map');
 
+    // Food Menu
+    const menuFormContainer = document.getElementById('menu-form-container');
+    const menuFormId = document.getElementById('menu-form');
+
     // Navigation click listener
     if (document.body.classList.contains('home')) {
         for (let i = 0; i < navButton.length; i++) {
@@ -346,6 +350,9 @@
 
     // Check if form exists 
     if (!!formId) rsvpForm();
+
+    // Check if menu page
+    if(!!menuFormContainer) initMenuPage();
 
     // This is required for scrollToY function
     window.requestAnimFrame = (function () {
@@ -738,6 +745,137 @@
 
         while (relationId.firstChild) {
             relationId.removeChild(relationId.firstChild);
+        }
+    }
+    // Init Food Menu Page
+    function initMenuPage() {
+        let userId = getParameter('e');
+
+        if(userId) {
+            // Get data
+            let docRef = db.collection("menulist").doc(userId.toLowerCase());
+
+            docRef.get().then(function(doc){
+                if (doc.exists) {
+                    let docData = doc.data();
+                    let guestsData = doc.g;
+
+                    // Continue if its not confirmed yet
+                    if (docData.c === false) {
+                        menuFormId.classList.add('need-confirmation');
+                        console.log(guestsData);
+                        buildMenuForm(guestsData);
+                    } else {
+                        menuFormId.classList.add('confirmed');
+                    }
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    }
+    // Build Menu Form Items
+    function buildMenuForm(data) {
+        let fakeData = {
+            'Name 1': false,
+            'Name 2': false,
+            'Name 3': true,
+        };
+        let menuSelection = document.getElementById('menu-selection');
+        let menuItemArr = [];
+        let count = 0;
+
+        for (var key in fakeData) {
+            if (!fakeData.hasOwnProperty(key)) continue;
+            let name = key;
+            let isKid = fakeData[key];
+            count++;
+            // Add form items to Dom
+            menuItemArr.push(menuFormItem(count,name,isKid));
+        }
+
+        menuSelection.innerHTML = menuItemArr.join('');
+    }
+    // Menu Form Items
+    function menuFormItem(id, name, isKid) {
+        let menuItem = `
+            <div class="menu__container">
+                <span class="title title--primary-medium">${name}, please select your ...</span>
+                <span class="title title--secondary-medium title--bold title--space">Starter</span>
+                <input type="hidden" id="name-${id}" name="item-name" value"${name}">
+                <div class="menu__row flex flex--justify-center">
+                    <div class="menu__row-inner">
+                        <input type="radio" class="menu__radio" id="starter-${id}-option-1" name="starter-options" value="Starter 1" checked>
+                        <label for="starter-${id}-option-1" class="copy">Buffalo Mozzarella / Tomato / Basil <br>
+                            <span class="copy copy--small copy--italic copy--grey">Büffelmozzarella / Tomate / Basilikum</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="menu__row flex flex--justify-center">
+                    <div class="menu__row-inner">
+                        <input type="radio" class="menu__radio" id="starter-${id}-option-2" name="starter-options" value="Starter 2">
+                        <label for="starter-${id}-option-2" class="copy">Salmon / Avocado / Potatoes <br>
+                            <span class="copy copy--small copy--italic copy--grey">Lachs / Avocado / Erdapfel</span>
+                        </label>
+                    </div>
+                </div>
+                <span class="title title--secondary-medium title--bold title--space">Soup</span>
+                <div class="menu__row flex flex--justify-center">
+                    <div class="menu__row-inner">
+                        <input type="radio" class="menu__radio" id="soup-${id}-option-1" name="soup-options" value="Soup 1" checked>
+                        <label for="soup-${id}-option-1" class="copy">Bell Pepper / Tomato / Celery (vegetarian, cold) <br>
+                            <span class="copy copy--small copy--italic copy--grey">Paprika / Tomate / Sellerie (vegetarisch, kalt)</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="menu__row flex flex--justify-center">
+                    <div class="menu__row-inner">
+                        <input type="radio" class="menu__radio" id="soup-${id}-option-2" name="soup-options" value="Soup 2">
+                        <label for="soup-${id}-option-2" class="copy">Beef / Root Vegetabels / Chives <br>
+                            <span class="copy copy--small copy--italic copy--grey">Rind / Wurzelgemüse / Schnittlauch</span>
+                        </label>
+                    </div>
+                </div>
+                <span class="title title--secondary-medium title--bold title--space">Main</span>
+                <div class="menu__row flex flex--justify-center">
+                    <div class="menu__row-inner">
+                        <input type="radio" class="menu__radio" id="main-${id}-option-1" name="main-options" value="Main 1" checked>
+                        <label for="main-${id}-option-1" class="copy">Swiss Chard / Ricotta / Pine Nuts <br>
+                            <span class="copy copy--small copy--italic copy--grey">Mangold / Ricotta / Pinienkerne</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="menu__row flex flex--justify-center">
+                    <div class="menu__row-inner">
+                        <input type="radio" class="menu__radio" id="main-${id}-option-2" name="main-options" value="Main 2">
+                        <label for="main-${id}-option-2" class="copy">Veal / Parsley / Lingonberries <br>
+                            <span class="copy copy--small copy--italic copy--grey">Kalb / Petersilie / Preiselbeere</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="menu__row flex flex--justify-center">
+                    <div class="menu__row-inner">
+                        <input type="radio" class="menu__radio" id="main-${id}-option-3" name="main-options" value="Main 3">
+                        <label for="main-${id}-option-3" class="copy">Duck / Port Wine / Celery <br>
+                            <span class="copy copy--small copy--italic copy--grey">Ente / Portwein / Sellerie</span>
+                        </label>
+                    </div>
+                </div>
+            </div>`;
+        
+        return menuItem;
+    }
+    // Get URL parameter
+    function getParameter(sParam) {
+        let sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName;
+    
+        for (let i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? undefined : sParameterName[1];
+            }
         }
     }
     // Relation list
