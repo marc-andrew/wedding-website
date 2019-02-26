@@ -793,12 +793,11 @@
             docRef.get().then(function(doc){
                 if (doc.exists) {
                     let docData = doc.data();
-                    let guestsData = doc.g;
-
+                    let guestsData = docData.g;
                     // Continue if its not confirmed yet
                     if (docData.c === false) {
                         menuFormContainer.classList.add('need-confirmation');
-                        console.log(guestsData);
+                        
                         buildMenuForm(guestsData);
                         submitMenuForm(userId.toLowerCase());
                     } else {
@@ -819,14 +818,16 @@
             'Name 3': true,
         };
 
+        console.log(data);
+
         let menuSelection = document.getElementById('menu-selection');
         let menuItemArr = [];
         let count = 0;
 
-        for (var key in fakeData) {
-            if (!fakeData.hasOwnProperty(key)) continue;
+        for (var key in data) {
+            if (!data.hasOwnProperty(key)) continue;
             let name = key;
-            let isKid = fakeData[key];
+            let isKid = data[key];
             count++;
             // Add form items to Dom
             menuItemArr.push(menuFormItem(count,name,isKid));
@@ -835,12 +836,12 @@
         menuSelection.innerHTML = menuItemArr.join('');
     }
     // Menu Form Items
-    function menuFormItem(id, name, lastname, isKid) {
+    function menuFormItem(id, name, isKid) {
         let menuItem = `
             <div class="menu__container menu--form-item">
                 <span class="title title--primary-medium">${name}, please select your ...</span>
                 <span class="title title--secondary-medium title--bold title--space">Starter</span>
-                <input type="hidden" id="name-${id}" name="item-name" value="${name} ${lastname}">
+                <input type="hidden" id="name-${id}" name="item-name" value="${name}">
                 <div class="menu__row flex flex--justify-center">
                     <div class="menu__row-inner">
                         <input type="radio" class="menu__radio item-radio-${id}" id="starter-${id}-option-1" name="starter-${id}-options" value="Starter 1" checked>
