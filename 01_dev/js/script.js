@@ -822,6 +822,7 @@
 
         let menuSelection = document.getElementById('menu-selection');
         let menuItemArr = [];
+        let isKidItemArr = [];
         let count = 0;
 
         for (var key in data) {
@@ -830,10 +831,14 @@
             let isKid = data[key];
             count++;
             // Add form items to Dom
-            menuItemArr.push(menuFormItem(count,name,isKid));
+            if(isKid) {
+                isKidItemArr.push(menuFormItem(count,name,isKid));
+            } else {
+                menuItemArr.push(menuFormItem(count,name,isKid));
+            }
         }
 
-        menuSelection.innerHTML = menuItemArr.join('');
+        menuSelection.innerHTML = menuItemArr.concat(isKidItemArr).join('');
     }
     // Menu Form Items
     function menuFormItem(id, name, isKid) {
