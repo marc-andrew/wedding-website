@@ -812,28 +812,26 @@
     }
     // Build Menu Form Items
     function buildMenuForm(data) {
-        let fakeData = {
-            'Name 1': false,
-            'Name 2': false,
-            'Name 3': true,
-        };
-
         console.log(data);
 
         let menuSelection = document.getElementById('menu-selection');
         let menuItemArr = [];
-        let count = 0;
+        let isKidItemArr = [];
 
         for (var key in data) {
             if (!data.hasOwnProperty(key)) continue;
             let name = key;
             let isKid = data[key];
-            count++;
+
             // Add form items to Dom
-            menuItemArr.push(menuFormItem(count,name,isKid));
+            if(isKid) {
+                isKidItemArr.push(menuFormItem(null,name,isKid));
+            } else {
+                menuItemArr.push(menuFormItem(menuItemArr.length,name,isKid));
+            }
         }
 
-        menuSelection.innerHTML = menuItemArr.join('');
+        menuSelection.innerHTML = menuItemArr.concat(isKidItemArr).join('');
     }
     // Menu Form Items
     function menuFormItem(id, name, isKid) {
@@ -941,12 +939,12 @@
             // Loop through each form person item
             for(let i = 0; i < menuFormItem.length; i++) {
                 let itemArr = [];
-                let pName = document.getElementById('name-'+i).getAttribute("value");
+                let pName = document.getElementById('name-'+i).value;
                 let itemRadio = document.getElementsByClassName('item-radio-'+i);
 
                 for(let j = 0; j < itemRadio.length; j++) {
                     if(itemRadio[j].checked) {
-                        itemArr.push(itemRadio[j].getAttribute("value"));
+                        itemArr.push(itemRadio[j].value);
                     }
                 }
 
