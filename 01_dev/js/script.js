@@ -801,7 +801,7 @@
                         buildMenuForm(guestsData);
                         submitMenuForm(userId.toLowerCase());
                     } else {
-                        menuFormId.classList.add('confirmed');
+                        menuFormContainer.classList.add('confirmed');
                         document.getElementById('menu-form').insertAdjacentHTML('afterend', msgConfirmed);
                     }
                 }
@@ -812,8 +812,6 @@
     }
     // Build Menu Form Items
     function buildMenuForm(data) {
-        console.log(data);
-
         let menuSelection = document.getElementById('menu-selection');
         let menuItemArr = [];
         let isKidItemArr = [];
@@ -962,7 +960,7 @@
 
             // Batch commit 
             batch.commit().then(function () {
-                menuFormContainer.classList.add('sumitted');
+                menuFormContainer.classList.add('submitted');
                 menuForm.insertAdjacentHTML('afterend', '<span class="title title--primary-medium title--thankyou">Thank you!</span>');
             }).catch(function (error) {
                 menuSubmitBtn.insertAdjacentHTML('afterend', msgError);
